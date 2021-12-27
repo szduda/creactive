@@ -1,0 +1,8 @@
+{
+  "short_name": "creactive",
+  "name": "creactive",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#F9C926",
+  "background_color": "#243230"
+}
