@@ -3,4 +3,5 @@ export type TPhoto = {
   title: string
   description: string
   url: string
+  vertical?: boolean
 }

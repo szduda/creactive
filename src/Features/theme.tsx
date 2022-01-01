@@ -47,7 +47,7 @@ export const Icons = {
     <ExclamationIcon css={css`fill: ${color}`} {...rest} />,
   Unfold: ({ color = colors.white, ...rest }) =>
     <UnfoldIcon css={css`fill: ${color}`} {...rest} />,
-  Drum: () => <DrumIcon/>,
+  Drum: () => <DrumIcon />,
 }
 
 export const themeProps = {
@@ -122,15 +122,28 @@ export const Theme = props => (
     padding: 0;
     margin: 0 auto;
     position: relative;
+
+    main {
+      padding: 24px 0 48px;
+
+      @media (min-width: 768px) {
+        padding: 64px 0 48px;
+      }
+    }
     
     header {
       position: fixed;
-      top: 0;
+      bottom: 0;
       left: 0;
       right: 0;
       display: flex;
       justify-content: center;
       z-index: 999;
+
+      @media (min-width: 768px) {
+        top: 0;
+        bottom: unset;
+      }
     }
     
     div {
@@ -202,7 +215,6 @@ export const Theme = props => (
     }
 
     a {
-      color: inherit;
       cursor: pointer;
     }
   `} {...props} />
@@ -220,9 +232,10 @@ export const Button: FC<ButtonProps> = ({ filled, ninja, ...rest }) => ninja ? (
     display: flex;
     margin: 0;
     padding: 0;
+    cursor: pointer;
   `} {...rest} />
 ) : (
-  <button css={css`      
+    <button css={css`      
     border-radius: 4px;
     border: ${filled ? 'none' : `1px solid ${colors.grayLight}`};
     font: 500 12px Consolas;
@@ -232,12 +245,9 @@ export const Button: FC<ButtonProps> = ({ filled, ninja, ...rest }) => ninja ? (
     justify-content: center;
     transition: transform 100ms ease-out;
     padding: 8px;
-    
-    *:active, :active {
-      transform: scaleX(0.97);
-    }
+    cursor: pointer;
   `} {...rest} />
-)
+  )
 
 export const AnchorLink = props => (
   // eslint-disable-next-line
