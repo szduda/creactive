@@ -24,17 +24,16 @@ const Wrapper = ({ onClick, ...rest }) => {
           height: 100vh;
           z-index: 1000;
           display: flex;
-
-          @media (orientation: landscape) {
-            align-items: flex-end;
-            flex-direction: row;
-          }
+          flex-wrap: wrap;
+          flex-direction: row;
+          align-items: center;
+          overflow: auto;
     `} {...rest} />
     </Button>
   )
 }
 
-const Title = ({ title }) => (
+const Title = ({ title }) => title ? (
   <h2 css={css`
     margin: 0;
     padding: 16px 12px 0;
@@ -45,9 +44,9 @@ const Title = ({ title }) => (
   `}>
     {title}
   </h2>
-)
+) : null
 
-const Description = ({ description }) => (
+const Description = ({ description }) => description ? (
   <p css={css`
     color: ${colors.grayLighter} !important;
     padding: 16px 12px;
@@ -55,7 +54,7 @@ const Description = ({ description }) => (
   `}>
     {description}
   </p>
-)
+) : null
 
 export type Props = {
   item: TPhoto
@@ -69,18 +68,38 @@ export const PreviewModal: FC<Props> = ({
   const { url, title, description } = item
   return (
     <Wrapper {...{ onClick }}>
-      <img src={url} alt={title} css={css`
+      <div css={css`
+        display: flex;
+        flex-wrap: wrap;
+        max-height: 100%;
+        justify-content: center;
+      `}>
+        <img src={url} alt={title} css={css`
         width: 100%;
 
-        @media (orientation: landscape) {
-          width: auto;
+          @media (orientation: landscape), (min-width: 768px) {
+            width: auto;
+            height: auto;
+            max-width: min(100%, 1200px);
+            max-height: 100vh;
+          }
+        `} />
+        <Flex.Col css={css`
           height: 100%;
-        }
-      `} />
-      <Flex.Col>
-        <Title {...{ title }} />
-        <Description {...{ description }} />
-      </Flex.Col>
+          max-width: 300px;
+          justify-content: flex-end;
+          align-self: flex-end;
+
+          @media (max-width: 1423px) {
+            width: min(1200px, 100%);
+            max-width: unset;
+          }
+
+          `}>
+          <Title {...{ title }} />
+          <Description {...{ description }} />
+        </Flex.Col>
+      </div>
     </Wrapper>
   )
 }
