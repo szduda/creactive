@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { FC, useState, useLayoutEffect } from 'react'
 import { jsx, css, } from '@emotion/core'
-import { sortByDesc } from '../../appHelper'
 import { Photo } from './Photo'
 import { TPhoto } from '../../StateManager/definitions/TPhoto'
 import { PreviewModal } from '.'
@@ -24,50 +23,6 @@ const Wrapper = props => (
   `} {...props} />
 )
 
-type TPhotos = {
-  items: TPhoto[]
-  previewId: string
-  setPreviewId(id: string): void
-  photoHeight: number
-}
-
-const Photos: FC<TPhotos> = ({ items, previewId, setPreviewId, photoHeight }) => {
-  let i = 0
-  let layoutItems: {
-    photo: TPhoto
-    style?: object
-  }[] = []
-  let lastRowVerticals = [false, false, false]
-
-  while (i <= items.length) {
-    const rowSpace = 3 - lastRowVerticals.filter(vertical => vertical).length
-    const row = items.slice(i, i + rowSpace)
-
-    row.map((photo, photoIndex) => layoutItems.push({
-      photo,
-      style: {
-        marginTop: lastRowVerticals.indexOf(true) >= 0 ? `-${photoHeight + 16}px` : '',
-        marginLeft: lastRowVerticals[photoIndex] ? '33.333%' : '',
-        maxHeight: `${(photoHeight - 0) * 2 + 16}px`,
-      }
-    }))
-
-    // todo: fix to always have lenght of 3
-    lastRowVerticals = row.map(({ vertical }, index) => vertical)
-    i += rowSpace
-  }
-
-  return layoutItems.map(({ photo, style }) => (
-    <Photo {...{
-      key: photo.id,
-      item: photo,
-      selected: previewId === photo.id,
-      onClick: () => setPreviewId(photo.id),
-      style
-    }} />
-  ))
-}
-
 export const Gallery: FC<TGallery> = ({ useGalleryContext }) => {
   const { items, previewId, setPreviewId } = useGalleryContext()
   const previewItem = items.find(({ id }) => id === previewId)
@@ -83,9 +38,59 @@ export const Gallery: FC<TGallery> = ({ useGalleryContext }) => {
     return () => window.removeEventListener('resize', recalcLayout)
   }, [])
 
+  let shouldBreak = false
+  let i = 0
+  let layoutItems: {
+    photo: TPhoto
+    style?: object
+  }[] = []
+  let lastRowVerticals = [false, false, false]
+
+  while (i <= items.length) {
+    if (shouldBreak) break
+
+    const rowOffset = lastRowVerticals.filter(v => v).length
+    let indexOffset = 0
+
+    lastRowVerticals = lastRowVerticals.map(lastVertical => {
+      if (lastVertical) {
+        indexOffset += 1
+        return false
+      }
+
+      const photo = items[i]
+
+      if (!photo) {
+        shouldBreak = true
+        return false
+      }
+
+      layoutItems.push({
+        photo,
+        style: {
+          marginTop: rowOffset ? `-${photoHeight + 16}px` : '',
+          marginLeft: `${indexOffset * 33.333}%`,
+          maxHeight: `${(photoHeight - 0) * 2 + 16}px`,
+        }
+      })
+
+      i += 1
+      indexOffset = 0
+      return photo.vertical
+    })
+  }
+
   return (
     <Wrapper>
-      {items?.length ? <Photos {...{ items, previewId, setPreviewId, photoHeight }} /> : null}
+      {layoutItems.map(({ photo, style }) => (
+        <Photo {...{
+          key: photo.id,
+          item: photo,
+          selected: previewId === photo.id,
+          onClick: () => setPreviewId(photo.id),
+          style
+        }} />
+      ))}
       {previewItem && <PreviewModal onClick={() => setPreviewId(null)} item={previewItem} />}
     </Wrapper>
   )
