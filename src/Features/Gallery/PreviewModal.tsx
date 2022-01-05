@@ -11,7 +11,7 @@ const Wrapper = ({ onClick, ...rest }) => {
       <Flex.Col
         valign='center'
         css={css`
-          background: ${colors.grayDark};
+          background: ${colors.gray};
           color: ${colors.black};
           padding: 0;
           margin: 0;
@@ -82,6 +82,7 @@ export const PreviewModal: FC<Props> = ({
             height: auto;
             max-width: min(100%, 1200px);
             max-height: 100vh;
+            box-shadow: 0 0 3px 1px ${colors.black}88;
           }
         `} />
         <Flex.Col css={css`
