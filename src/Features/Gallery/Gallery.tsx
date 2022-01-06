@@ -2,17 +2,8 @@
 import { FC, useState, useLayoutEffect } from 'react'
 import { jsx, css, } from '@emotion/core'
 import { Photo } from './Photo'
-import { TPhoto } from '../../StateManager/definitions/TPhoto'
-import { PreviewModal } from '.'
-
-
-export type TGallery = {
-  useGalleryContext(): {
-    items: TPhoto[]
-    previewId: string
-    setPreviewId(id: string | null): void
-  }
-}
+import { TPhoto } from '../../StateManager'
+import { PreviewModal, TGallery } from '.'
 
 const Wrapper = props => (
   <div css={css`
@@ -24,7 +15,7 @@ const Wrapper = props => (
 )
 
 export const Gallery: FC<TGallery> = ({ useGalleryContext }) => {
-  const { items, previewId, setPreviewId } = useGalleryContext()
+  const { items, previewId, setPreviewId, meta } = useGalleryContext()
   const previewItem = items.find(({ id }) => id === previewId)
 
   const calcHeight = () => (0.33333 * (window.innerWidth - 16) - 16) * 2 / 3
@@ -42,7 +33,11 @@ export const Gallery: FC<TGallery> = ({ useGalleryContext }) => {
   let i = 0
   let layoutItems: {
     photo: TPhoto
-    style?: object
+    style: {
+      marginTop: string
+      marginLeft: string
+      maxHeight: string
+    }
   }[] = []
   let lastRowVerticals = [false, false, false]
 
@@ -82,13 +77,21 @@ export const Gallery: FC<TGallery> = ({ useGalleryContext }) => {
 
   return (
     <Wrapper>
-      {layoutItems.map(({ photo, style }) => (
+      {meta.loading ? (
+        <p>Loading...</p>
+      ) : layoutItems.map(({ photo, style }) => (
         <Photo {...{
           key: photo.id,
           item: photo,
-          selected: previewId === photo.id,
           onClick: () => setPreviewId(photo.id),
-          style
+          maxHeight: style?.maxHeight,
+          ...style && {
+            css: css`
+            @media (min-width: 1024px) {
+              margin-top: ${style.marginTop}; 
+              margin-left: ${style.marginLeft}; 
+            }
+          `}
         }} />
       ))}
       {previewItem && <PreviewModal onClick={() => setPreviewId(null)} item={previewItem} />}

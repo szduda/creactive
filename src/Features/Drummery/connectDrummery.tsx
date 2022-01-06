@@ -1,18 +1,18 @@
 import React, { FC, useState, useEffect } from 'react'
 import { useStore } from '../../StateManager/Store'
-import { Gallery, TGallery } from '.'
+import { Drummery, TDrummery } from '.'
 
-export const connectGallery : FC<TGallery> = ({ DataService }) => {
-  const useGalleryContext = () => {
+export const connectDrummery: FC<TDrummery> = ({ DataService }) => {
+  const useDrummeryContext = () => {
     const {
       state: {
-        gallery: {
+        drummery: {
           items,
           previewId,
         }
       },
       actions: {
-        gallery: {
+        drummery: {
           setItems,
           setPreviewId,
         }
@@ -22,17 +22,23 @@ export const connectGallery : FC<TGallery> = ({ DataService }) => {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
+      let cancelled = false
       const asyncEffect = async () => {
         try {
-          const items = await DataService.fetchPhotos()
-          setItems(items)
-          setLoading(false)
+          const items = await DataService.fetchDrumSnippets()
+          if (!cancelled) {
+            setItems(items)
+            setLoading(false)
+          }
         } catch (err) {
           console.error('Failed to fetch data.\n', err)
-          setLoading(false)
+          if (!cancelled) {
+            setLoading(false)
+          }
         }
       }
       asyncEffect()
+      return () => { cancelled = true }
     }, [])
 
 
@@ -44,5 +50,5 @@ export const connectGallery : FC<TGallery> = ({ DataService }) => {
     }
   }
 
-  return () => <Gallery {...{ useGalleryContext }} />
+  return () => <Drummery {...{ useDrummeryContext }} />
 }

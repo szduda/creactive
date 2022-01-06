@@ -210,8 +210,8 @@ export const Theme = props => (
       line-height: 24px;
       letter-spacing: -0.6px;
       font-weight: 300;
-      margin: 0 0 8px 0;
-      color: ${colors.white};
+      margin: 0 0 12px;
+      color: ${colors.grayLighter};
     }
 
     a {

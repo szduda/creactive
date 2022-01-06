@@ -3,7 +3,7 @@
 import { FC } from 'react'
 import { jsx, css, } from '@emotion/core'
 import { colors, Flex, Button } from '../theme'
-import type { TPhoto } from '../../StateManager/definitions/TPhoto'
+import type { TPhoto } from '../../StateManager'
 
 const Wrapper = ({ onClick, ...rest }) => {
   return (
@@ -28,7 +28,7 @@ const Wrapper = ({ onClick, ...rest }) => {
           flex-direction: row;
           align-items: center;
           overflow: auto;
-    `} {...rest} />
+      `} {...rest} />
     </Button>
   )
 }

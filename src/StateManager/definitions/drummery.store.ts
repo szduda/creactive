@@ -1,22 +1,22 @@
-import { TPhoto } from './TPhoto'
+import { TDrumSnippet } from './TDrumSnippet'
 
-export type GalleryState = {
-  items: TPhoto[]
+export type DrummeryState = {
+  items: TDrumSnippet[]
   previewId: string | null
   filters: {
     tag?: string | null
   }
 }
 
-export const defaultState: GalleryState = {
+export const defaultState: DrummeryState = {
   items: [],
-  previewId: null,
+  previewId: 'y',
   filters: {
     tag: null
   }
 }
 
-export const galleryReducer = (state: GalleryState, action: GalleryAction) => {
+export const drummeryReducer = (state: DrummeryState, action: DrummeryAction) => {
   const { payload, type } = action
 
   switch (type) {
@@ -43,18 +43,18 @@ export const galleryReducer = (state: GalleryState, action: GalleryAction) => {
   }
 }
 
-export type GalleryAction = ReturnType<typeof galleryActions[keyof typeof galleryActions]>
+export type DrummeryAction = ReturnType<typeof drummeryActions[keyof typeof drummeryActions]>
 
-export const galleryActions = {
-  setItems: (payload: GalleryState['items']) => ({
+export const drummeryActions = {
+  setItems: (payload: DrummeryState['items']) => ({
     type: 'setItems',
     payload,
   }),
-  setFilter: (payload: GalleryState['filters']) => ({
+  setFilter: (payload: DrummeryState['filters']) => ({
     type: 'setFilters',
     payload,
   }),
-  setPreviewId: (payload: GalleryState['previewId']) => ({
+  setPreviewId: (payload: DrummeryState['previewId']) => ({
     type: 'setPreviewId',
     payload,
   }),

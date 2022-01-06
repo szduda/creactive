@@ -58,7 +58,7 @@ const Title = () => (
   </h1>
 )
 
-export const Header = ({ context }) => {
+export const Header = () => {
   return (
     <Wrapper>
       <Title />

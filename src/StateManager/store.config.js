@@ -4,22 +4,28 @@ import {
   galleryReducer,
   galleryActions,
 } from './definitions/gallery.store'
+import {
+  defaultState as drummeryDefault,
+  drummeryReducer,
+  drummeryActions,
+} from './definitions/drummery.store'
 
 export const initialState = {
   gallery: galleryDefault,
+  drummery: drummeryDefault,
 }
 
-export const reducer = ({ gallery }, action) => {
+export const reducer = (state, action) => {
   return {
-    gallery: galleryReducer(gallery, action),
+    gallery: galleryReducer(state.gallery, action),
+    drummery: drummeryReducer(state.drummery, action),
   }
 }
 
 export const useMyGetters = state => ({
 })
 
-const useGalleryActions = dispatch => useActions(dispatch, galleryActions)
-
 export const useMyActions = dispatch => ({
-  gallery: useGalleryActions(dispatch),
+  gallery: useActions(dispatch, galleryActions),
+  drummery: useActions(dispatch, drummeryActions),
 })

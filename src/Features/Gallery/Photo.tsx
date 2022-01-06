@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { FC } from 'react'
 import { jsx, css } from '@emotion/core'
-import { colors, Flex, Button } from '../theme'
-import type { TPhoto } from '../../StateManager/definitions/TPhoto'
+import { colors, Button } from '../theme'
+import type { TPhoto } from '../../StateManager'
 
 const Wrapper = ({ onClick, ...rest }) => {
   return (
@@ -37,27 +37,31 @@ export type Props = {
 }
 
 export const Photo: FC<Props> = ({
-  item,
+  item: {
+    url,
+    title
+  },
   onClick,
-  style,
-}) => {
-  const { url, title } = item
-  const { maxHeight, ...wrapperStyle } = style
-  return (
-    <Wrapper {...{ onClick, style: wrapperStyle }}>
-      <img src={url} alt={title} css={css`
-        width: 100%;
-        background: ${colors.gray};
-        border-radius: 4px;
-        min-height: 64px;
-        height: auto;
-        object-fit: cover;
-        box-shadow: 0 0 3px 1px ${colors.black}88;
+  maxHeight,
+}) => (
+  <Wrapper {...{ onClick }}>
+    <img src={url} alt={title} css={css`
+      width: 100%;
+      background: ${colors.gray};
+      border-radius: 4px;
+      min-height: 64px;
+      height: auto;
+      object-fit: cover;
+      box-shadow: 0 0 3px 1px ${colors.black}88;
+      max-height: calc(100vh - 64px);
 
-        @media (min-width: 768px) {
-          max-height: ${maxHeight};
-        }
-       `} />
-    </Wrapper>
-  )
-}
+      @media (max-with: 767px) {
+        justify-content: center;
+      }
+
+      @media (min-width: 768px) {
+        max-height: ${maxHeight};
+      }
+    `} />
+  </Wrapper>
+)

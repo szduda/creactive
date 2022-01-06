@@ -1,13 +1,14 @@
 import React from 'react'
 import { Route, HashRouter, Redirect } from 'react-router-dom';
 import { DataService } from './DataService'
-import { connectGallery } from './Features/Gallery/connectGallery'
-import { connectHeader } from './Features/Header/connectHeader'
+import { connectGallery } from './Features/Gallery'
+import { connectDrummery } from './Features/Drummery'
+import { connectHeader } from './Features/Header'
 
 export const Router = () => {
   const Header = connectHeader()
   const Gallery = connectGallery({ DataService })
-  const Drums = () => <p style={{ color: 'white' }}>Drums...</p>
+  const Drummery = connectDrummery({ DataService })
   const Dev = () => <p style={{ color: 'white' }}>Dev...</p>
 
   return (
@@ -17,9 +18,9 @@ export const Router = () => {
       </header>
       <main>
         <Route path='/photos' component={Gallery} />
-        <Route path='/drums' component={Drums} />
+        <Route path='/drums' component={Drummery} />
         <Route path='/dev' component={Dev} />
-        <Route exact path='/' component={Gallery} />
+        <Route exact path='/' component={Drummery} />
         <Redirect to="/" />
       </main>
     </HashRouter>
