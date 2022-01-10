@@ -15,17 +15,36 @@ export const DataService = {
     return items
   },
   fetchDrumSnippets: async () => {
-    return [
-      {
-        id: 'x',
-        title: 'Example snippet',
-        description: 'Lorem ipsum',
+    const items: TDrumSnippet[] = []
+    items.push({
+      id: 'x',
+      title: 'Djansa groove',
+      description: 'Simple dundun set arrangement of the popular rhythm.',
+      tags: [
+        '4/4',
+        'Mali',
+        'Khassonke',
+        'dundun set',
+      ],
+      files: [{
+        title: 'djansa-duns',
+        type: 'pcc',
+        url: '.',
       }, {
-        id: 'y',
-        title: 'Another testing item',
-        description: 'Lorem ipsum again...',
-      }
-    ] as TDrumSnippet[]
+        title: 'djansa-duns',
+        type: 'pdf',
+        url: '.',
+      }]
+    }, {
+      id: 'y',
+      title: 'Soli swing',
+      description: 'Lorem ipsum again...',
+      tags: [
+        '6/8',
+        'pra pyty pyty pyty',
+      ]
+    })
+    return items
   }
 }
 

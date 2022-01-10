@@ -13,7 +13,7 @@ const Wrapper = props => {
         background: ${colors.gray};
         color: ${colors.black};
         padding: 0;
-        margin: 0 0 0 8px;
+        margin: 0 0 0 16px;
         font-size: 12px;
         line-height: 14px;
         display: flex;
