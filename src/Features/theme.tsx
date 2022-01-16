@@ -8,6 +8,7 @@ import { ReactComponent as CloseIcon } from '../assets/icons/close.svg'
 import { ReactComponent as ExclamationIcon } from '../assets/icons/exclamation.svg'
 import { ReactComponent as UnfoldIcon } from '../assets/icons/unfold.svg'
 import { ReactComponent as DrumIcon } from '../assets/icons/drum.svg'
+import { ReactComponent as ArrowIcon } from '../assets/icons/arrow.svg'
 
 export const colors = {
   red: '#ED3C19',
@@ -48,6 +49,10 @@ export const Icons = {
   Unfold: ({ color = colors.white, ...rest }) =>
     <UnfoldIcon css={css`fill: ${color}`} {...rest} />,
   Drum: () => <DrumIcon />,
+  Arrow: ({ left, up, down, ...rest }) =>
+    <ArrowIcon css={css`transform: rotate(
+      ${Number(down) * 90 + Number(left) * 180 + Number(up) * 270}deg
+    )`} {...rest} />
 }
 
 export const themeProps = {

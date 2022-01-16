@@ -23,7 +23,13 @@ const Wrapper = ({ onClick, ...rest }) => {
         @media (min-width: 1024px) {
           margin: 0 0 24px;
         }
-      `}  {...rest} />
+
+        :hover {
+          background: ${colors.grayDark}cc;
+        }
+      `}
+      {...rest}
+    />
   )
 }
 
@@ -32,13 +38,6 @@ export type Props = {
   onClick(): void
 }
 
-export const ListItem: FC<Props> = ({
-  item: {
-    title
-  },
-  onClick,
-}) => (
-  <Wrapper {...{ onClick }}>
-    {title}
-  </Wrapper>
+export const ListItem: FC<Props> = ({ item: { title }, onClick }) => (
+  <Wrapper {...{ onClick }}>{title}</Wrapper>
 )
