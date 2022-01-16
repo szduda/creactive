@@ -86,7 +86,7 @@ export const BottomContent = ({ visible, onClose, children, ...props }) => (
   </section>
 )
 
-const Row = ({ align, valign, wide, wrap, grow, ...props }) => (
+const Row = ({ align = null, valign = null, wide = null, wrap = null, grow = null, ...props }) => (
   <div css={css`
     display: flex;
     justify-content: ${align || 'space-between'};
@@ -247,13 +247,17 @@ export const Button: FC<ButtonProps> = ({ filled, ninja, ...rest }) => ninja ? (
     border-radius: 4px;
     border: ${filled ? 'none' : `1px solid ${colors.grayLight}`};
     font: 500 12px Consolas;
-    background: ${filled ? colors.grayLighter : 'none'};
+    background: ${filled ? colors.yellowLight : 'none'};
+    font-weight: 700;
     outline: none;
     display: flex;
     justify-content: center;
-    transition: transform 100ms ease-out;
     padding: 8px;
     cursor: pointer;
+
+    :hover {
+      background ${filled ? colors.yellow : colors.black+'44'}
+    }
   `} {...rest} />
   )
 
