@@ -24,14 +24,14 @@ export const colors = {
   green: '#2E8269',
   greenDark: '#205A4A',
   greenLight: '#35977A',
+  greenLighter: '#69A197',
 
   white: '#F1FAEA',
   black: '#1B1B1A',
-
-  grayLighter: '#AFBCBC',
-  grayLight: '#80807F',
-  gray: '#444',
-  grayDark: '#2B2B2A',
+  grayLighter: '#D0DCDB',
+  grayLight: '#7DA19E',
+  gray: '#455F5D',
+  grayDark: '#2B3B3A',
   darken: color => colors[`${Object.keys(colors).find(key => colors[key] === color)}Dark`] || color,
   lighten: color => colors[`${Object.keys(colors).find(key => colors[key] === color)}Light`] || color
 }
@@ -49,10 +49,12 @@ export const Icons = {
   Unfold: ({ color = colors.white, ...rest }) =>
     <UnfoldIcon css={css`fill: ${color}`} {...rest} />,
   Drum: () => <DrumIcon />,
-  Arrow: ({ left, up, down, ...rest }) =>
-    <ArrowIcon css={css`transform: rotate(
-      ${Number(down) * 90 + Number(left) * 180 + Number(up) * 270}deg
-    )`} {...rest} />
+  Arrow: ({color = colors.white,  right = false, up = false, down = false, ...rest }) =>
+    <ArrowIcon css={css`
+      transform: rotate(${Number(up) * 90 + Number(right) * 180 + Number(down) * 270}deg);
+      fill: ${color};
+    `}
+    {...rest} />,
 }
 
 export const themeProps = {
@@ -211,7 +213,7 @@ export const Theme = props => (
     }
 
     p {
-      font-size: 16px;
+      font-size: 18px;
       line-height: 24px;
       letter-spacing: -0.6px;
       font-weight: 300;
@@ -238,6 +240,7 @@ export const Button: FC<ButtonProps> = ({ filled, ninja, ...rest }) => ninja ? (
     margin: 0;
     padding: 0;
     cursor: pointer;
+    color: ${colors.white};
   `} {...rest} />
 ) : (
     <button css={css`      

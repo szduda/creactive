@@ -7,6 +7,7 @@ const Wrapper = (props) => (
   <div
     css={css`
       display: flex;
+      align-items: flex-start;
       padding: 0 8px;
       width: 100%;
     `}
@@ -50,6 +51,7 @@ export const Drummery: FC<TDrummery> = ({ useDrummeryContext }) => {
                 key: snippet.id,
                 item: snippet,
                 onClick: () => setPreviewId(snippet.id),
+                selected: snippet.id === previewId
               }}
             />
           ))

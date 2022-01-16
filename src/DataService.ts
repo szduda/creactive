@@ -42,7 +42,8 @@ export const DataService = {
       tags: [
         '6/8',
         'pra pyty pyty pyty',
-      ]
+      ],
+      files: [],
     })
     return items
   }
