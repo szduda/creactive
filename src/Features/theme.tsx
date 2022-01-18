@@ -86,7 +86,7 @@ export const BottomContent = ({ visible, onClose, children, ...props }) => (
   </section>
 )
 
-const Row = ({ align = null, valign = null, wide = null, wrap = null, grow = null, ...props }) => (
+const Row = ({ align = '', valign = '', wide = '', wrap = '', grow = '', ...props }) => (
   <div css={css`
     display: flex;
     justify-content: ${align || 'space-between'};

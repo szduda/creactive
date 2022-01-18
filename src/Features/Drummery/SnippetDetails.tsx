@@ -1,11 +1,11 @@
 /** @jsx jsx */
-import { FC, Fragment, useRef, useState } from 'react'
+import { FC, Fragment } from 'react'
 import { jsx, css } from '@emotion/core'
 import { colors, Flex, Button, Icons } from '../theme'
 import { TDrumSnippet } from '../../StateManager'
 import { Tags } from './Tags'
 
-import MIDISounds from 'midi-sounds-react'
+import { GroovyPlayer } from './GroovyPlayer'
 
 export type Props = {
   item: TDrumSnippet
@@ -16,37 +16,11 @@ export const SnippetDetails: FC<Props> = ({
   onClick,
   item: { title, description, tags, files },
 }) => {
-  const midiSounds = useRef(null)
-
-  const bell = 227
-  const dundunba = 30
-  const sangbanClosed = 133
-  const sangban = 147
-  // const kenkeni = 140
-  const kenkeni = 173
-
-  const tracks = [
-    [1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-    [1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
-    [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0],
-  ]
-
-  const fillBeat = () => {
-    const beats = Array(32)
-    for (var i = 0; i < 32; i++) {
-      let drums = Array()
-      if (tracks[0][i]) drums.push(sangban)
-      if (tracks[1][i]) drums.push(bell)
-      if (tracks[2][i]) drums.push(kenkeni)
-      if (tracks[3][i]) drums.push(sangbanClosed)
-
-      beats[i] = [drums, []]
-    }
-
-    return beats
-  }
+  // const bell = 227
+  // const dundunba = 30
+  // const sangbanClosed = 3311
+  // const sangban = 3310
+  // const kenkeni = 173
 
   return (
     <Wrapper>
@@ -55,33 +29,19 @@ export const SnippetDetails: FC<Props> = ({
       <Title {...{ title }} />
       <Description {...{ description }} />
 
-      <Flex.Row>
-        <Button
-          filled
-          onClick={() => {
-            const beats = fillBeat()
-            midiSounds.current?.startPlayLoop(beats, 110, 1 / 16)
-          }}
-          css={css`
-            margin-right: 4px;
-          `}
-        >
-          Play
-        </Button>
-        <Button
-          filled
-          onClick={() => {
-            midiSounds.current?.stopPlayLoop()
-          }}
-        >
-          Stop
-        </Button>
-      </Flex.Row>
-
-      <MIDISounds
-        ref={midiSounds}
-        appElementName="root"
-        drums={[bell, sangbanClosed, sangban, kenkeni]}
+      <GroovyPlayer
+        tracks={[
+          {
+            title: 'sangban',
+            loop: 'o--o--o---x---o-',
+            instrument: 'sangban',
+          },
+          {
+            title: 'bell',
+            loop: 'x-xx-xx-x-x-x-x-',
+            instrument: 'bell',
+          },
+        ]}
       />
 
       <Attachments files={files} />
@@ -96,18 +56,20 @@ const Wrapper: FC = ({ children, ...props }) => {
       css={css`
         color: ${colors.black};
         padding: 0;
-        margin: 0 0 0 16px;
+        margin: 0 16px;
         font-size: 12px;
         line-height: 14px;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
+        width: 100%;
       `}
       {...props}
     >
       <Flex.Col
         css={css`
           background: ${colors.grayDark};
+          width: 100%;
 
           @media (max-width: 767px) {
             position: fixed;
