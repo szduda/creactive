@@ -7,6 +7,7 @@ import MIDISounds from 'midi-sounds-react'
 export const bell = 227
 export const sangbanClosed = 3311
 export const sangban = 3310
+export const shaker = 173
 
 const MidiSoundsContext = createContext(null)
 
@@ -23,7 +24,7 @@ export const MidiSoundsContextProvider: FC = ({ children }) => {
         text-align: right;
         margin: 32px 16px 0;
 
-        @media(min-width: 1024px) {
+        @media(min-width: 768px) {
           position: fixed;
           bottom: 0; 
           right: 16px;
@@ -34,7 +35,7 @@ export const MidiSoundsContextProvider: FC = ({ children }) => {
         <MIDISounds
           ref={midiSounds}
           appElementName="root"
-          drums={[bell, sangbanClosed, sangban]}
+          drums={[bell, sangbanClosed, sangban, shaker]}
         />
       </div>
     </MidiSoundsContext.Provider>

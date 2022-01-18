@@ -10,6 +10,12 @@ const Wrapper = (props) => (
       align-items: flex-start;
       padding: 0 8px;
       width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+
+      @media (min-width: 768px) {
+        padding: 12px 8px 0;
+      }
     `}
     {...props}
   />
@@ -28,7 +34,7 @@ const ListWrapper = (props) => (
       }
 
       @media (min-width: 1024px) {
-        width: 30%;
+        width: 50%;
       }
     `}
     {...props}

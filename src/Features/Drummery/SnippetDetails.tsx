@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { FC, Fragment } from 'react'
+import { FC } from 'react'
 import { jsx, css } from '@emotion/core'
 import { colors, Flex, Button, Icons } from '../theme'
 import { TDrumSnippet } from '../../StateManager'
@@ -14,40 +14,55 @@ export type Props = {
 
 export const SnippetDetails: FC<Props> = ({
   onClick,
-  item: { title, description, tags, files },
-}) => {
-  // const bell = 227
-  // const dundunba = 30
-  // const sangbanClosed = 3311
-  // const sangban = 3310
-  // const kenkeni = 173
+  item: { title, description, tags },
+}) => (
+  <Wrapper>
+    <BackButton onClick={onClick} />
+    <Tags tags={tags} />
+    <Title {...{ title }} />
+    <Description {...{ description }} />
 
-  return (
-    <Wrapper>
-      <BackButton onClick={onClick} />
-      <Tags tags={tags} />
-      <Title {...{ title }} />
-      <Description {...{ description }} />
+    <h3
+      css={css`
+        color: ${colors.grayLight};
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin: 48px 0 24px;
+      `}
+    >
+      Patterns
+    </h3>
+    <GroovyPlayer
+      tracks={[
+        {
+          title: 'sangban',
+          loop: 'o--o--o---x---o-',
+          instrument: 'sangban',
+        },
+        {
+          title: 'bell',
+          loop: 'x-xx-xx-x-x-x-x-',
+          instrument: 'bell',
+        },
+      ]}
+    />
+    <GroovyPlayer
+      tracks={[
+        {
+          title: 'dundunba',
+          loop: 'x-------x-o-----x-----oo-oo-----',
+          instrument: 'sangban',
+        },
+        {
+          title: 'bell',
+          loop: 'x-x-x-x-x-x-x-x-x-x-x-xx-xx-x-x-',
+          instrument: 'bell',
+        },
+      ]}
+    />
 
-      <GroovyPlayer
-        tracks={[
-          {
-            title: 'sangban',
-            loop: 'o--o--o---x---o-',
-            instrument: 'sangban',
-          },
-          {
-            title: 'bell',
-            loop: 'x-xx-xx-x-x-x-x-',
-            instrument: 'bell',
-          },
-        ]}
-      />
-
-      <Attachments files={files} />
-    </Wrapper>
-  )
-}
+  </Wrapper>
+)
 
 const Wrapper: FC = ({ children, ...props }) => {
   return (
@@ -148,63 +163,3 @@ const BackButton = (props) => (
     </span>
   </Button>
 )
-
-const Attachments = ({ files }) =>
-  files?.length ? (
-    <Fragment>
-      <h3
-        css={css`
-          color: ${colors.grayLight};
-          text-transform: uppercase;
-          letter-spacing: 1.5px;
-        `}
-      >
-        Attachments
-      </h3>
-      <ul
-        css={css`
-          margin: 0;
-          padding: 0;
-          display: flex;
-          margin: 0 -4px;
-        `}
-      >
-        {files.map(({ title, type }) => (
-          <li
-            key={`${title}-${type}`}
-            css={css`
-              cursor: pointer;
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              padding: 12px;
-              background: ${colors.grayLight};
-              border-radius: 4px;
-              margin: 0 4px;
-              text-transform: uppercase;
-              font-weight: 700;
-              font-size: 14px;
-              line-height: 16px;
-
-              :hover {
-                background: ${colors.grayLight}cc;
-              }
-            `}
-          >
-            <div
-              css={css`
-                background: ${colors.gray}44;
-                color: ${colors.white};
-                padding: 12px;
-                margin: 0 0 12px;
-                border-radius: 4px;
-              `}
-            >
-              {type}
-            </div>
-            <span>{title}</span>
-          </li>
-        ))}
-      </ul>
-    </Fragment>
-  ) : null
