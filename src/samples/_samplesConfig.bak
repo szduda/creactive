@@ -1,0 +1,50 @@
+// just backup - a modification for node_modules\webaudiofont\npm\src\loader.js starting at line 389
+
+if (n === 3310) return {
+  variable: '_drum_sangban_open',
+  url: 'https://firebasestorage.googleapis.com/v0/b/creactive-83d83.appspot.com/o/sangbanOpen.js?alt=media',
+  pitch: 78,
+  title: 'sangban open'
+};
+
+if (n === 3311) return {
+  variable: '_drum_sangban_closed',
+  url: 'https://firebasestorage.googleapis.com/v0/b/creactive-83d83.appspot.com/o/sangbanClosed.js?alt=media',
+  pitch: 78,
+  title: 'sangban closed'
+}; 
+
+if (n === 3312) return {
+  variable: '_drum_dundunba_open',
+  url: 'https://firebasestorage.googleapis.com/v0/b/creactive-83d83.appspot.com/o/dundunbaOpen.js?alt=media',
+  pitch: 78,
+  title: 'dundunba open'
+};
+
+if (n === 3314) return {
+  variable: '_drum_kenkeni_open',
+  url: 'https://firebasestorage.googleapis.com/v0/b/creactive-83d83.appspot.com/o/kenkeniOpen.js?alt=media',
+  pitch: 78,
+  title: 'kenkeni open'
+};
+
+if (n === 3315) return {
+  variable: '_drum_kenkeni_closed',
+  url: 'https://firebasestorage.googleapis.com/v0/b/creactive-83d83.appspot.com/o/kenkeniClosed.js?alt=media',
+  pitch: 78,
+  title: 'kenkeni closed'
+};
+
+if (n === 3316) return {
+  variable: '_drum_kenkeni_open_2',
+  url: 'https://firebasestorage.googleapis.com/v0/b/creactive-83d83.appspot.com/o/kenkeniOpen2.js?alt=media',
+  pitch: 78,
+  title: 'kenkeni open 2'
+};
+
+if (n === 3317) return {
+  variable: '_drum_kenkeni_closed_2',
+  url: 'https://firebasestorage.googleapis.com/v0/b/creactive-83d83.appspot.com/o/kenkeniClosed2.js?alt=media',
+  pitch: 78,
+  title: 'kenkeni closed 2'
+};

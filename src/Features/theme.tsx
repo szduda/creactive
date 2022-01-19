@@ -94,9 +94,6 @@ const Row = ({ align = '', valign = '', wide = '', wrap = '', grow = '', ...prop
     ${grow && `flex-grow: ${grow};`}
     width: ${wide ? '100%' : 'auto'};
     ${wrap && 'flex-wrap: wrap;'}
-    >:last-of-type {
-      margin-right: 0 !important;
-    }
   `} {...props} />
 )
 
@@ -169,16 +166,14 @@ export const Theme = props => (
     }
 
     textarea, input {
-      background: ${colors.white};
-      color: ${colors.black};
-      margin: 4px 0 16px;
+      background: ${colors.grayDark};
+      color: ${colors.grayLighter};
       border-radius: 4px;
-      border: 1px solid ${colors.grayLight};
-      padding: 6px 4px 0;
+      border: 2px solid ${colors.grayLight};
+      padding: 8px;
       min-width: 24px;
-      font-size: 12px;
-      line-height: 16px;
-      font-weight: 700;
+      font: 700 24px Consolas;
+      line-height: 36px;
 
       &::placeholder {
         color: ${colors.gray};
@@ -209,7 +204,10 @@ export const Theme = props => (
     }
 
     input[type="checkbox"] {
-      margin: 8px 16px 20px 0;
+      height: 28px;
+      width: 28px;
+      margin: 8px;
+      display: inline-flex;
     }
 
     p {
@@ -245,14 +243,15 @@ export const Button: FC<ButtonProps> = ({ filled, ninja, ...rest }) => ninja ? (
 ) : (
     <button css={css`      
     border-radius: 4px;
-    border: ${filled ? 'none' : `1px solid ${colors.grayLight}`};
-    font: 500 12px Consolas;
+    border: ${filled ? `1px solid ${colors.yellowLight}` : `1px solid ${colors.grayLight}`};
+    font: 500 24px Consolas;
+    line-height: 36px;
     background: ${filled ? colors.yellowLight : 'none'};
     font-weight: 700;
     outline: none;
     display: flex;
     justify-content: center;
-    padding: 8px;
+    padding: 3px 16px;
     cursor: pointer;
 
     :hover {

@@ -27,7 +27,9 @@ export const SnippetDetails: FC<Props> = ({
         color: ${colors.grayLight};
         text-transform: uppercase;
         letter-spacing: 1.5px;
-        margin: 48px 0 24px;
+        font-size: 24px;
+        line-height: 48px;
+        margin: 24px 0;
       `}
     >
       Patterns
@@ -36,12 +38,12 @@ export const SnippetDetails: FC<Props> = ({
       tracks={[
         {
           title: 'sangban',
-          loop: 'o--o--o---x---o-',
+          loop: 'o--o--o---x---o-o--o--o---x---o-',
           instrument: 'sangban',
         },
         {
           title: 'bell',
-          loop: 'x-xx-xx-x-x-x-x-',
+          loop: 'x-xx-xx-x-x-x-x-x-xx-xx-x-x-x-x-',
           instrument: 'bell',
         },
       ]}
@@ -49,18 +51,22 @@ export const SnippetDetails: FC<Props> = ({
     <GroovyPlayer
       tracks={[
         {
-          title: 'dundunba',
-          loop: 'x-------x-o-----x-----oo-oo-----',
+          title: 'sangban',
+          loop: 'o--o--o---x---o-o--o--o---x---o-',
           instrument: 'sangban',
         },
         {
-          title: 'bell',
-          loop: 'x-x-x-x-x-x-x-x-x-x-x-xx-xx-x-x-',
-          instrument: 'bell',
+          title: 'dundunba',
+          loop: 'x-------x-o-----x-----oo-oo-----',
+          instrument: 'dundunba',
+        },
+        {
+          title: 'kenkeni',
+          loop: 'o----oo-o----oo-o----oo-o----oo-',
+          instrument: 'kenkeni',
         },
       ]}
     />
-
   </Wrapper>
 )
 

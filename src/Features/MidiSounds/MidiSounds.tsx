@@ -8,6 +8,12 @@ export const bell = 227
 export const sangbanClosed = 3311
 export const sangban = 3310
 export const shaker = 173
+export const dundunbaOpen = 3312
+export const dundunbaClosed = 3313
+export const kenkeniOpen = 3314
+export const kenkeniClosed = 3315
+export const kenkeniOpen2 = 3316
+export const kenkeniClosed2 = 3317
 
 const MidiSoundsContext = createContext(null)
 
