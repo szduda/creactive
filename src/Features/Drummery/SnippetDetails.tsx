@@ -99,6 +99,7 @@ const Wrapper: FC = ({ children, ...props }) => {
             width: 100vw;
             height: 100vh;
             padding: 24px 12px;
+            overflow-y: auto;
           }
         `}
       >

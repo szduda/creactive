@@ -63,7 +63,7 @@ export const GroovyPlayer: FC<Props> = ({
   const [playing, setPlaying] = useState(false)
 
   useEffect(() => {
-    if (playing) {
+    if (playing && tempo >= 40) {
       playLoop()
     }
   }, [tempo, muted, metronome])
@@ -115,6 +115,7 @@ export const GroovyPlayer: FC<Props> = ({
         font-weight: 700;
         font-size: 18px;
         line-height: 24px;
+        margin-bottom: 24px;
       `}
     >
       {tracks.map(({ title, instrument, loop }) => (
@@ -131,28 +132,47 @@ export const GroovyPlayer: FC<Props> = ({
 
       <Flex.Row
         align="flex-start"
+        wrap
         css={css`
-          margin: 24px 32px;
+          margin: 24px 32px 0;
+
+          @media (min-width: 768px) {
+            margin-bottom: 24px;
+          }
+
           > * {
-            margin-right: 8px;
+            margin: 0 8px 24px 0;
+
+            @media (min-width: 768px) {
+              margin: 0 8px 0 0;
+            }
           }
         `}
       >
         <Button filled onClick={playLoop}>
           Play
         </Button>
-        <Button filled onClick={stopLoop}>
+        <Button
+          filled
+          onClick={stopLoop}
+          css={css`
+            margin-right: 64px;
+          `}
+        >
           Stop
         </Button>
 
         <input
           type="text"
           size="2"
+          maxLength={3}
           value={tempo}
-          onChange={(e) => setTempo(e.target.value)}
-          css={css`
-            margin-left: 24px;
-          `}
+          onChange={(e) => {
+            const value = Number(e.target.value)
+            if (value === NaN) return
+            
+            setTempo(value)
+          }}
         />
         <span
           css={css`
@@ -179,6 +199,7 @@ export const GroovyPlayer: FC<Props> = ({
             align-self: flex-end;
             font-size: 24px;
             line-height: 44px;
+            margin-right: 0 !important;
           `}
         >
           metronome
@@ -225,18 +246,18 @@ const Track: FC = ({ title, loop, muted, setMuted }) => (
       css={css`
         font-size: 24px;
         line-height: 36px;
-        max-width: 212px;
+        max-width: 252px;
 
         @media (min-width: 768px) {
           font-size: 22px;
-          max-width: 424px;
+          max-width: 452px;
           line-height: 48px;
         }
 
         @media (min-width: 1440px) {
           font-size: 40px;
           line-height: 48px;
-          max-width: 848px;
+          max-width: 816px;
         }
       `}
     >

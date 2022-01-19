@@ -86,7 +86,7 @@ export const BottomContent = ({ visible, onClose, children, ...props }) => (
   </section>
 )
 
-const Row = ({ align = '', valign = '', wide = '', wrap = '', grow = '', ...props }) => (
+const Row = ({ align = '', valign = '', wide = false, wrap = false, grow = '', ...props }) => (
   <div css={css`
     display: flex;
     justify-content: ${align || 'space-between'};
@@ -158,7 +158,6 @@ export const Theme = props => (
       display: inline-flex;
       flex-direction: column;
       color: ${colors.grayLight};
-      margin: 0 16px 0 0;
 
       span:first-of-type {
         min-height: 19px;
