@@ -10,7 +10,7 @@ export type DrummeryState = {
 
 export const defaultState: DrummeryState = {
   items: [],
-  previewId: 'x',
+  previewId: null,
   filters: {
     tag: null
   }

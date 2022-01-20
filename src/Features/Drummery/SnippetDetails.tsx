@@ -14,14 +14,19 @@ export type Props = {
 
 export const SnippetDetails: FC<Props> = ({
   onClick,
-  item: { title, description, tags },
+  item: { title, description, tags, patterns },
 }) => (
   <Wrapper>
     <BackButton onClick={onClick} />
     <Tags tags={tags} />
     <Title {...{ title }} />
     <Description {...{ description }} />
+    <Patterns {...{ patterns }} />
+  </Wrapper>
+)
 
+const Patterns: FC = ({ patterns }) => (
+  <div>
     <h3
       css={css`
         color: ${colors.grayLight};
@@ -34,40 +39,8 @@ export const SnippetDetails: FC<Props> = ({
     >
       Patterns
     </h3>
-    <GroovyPlayer
-      tracks={[
-        {
-          title: 'sangban',
-          loop: 'o--o--o---x---o-o--o--o---x---o-',
-          instrument: 'sangban',
-        },
-        {
-          title: 'bell',
-          loop: 'x-xx-xx-x-x-x-x-x-xx-xx-x-x-x-x-',
-          instrument: 'bell',
-        },
-      ]}
-    />
-    <GroovyPlayer
-      tracks={[
-        {
-          title: 'sangban',
-          loop: 'o--o--o---x---o-o--o--o---x---o-',
-          instrument: 'sangban',
-        },
-        {
-          title: 'dundunba',
-          loop: 'x-------x-o-----x-----oo-oo-----',
-          instrument: 'dundunba',
-        },
-        {
-          title: 'kenkeni',
-          loop: 'o----oo-o----oo-o----oo-o----oo-',
-          instrument: 'kenkeni',
-        },
-      ]}
-    />
-  </Wrapper>
+    <GroovyPlayer tracks={patterns} />
+  </div>
 )
 
 const Wrapper: FC = ({ children, ...props }) => {
@@ -130,6 +103,7 @@ const Description = ({ description }) =>
     <p
       css={css`
         text-align: left;
+        margin-bottom: 24px !important;
       `}
     >
       {description}

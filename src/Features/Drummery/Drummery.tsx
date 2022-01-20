@@ -10,7 +10,7 @@ const Wrapper = (props) => (
       align-items: flex-start;
       padding: 0 8px;
       width: 100%;
-      max-width: 1440px;
+      max-width: 1392px;
       margin: 0 auto;
 
       @media (min-width: 768px) {

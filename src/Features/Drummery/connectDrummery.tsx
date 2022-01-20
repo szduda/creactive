@@ -6,17 +6,11 @@ export const connectDrummery: FC<TDrummery> = ({ DataService }) => {
   const useDrummeryContext = () => {
     const {
       state: {
-        drummery: {
-          items,
-          previewId,
-        }
+        drummery: { items, previewId },
       },
       actions: {
-        drummery: {
-          setItems,
-          setPreviewId,
-        }
-      }
+        drummery: { setItems, setPreviewId },
+      },
     } = useStore()
 
     const [loading, setLoading] = useState(true)
@@ -25,9 +19,13 @@ export const connectDrummery: FC<TDrummery> = ({ DataService }) => {
       let cancelled = false
       const asyncEffect = async () => {
         try {
-          const items = await DataService.fetchDrumSnippets()
+          const fetched = await DataService.fetchDrumSnippets()
+          fetched.forEach(async (snippet) => {
+            snippet.patterns = await DataService.fetchPatterns(snippet.patterns)
+          })
+
           if (!cancelled) {
-            setItems(items)
+            setItems(fetched)
             setLoading(false)
           }
         } catch (err) {
@@ -38,15 +36,16 @@ export const connectDrummery: FC<TDrummery> = ({ DataService }) => {
         }
       }
       asyncEffect()
-      return () => { cancelled = true }
+      return () => {
+        cancelled = true
+      }
     }, [])
-
 
     return {
       items,
       previewId,
       setPreviewId,
-      meta: { loading }
+      meta: { loading },
     }
   }
 
