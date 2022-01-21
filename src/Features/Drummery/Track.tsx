@@ -36,6 +36,19 @@ export const Track: FC = ({ title, pattern, muted, setMuted }) => (
         {title}
       </div>
     </Flex.Row>
+    <Pattern pattern={pattern || ""} />
+  </div>
+)
+
+const Pattern = ({ pattern }) => {
+  let barSize = pattern.length
+  if (pattern.length % 9 === 0) barSize = 9
+  if (pattern.length % 8 === 0) barSize = 8
+  if (pattern.length % 6 === 0) barSize = 6
+
+  const bars = `|${pattern?.match(RegExp(`.{1,${barSize}}`, 'g'))?.join('|')}|`
+
+  return (
     <div
       css={css`
         font-size: 24px;
@@ -55,7 +68,7 @@ export const Track: FC = ({ title, pattern, muted, setMuted }) => (
         }
       `}
     >
-      |{pattern?.match(/.{1,8}/g)?.join('|')}|
+      {bars}
     </div>
-  </div>
-)
+  )
+}

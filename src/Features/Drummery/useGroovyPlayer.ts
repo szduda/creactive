@@ -42,12 +42,14 @@ export const useGroovyPlayer: TGroovyPlayerHook = ({
 
     return result
   }
+  
+  const beatSize = length % 3 == 0 ? 3 : 4
 
   const loops = [
     !muted['bell'] && parse('bell'),
     !muted['sangban'] && parse('sangban', 'o'),
     !muted['sangban'] && parse('sangban', 'x'),
-    metronome && [...Array(length)].map((_, index) => index % 4 === 0),
+    metronome && [...Array(length)].map((_, index) => index % beatSize === 0),
     !muted['dundunba'] && parse('dundunba', 'o'),
     !muted['dundunba'] && parse('dundunba', 'x'),
     !muted['kenkeni'] && parse('kenkeni', 'o'),
@@ -59,7 +61,7 @@ export const useGroovyPlayer: TGroovyPlayerHook = ({
   const playLoop = () => {
     const beats = fillBeat(loops, length)
     midiSounds.current?.setEchoLevel(0.3)
-    midiSounds.current?.startPlayLoop(beats, tempo, 1 / 16)
+    midiSounds.current?.startPlayLoop(beats, beatSize / 4 * tempo, 1 / 16)
     setPlaying(true)
   }
 

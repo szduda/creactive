@@ -26,7 +26,9 @@ const Wrapper = ({ onClick, ...rest }) => {
           width: 33.333%;
           margin: 0 0 20px;
         }
-      `}  {...rest} />
+      `}
+      {...rest}
+    />
   )
 }
 
@@ -37,31 +39,33 @@ export type Props = {
 }
 
 export const Photo: FC<Props> = ({
-  item: {
-    url,
-    title
-  },
+  item: { url, title },
   onClick,
   maxHeight,
+  ...props
 }) => (
-  <Wrapper {...{ onClick }}>
-    <img src={url} alt={title} css={css`
-      width: 100%;
-      background: ${colors.gray};
-      border-radius: 4px;
-      min-height: 64px;
-      height: auto;
-      object-fit: cover;
-      box-shadow: 0 0 3px 1px ${colors.black}88;
-      max-height: calc(100vh - 64px);
+  <Wrapper {...{ onClick }} {...props}>
+    <img
+      src={url}
+      alt={title}
+      css={css`
+        width: 100%;
+        background: ${colors.gray};
+        border-radius: 4px;
+        min-height: 64px;
+        height: auto;
+        object-fit: cover;
+        box-shadow: 0 0 3px 1px ${colors.black}88;
+        max-height: calc(100vh - 64px);
 
-      @media (max-with: 767px) {
-        justify-content: center;
-      }
+        @media (max-with: 767px) {
+          justify-content: center;
+        }
 
-      @media (min-width: 768px) {
-        max-height: ${maxHeight};
-      }
-    `} />
+        @media (min-width: 768px) {
+          max-height: ${maxHeight};
+        }
+      `}
+    />
   </Wrapper>
 )
