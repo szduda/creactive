@@ -13,15 +13,14 @@ export const Router = () => {
 
   return (
     <HashRouter basename="/">
-      <header>
+      {/* <header>
         <Header />
-      </header>
+      </header> */}
       <main>
-        <Route path='/photos' component={Gallery} />
+        {/* <Route path='/photos' component={Gallery} /> */}
         <Route path='/drums' component={Drummery} />
-        <Route path='/dev' component={Dev} />
-        <Route exact path='/' component={Drummery} />
-        <Redirect to="/" />
+        {/* <Route path='/dev' component={Dev} /> */}
+        <Redirect to="/drums" />
       </main>
     </HashRouter>
   )

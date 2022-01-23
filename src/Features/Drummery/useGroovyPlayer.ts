@@ -26,30 +26,38 @@ export const useGroovyPlayer: TGroovyPlayerHook = ({
   const [playing, setPlaying] = useState(false)
 
   useEffect(() => {
-    if (playing && tempo >= 40) {
+    if (playing && tempo >= 40 && tempo <= 200) {
       playLoop()
     }
   }, [tempo, muted, metronome])
 
-  const length = tracks[0]?.pattern?.length ?? 0
+  const loopLength = tracks.sort(byPatternLength)[0]?.pattern?.length ?? 0
+
+  const beatSize = loopLength % 3 == 0 ? 3 : 4
 
   const parse = (instrument: string, sound: string = 'x') => {
-    const pattern = tracks.find((t) => t.instrument === instrument)?.pattern ?? ''
+    const pattern =
+      tracks.find((t) => t.instrument === instrument)?.pattern ?? null
+
+    if (!pattern) return []
+
+    const prolongedPattern = pattern.repeat(loopLength / pattern.length)
     const result: boolean[] = []
-    for (let i = 0; i < pattern.length; i = i + 1) {
-      result.push(pattern[i] === sound)
+    for (let i = 0; i < prolongedPattern.length; i = i + 1) {
+      result.push(prolongedPattern[i] === sound)
     }
 
     return result
   }
-  
-  const beatSize = length % 3 == 0 ? 3 : 4
+
+  const generateMetronome = () =>
+    [...Array(loopLength)].map((_, index) => index % beatSize === 0)
 
   const loops = [
     !muted['bell'] && parse('bell'),
     !muted['sangban'] && parse('sangban', 'o'),
     !muted['sangban'] && parse('sangban', 'x'),
-    metronome && [...Array(length)].map((_, index) => index % beatSize === 0),
+    metronome && generateMetronome(),
     !muted['dundunba'] && parse('dundunba', 'o'),
     !muted['dundunba'] && parse('dundunba', 'x'),
     !muted['kenkeni'] && parse('kenkeni', 'o'),
@@ -59,9 +67,9 @@ export const useGroovyPlayer: TGroovyPlayerHook = ({
   ]
 
   const playLoop = () => {
-    const beats = fillBeat(loops, length)
-    midiSounds.current?.setEchoLevel(0.3)
-    midiSounds.current?.startPlayLoop(beats, beatSize / 4 * tempo, 1 / 16)
+    const beats = fillBeat(loops, loopLength)
+    midiSounds.current?.setEchoLevel(0.05)
+    midiSounds.current?.startPlayLoop(beats, (beatSize / 4) * tempo, 1 / 16)
     setPlaying(true)
   }
 
@@ -79,8 +87,12 @@ export const useGroovyPlayer: TGroovyPlayerHook = ({
     setTempo,
     muted,
     setMuted,
+    loopLength,
   }
 }
+
+const byPatternLength = (t1: TTrack, t2: TTrack) =>
+  (t2.pattern?.length ?? 0) - (t1.pattern?.length ?? 0)
 
 const drums = [
   bell,
@@ -123,6 +135,7 @@ export type TGroovyPlayerContext = {
   setTempo(arg: number): void
   muted: Record<string, boolean>[]
   setMuted(arg: Record<string, boolean>[]): void
+  loopLength: number
 }
 
 export type TGroovyPlayerHook = (props: {

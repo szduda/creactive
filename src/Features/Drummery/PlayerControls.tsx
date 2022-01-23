@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { FC } from 'react'
 import { jsx, css } from '@emotion/core'
-import { colors, Flex, Button, Icons } from '../theme'
+import { colors, Flex, Button, Icons, Checkbox } from '../theme'
 
 export const PlayerControls: FC = ({
   playLoop,
@@ -15,17 +15,19 @@ export const PlayerControls: FC = ({
     align="flex-start"
     wrap
     css={css`
-      margin: 24px 32px 0;
+      margin: 24px 16px 0;
 
       @media (min-width: 768px) {
-        margin-bottom: 24px;
+        margin: 24px 32px 0;
+        justify-content: space-between;
       }
 
       > * {
-        margin: 0 8px 24px 0;
+        margin-bottom: 24px;
       }
     `}
-  >
+    >
+      <Flex.Row>
     <Button filled onClick={playLoop}>
       Play
     </Button>
@@ -33,53 +35,55 @@ export const PlayerControls: FC = ({
       filled
       onClick={stopLoop}
       css={css`
-        margin-right: 64px;
+        margin: 0 64px 0 8px;
       `}
     >
-      Stop
+          Stop
     </Button>
+    </Flex.Row>
 
-    <input
-      type="text"
-      size="2"
-      maxLength={3}
-      value={tempo}
-      onChange={(e) => {
-        const value = Number(e.target.value)
-        if (value === NaN) return
+    <Flex.Row>
+      <input
+        type="text"
+        size="2"
+        maxLength={3}
+        value={tempo}
+        onChange={(e) => {
+          const value = Number(e.target.value)
+          if (value === NaN) return
 
-        setTempo(value)
-      }}
-    />
-    <span
-      css={css`
-        align-self: flex-end;
-        font-size: 24px;
-        line-height: 44px;
-      `}
-    >
-      BPM
-    </span>
+          setTempo(value)
+        }}
+      />
+      <span
+        css={css`
+          align-self: flex-end;
+          font-size: 24px;
+          line-height: 44px;
+          margin-left: 8px;
+        `}
+      >
+        BPM
+      </span>
+    </Flex.Row>
 
-    <input
-      type="checkbox"
-      id="metronome_checkbox"
+    <Checkbox
       checked={metronome}
-      onChange={(e) => setMetronome(e.target.checked)}
+      onClick={() => setMetronome(!metronome)}
       css={css`
-        margin-left: 24px !important;
-      `}
-    />
-    <label
-      htmlFor="metronome_checkbox"
-      css={css`
-        align-self: flex-end;
-        font-size: 24px;
-        line-height: 44px;
-        margin-right: 0 !important;
+        margin: 0 8px 0 16px;
       `}
     >
-      metronome
-    </label>
+      <label
+        css={css`
+          align-self: flex-end;
+          font-size: 24px;
+          line-height: 44px;
+          margin-right: 0 !important;
+        `}
+      >
+        metronome
+      </label>
+    </Checkbox>
   </Flex.Row>
 )

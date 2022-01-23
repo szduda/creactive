@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { createContext, useContext, useRef, FC } from 'react'
+import { createContext, useContext, useRef, useEffect, FC } from 'react'
 import { jsx, css } from '@emotion/core'
 
 import MIDISounds from 'midi-sounds-react'
@@ -21,6 +21,8 @@ export const useMidiSounds = () => useContext(MidiSoundsContext)
 
 export const MidiSoundsContextProvider: FC = ({ children }) => {
   const midiSounds = useRef(null)
+
+  useEffect(() => () => midiSounds.current?.stopPlayLoop, [])
 
   return (
     <MidiSoundsContext.Provider value={midiSounds}>

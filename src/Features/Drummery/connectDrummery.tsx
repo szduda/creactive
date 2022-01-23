@@ -1,4 +1,7 @@
 import React, { FC, useState, useEffect } from 'react'
+
+import { MidiSoundsContextProvider } from '../MidiSounds/MidiSounds'
+
 import { useStore } from '../../StateManager/Store'
 import { Drummery, TDrummery } from '.'
 
@@ -49,5 +52,9 @@ export const connectDrummery: FC<TDrummery> = ({ DataService }) => {
     }
   }
 
-  return () => <Drummery {...{ useDrummeryContext }} />
+  return () => (
+    <MidiSoundsContextProvider>
+      <Drummery {...{ useDrummeryContext }} />
+    </MidiSoundsContextProvider>
+  )
 }

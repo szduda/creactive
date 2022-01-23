@@ -1,16 +1,17 @@
 /** @jsx jsx */
 import { FC } from 'react'
 import { jsx, css } from '@emotion/core'
-import { colors, Flex, Button, Icons } from '../theme'
+import { colors, Flex, Checkbox, Icons } from '../theme'
 
 export const Track: FC = ({ title, pattern, muted, setMuted }) => (
   <div
     css={css`
-      padding: 8px 16px 24px;
+      padding: 18px 16px 24px;
       border-bottom: 2px solid ${colors.grayLight}44;
-      margin: 6px 0;
+      width: 100%;
+
       @media (min-width: 768px) {
-        padding: 8px 32px 24px;
+        padding: 24px 32px;
       }
     `}
   >
@@ -21,13 +22,11 @@ export const Track: FC = ({ title, pattern, muted, setMuted }) => (
         margin-bottom: 8px;
       `}
     >
-      <div>
-        <input
-          type="checkbox"
-          checked={!muted}
-          onChange={(e) => setMuted(!e.target.checked)}
-        />
-      </div>
+      <Checkbox
+        ariaLabel={`${title} track ${muted ? 'off' : 'on'}`}
+        onClick={() => setMuted(!muted)}
+        checked={!muted}
+      />
       <div
         css={css`
           color: ${colors.gray};
@@ -36,15 +35,15 @@ export const Track: FC = ({ title, pattern, muted, setMuted }) => (
         {title}
       </div>
     </Flex.Row>
-    <Pattern pattern={pattern || ""} />
+    {pattern && <Pattern pattern={pattern} />}
   </div>
 )
 
 const Pattern = ({ pattern }) => {
   let barSize = pattern.length
   if (pattern.length % 9 === 0) barSize = 9
-  if (pattern.length % 8 === 0) barSize = 8
-  if (pattern.length % 6 === 0) barSize = 6
+  else if (pattern.length % 8 === 0) barSize = 8
+  else if (pattern.length % 6 === 0) barSize = 6
 
   const bars = `|${pattern?.match(RegExp(`.{1,${barSize}}`, 'g'))?.join('|')}|`
 
