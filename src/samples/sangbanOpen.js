@@ -9,7 +9,7 @@ var _drum_sangban_open = {
       loopStart: 0, //loop tart in seconds
       loopEnd: 40000, //loop end in seconds
       coarseTune: 0, //use fine tune
-      fineTune: 6, //tune correction in cents
+      fineTune: 4, //tune correction in cents
       sampleRate: 44100, //file sample rate
       ahdsr: true, // see example
       file:
