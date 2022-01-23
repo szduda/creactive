@@ -66,10 +66,10 @@ export const Icons = {
       {...rest}
     />
   ),
-  Close: () => (
+  Close: ({ color = colors.white }) => (
     <CloseIcon
       css={css`
-        fill: ${colors.white};
+        fill: ${color};
       `}
     />
   ),
@@ -201,7 +201,17 @@ export const Theme = (props) => (
       margin: 0 auto;
       position: relative;
 
-      p, button, a, label, span, div, h1, h2, h3, h4, h5 {
+      p,
+      button,
+      a,
+      label,
+      span,
+      div,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
         font-family: 'Consolas';
       }
 

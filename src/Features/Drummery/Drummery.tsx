@@ -42,29 +42,33 @@ const ListWrapper = (props) => (
 )
 
 export const Drummery: FC<TDrummery> = ({ useDrummeryContext }) => {
-  const { items, previewId, setPreviewId, meta } = useDrummeryContext()
+  const {
+    items,
+    previewId,
+    setPreviewId,
+    meta: { loading },
+  } = useDrummeryContext()
   const previewItem = items.find(({ id }) => id === previewId)
+  const placeholders = [...Array(9)].map((_, index) => ({ id: `p-${index}` }))
 
   return (
     <Wrapper>
       <ListWrapper>
-        {meta.loading ? (
-          <p>Loading...</p>
-        ) : (
-          items.map((snippet) => (
-            <ListItem
-              {...{
-                key: snippet.id,
-                item: snippet,
-                onClick: () => setPreviewId(snippet.id),
-                selected: snippet.id === previewId
-              }}
-            />
-          ))
-        )}
+        {(items || placeholders).map((snippet) => (
+          <ListItem
+            {...{
+              key: snippet.id,
+              item: snippet,
+              loading,
+              onClick: () =>
+                setPreviewId(snippet.id === previewId ? null : snippet.id),
+              selected: snippet.id === previewId,
+            }}
+          />
+        ))}
       </ListWrapper>
       {previewItem && (
-        <SnippetDetails onClick={() => setPreviewId(null)} item={previewItem} />
+        <SnippetDetails onClose={() => setPreviewId(null)} item={previewItem} />
       )}
     </Wrapper>
   )

@@ -2,21 +2,15 @@ import React, { FC, useState, useEffect } from 'react'
 import { useStore } from '../../StateManager/Store'
 import { Gallery, TGallery } from '.'
 
-export const connectGallery : FC<TGallery> = ({ DataService }) => {
+export const connectGallery: FC<TGallery> = ({ DataService }) => {
   const useGalleryContext = () => {
     const {
       state: {
-        gallery: {
-          items,
-          previewId,
-        }
+        gallery: { items, previewId },
       },
       actions: {
-        gallery: {
-          setItems,
-          setPreviewId,
-        }
-      }
+        gallery: { setItems, setPreviewId },
+      },
     } = useStore()
 
     const [loading, setLoading] = useState(true)
@@ -33,14 +27,14 @@ export const connectGallery : FC<TGallery> = ({ DataService }) => {
         }
       }
       asyncEffect()
+      // eslint-disable-next-line
     }, [])
-
 
     return {
       items,
       previewId,
       setPreviewId,
-      meta: { loading }
+      meta: { loading },
     }
   }
 

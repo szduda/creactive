@@ -59,7 +59,7 @@ export const GroovyPlayer: FC<Props> = ({
 const Wrapper = (props) => (
   <Flex.Col
     css={css`
-      width: calc(100% + 24px);
+      width: 100vw;
       background: ${colors.black};
       color: ${colors.grayLight};
       font-weight: 700;

@@ -9,15 +9,15 @@ import { GroovyPlayer } from './GroovyPlayer'
 
 export type Props = {
   item: TDrumSnippet
-  onClick(): void
+  onClose(): void
 }
 
 export const SnippetDetails: FC<Props> = ({
-  onClick,
+  onClose,
   item: { title, description, tags, patterns },
 }) => (
   <Wrapper>
-    <BackButton onClick={onClick} />
+    <BackButton onClick={onClose} />
     <Tags tags={tags} />
     <Title {...{ title }} />
     <Description {...{ description }} />
@@ -43,44 +43,53 @@ const Patterns: FC = ({ patterns }) => (
   </div>
 )
 
-const Wrapper: FC = ({ children, ...props }) => {
-  return (
-    <Flex.Col
-      valign="center"
-      css={css`
-        color: ${colors.black};
-        padding: 0;
-        margin: 0 16px;
-        font-size: 12px;
-        line-height: 14px;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        width: 100%;
-      `}
-      {...props}
-    >
-      <Flex.Col
-        css={css`
-          background: ${colors.grayDark};
-          width: 100%;
+const Wrapper: FC = ({ children, ...props }) => (
+  <Flex.Col
+    valign="center"
+    css={css`
+      color: ${colors.black};
+      padding: 0;
+      font-size: 12px;
+      line-height: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      width: 100%;
 
-          @media (max-width: 767px) {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            padding: 24px 12px;
-            overflow-y: auto;
-          }
-        `}
-      >
-        {children}
-      </Flex.Col>
+      @media (min-width: 768px) {
+        margin: 0 0 0 8px;
+      }
+
+      @media (min-width: 1024px) {
+        margin: 0 16px 0 24px;
+      }
+
+      @media (min-width: 1440px) {
+        margin: 0 16px 0 40px;
+      }
+    `}
+    {...props}
+  >
+    <Flex.Col
+      css={css`
+        background: ${colors.grayDark};
+        width: 100%;
+
+        @media (max-width: 767px) {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          padding: 24px 12px;
+          overflow-y: auto;
+        }
+      `}
+    >
+      {children}
     </Flex.Col>
-  )
-}
+  </Flex.Col>
+)
 
 const Title = ({ title }) =>
   title ? (
@@ -91,7 +100,8 @@ const Title = ({ title }) =>
         font-size: 40px;
         line-height: 1.5;
         color: ${colors.white};
-        font-variant: all-small-caps;
+        text-transform: uppercase;
+        letter-spacing: 1.4px;
       `}
     >
       {title}
@@ -119,7 +129,6 @@ const BackButton = (props) => (
       padding: 12px 0;
       display: flex;
       align-items: center;
-      font-family: Consolas;
       font-weight: 700;
 
       @media (min-width: 768px) {

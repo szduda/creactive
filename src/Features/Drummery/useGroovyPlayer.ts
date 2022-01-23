@@ -29,11 +29,12 @@ export const useGroovyPlayer: TGroovyPlayerHook = ({
     if (playing && tempo >= 40 && tempo <= 200) {
       playLoop()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tempo, muted, metronome])
 
   const loopLength = tracks.sort(byPatternLength)[0]?.pattern?.length ?? 0
 
-  const beatSize = loopLength % 3 == 0 ? 3 : 4
+  const beatSize = loopLength % 3 === 0 ? 3 : 4
 
   const parse = (instrument: string, sound: string = 'x') => {
     const pattern =
@@ -108,9 +109,10 @@ const drums = [
 ]
 
 const fillBeat = (tracks, length) => {
-  const beats = Array()
+  const beats: number[][][] = []
   for (var i = 0; i < length; i++) {
     let notes: number[] = []
+    // eslint-disable-next-line no-loop-func
     drums.forEach((drum, index) => {
       if (tracks[index] && tracks[index][i]) notes.push(drum)
     })

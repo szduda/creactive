@@ -1,36 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Creactive" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>creactive</title>
+    <style>
+      @font-face {
+        font-family: 'Consolas';
+        src: url(%PUBLIC_URL%/consolas.woff) format('woff'),
+          url(%PUBLIC_URL%/consolas.ttf) format('truetype');
+      }
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
-  <meta name="description" content="Creactive" />
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  <title>creactive</title>
-  <style>
-    @font-face {
-      font-family: 'Consolas';
-      src: url(%PUBLIC_URL%/consolas.woff) format('woff'),
-        url(%PUBLIC_URL%/consolas.ttf) format('truetype');
-    }
+      html {
+        height: -webkit-fill-available;
+      }
 
-    html {
-      height: -webkit-fill-available;
-    }
+      body {
+        margin: 0;
+        background: #2b3b3a;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+      }
 
-    body {
-      margin: 0;
-      background: #2B3B3A;
-      min-height: 100vh;
-      min-height: -webkit-fill-available;
-    }
-  </style>
-</head>
+      ::-webkit-scrollbar-thumb {
+        background-color: #1b1b1a88;
+        border-radius: 4px;
+        border: 3px solid #455f5d55;
+      }
 
-<body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
-</body>
+      ::-webkit-scrollbar-track {
+        background: #455f5d44;
+      }
 
+      ::-webkit-scrollbar {
+        width: 12px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
 </html>

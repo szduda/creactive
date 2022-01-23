@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { FC } from 'react'
 import { jsx, css } from '@emotion/core'
-import { colors, Button } from '../theme'
+import { colors } from '../theme'
 
 export type Props = {
   tags: string[]

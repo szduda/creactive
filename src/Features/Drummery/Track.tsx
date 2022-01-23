@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { FC } from 'react'
 import { jsx, css } from '@emotion/core'
-import { colors, Flex, Checkbox, Icons } from '../theme'
+import { colors, Flex, Checkbox } from '../theme'
 
 export const Track: FC = ({ title, pattern, muted, setMuted }) => (
   <div
@@ -10,8 +10,12 @@ export const Track: FC = ({ title, pattern, muted, setMuted }) => (
       border-bottom: 2px solid ${colors.grayLight}44;
       width: 100%;
 
-      @media (min-width: 768px) {
-        padding: 24px 32px;
+      @media (min-width: 1024px) {
+        padding: 24px 16px;
+      }
+
+      @media (min-width: 1024px) {
+        padding: 24px;
       }
     `}
   >
@@ -41,9 +45,9 @@ export const Track: FC = ({ title, pattern, muted, setMuted }) => (
 
 const Pattern = ({ pattern }) => {
   let barSize = pattern.length
-  if (pattern.length % 9 === 0) barSize = 9
+  if (pattern.length % 6 === 0) barSize = 6
   else if (pattern.length % 8 === 0) barSize = 8
-  else if (pattern.length % 6 === 0) barSize = 6
+  else if (pattern.length % 9 === 0) barSize = 9
 
   const bars = `|${pattern?.match(RegExp(`.{1,${barSize}}`, 'g'))?.join('|')}|`
 

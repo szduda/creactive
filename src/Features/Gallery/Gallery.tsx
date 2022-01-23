@@ -50,6 +50,7 @@ export const Gallery: FC<TGallery> = ({ useGalleryContext }) => {
     const rowOffset = lastRowVerticals.filter((v) => v).length
     let indexOffset = 0
 
+    // eslint-disable-next-line no-loop-func
     lastRowVerticals = lastRowVerticals.map((lastVertical) => {
       if (lastVertical) {
         indexOffset += 1

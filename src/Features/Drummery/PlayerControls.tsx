@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { FC } from 'react'
 import { jsx, css } from '@emotion/core'
-import { colors, Flex, Button, Icons, Checkbox } from '../theme'
+import { Flex, Button, Checkbox } from '../theme'
 
 export const PlayerControls: FC = ({
   playLoop,
@@ -50,7 +50,7 @@ export const PlayerControls: FC = ({
         value={tempo}
         onChange={(e) => {
           const value = Number(e.target.value)
-          if (value === NaN) return
+          if (isNaN(value)) return
 
           setTempo(value)
         }}

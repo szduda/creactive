@@ -1,67 +1,136 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
-import { colors } from '../theme'
+import { colors, Button, Flex, Icons } from '../theme'
 import { Link } from 'react-router-dom'
 
-const Wrapper = props => (
-  <div css={css`
-  background: ${colors.black};
-  color: ${colors.white};
-  padding: 2px 16px;
-  box-shadow: 0 0 4px #000;
-  opacity: 0.9;
-  justify-content: center;
-  display: flex;
-  
-  @media (max-width: 767px) {
-    width: 100%;
-  }
-  `} {...props} />
+const Wrapper = (props) => (
+  <Flex.Row
+    valign="center"
+    css={css`
+      background: ${colors.black};
+      color: ${colors.white};
+      padding: 2px 16px;
+      box-shadow: 0 0 4px #000;
+      opacity: 0.9;
+      width: 100%;
+    `}
+    {...props}
+  >
+    <Flex.Row
+      wide
+      valign="center"
+      css={css`
+        margin: 0 auto;
+        max-width: 1360px;
+      `}
+      {...props}
+    />
+  </Flex.Row>
 )
 
 const Separator = () => (
-  <div css={css`
-    content: '|';
-    color: ${colors.grayLight};
-    padding: 0 4px;
-    pointer-events: none;
-    cursor: normal;
-`}>|</div>
+  <div
+    css={css`
+      content: '|';
+      color: ${colors.grayLight};
+      padding: 0 4px;
+      pointer-events: none;
+      cursor: normal;
+    `}
+  >
+    |
+  </div>
 )
 
-const Title = () => (
-  <h1 css={css`
-    display: inline-flex;
-    margin: 0;
-    font-size: 24px;
-    line-height: 1.5;
-    font-variant: all-small-caps;
-    letter-spacing: 2px;
+const Nav = () => (
+  <nav
+    css={css`
+      display: inline-flex;
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.5;
+      font-variant: all-small-caps;
+      letter-spacing: 2px;
 
-    a {
-      padding: 0 6px;
-      text-decoration: none !important;
-      color: ${colors.grayLight};
-    }
+      a {
+        padding: 0 6px;
+        text-decoration: none !important;
+        color: ${colors.grayLight};
+      }
 
-    a:hover {
-      color: ${colors.grayLighter};
-    }
-  `}>
-    <Link to='/' css={css`color: ${colors.orangeDark} !important;`}>szd</Link>
+      a:hover {
+        color: ${colors.grayLighter};
+      }
+    `}
+  >
+    <h1
+      css={css`
+        color: ${colors.orangeDark};
+        margin: 0;
+        font-size: inherit;
+        padding: 0 6px;
+      `}
+    >
+      szd
+    </h1>
+    {/* <Separator />
+    <Link to='/photos'>photos</Link> */}
     <Separator />
-    <Link to='/photos'>photos</Link>
-    <Separator />
-    <Link to='/drums'>drums</Link>
-    <Separator />
-    <Link to='/dev'>dev</Link>
-  </h1>
+    <Link to="/drums">drums</Link>
+    {/* <Separator />
+    <Link to='/dev'>dev</Link> */}
+  </nav>
+)
+
+const Search = () => (
+  <Flex.Row valign="center">
+    <input
+      type="text"
+      maxLength={20}
+      placeholder="tag or rhythm..."
+      css={css`
+        margin: 4px 0;
+        border: none !important;
+        background: ${colors.grayDark}88 !important;
+        height: 16px !important;
+        font-size: 16px !important;
+        line-height: 24px !important;
+        padding: 4px 8px;
+        width: 80px;
+
+        @media (min-width: 768px) {
+          width: 184px;
+        }
+      `}
+    />
+    <Button
+      ninja
+      css={css`
+        text-decoratio: underline;
+        margin: 4px;
+        padding: 4px;
+        border-radius: 50%;
+
+        :hover {
+          background: ${colors.grayDark}88;
+        }
+
+        :active {
+          background: ${colors.grayDark}cc;
+        }
+      `}
+    >
+      <Icons.Search color={colors.grayLight} />
+      {/* <Icons.Close color={colors.grayLight} /> */}
+    </Button>
+  </Flex.Row>
 )
 
 export const Header = () => {
   return (
     <Wrapper>
-      <Title />
+      <Search />
+      <Nav />
     </Wrapper>
   )
 }

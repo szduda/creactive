@@ -42,6 +42,7 @@ export const connectDrummery: FC<TDrummery> = ({ DataService }) => {
       return () => {
         cancelled = true
       }
+      // eslint-disable-next-line
     }, [])
 
     return {
