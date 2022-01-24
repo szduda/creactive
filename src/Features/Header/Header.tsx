@@ -11,7 +11,6 @@ const Wrapper = (props) => (
       color: ${colors.white};
       padding: 2px 16px;
       box-shadow: 0 0 4px #000;
-      opacity: 0.9;
       width: 100%;
     `}
     {...props}
@@ -96,7 +95,7 @@ const Search = () => (
         font-size: 16px !important;
         line-height: 24px !important;
         padding: 4px 8px;
-        width: 80px;
+        width: 116px;
 
         @media (min-width: 768px) {
           width: 184px;
@@ -129,6 +128,7 @@ const Search = () => (
 export const Header = () => {
   return (
     <Wrapper>
+      <div css={css`width: 133px;`} />
       <Search />
       <Nav />
     </Wrapper>

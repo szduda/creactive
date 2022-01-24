@@ -350,22 +350,12 @@ export const Checkbox: FC<{
             height: 14px;
             width: 14px;
           }
-
-          @media (min-width: 768px) {
-            :hover:after {
-              background: ${colors.yellow};
-              opacity: 50%;
-              position: absolute;
-              margin: 3px;
-              top: 0;
-              left: 0;
-              content: '';
-              border-radius: 50%;
-              height: 14px;
-              width: 14px;
-            }
-          }
         `}
+        @media (min-width: 768px) {
+          :hover {
+            border-color: ${colors.grayLight};
+          }
+        }
       `}
       className={className}
     />

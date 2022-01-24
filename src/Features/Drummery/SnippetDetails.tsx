@@ -29,12 +29,12 @@ const Patterns: FC = ({ patterns }) => (
   <div>
     <h3
       css={css`
-        color: ${colors.grayLight};
+        color: ${colors.gray};
         text-transform: uppercase;
         letter-spacing: 1.5px;
         font-size: 24px;
         line-height: 48px;
-        margin: 24px 0;
+        margin: 24px 0 6px;
       `}
     >
       Patterns
@@ -97,11 +97,16 @@ const Title = ({ title }) =>
       css={css`
         margin: 0;
         padding: 0;
-        font-size: 40px;
+        font-size: 32px;
         line-height: 1.5;
         color: ${colors.white};
         text-transform: uppercase;
-        letter-spacing: 1.4px;
+        letter-spacing: 0.8px;
+        
+        @media (min-width: 768px) {
+          font-size: 40px;
+          letter-spacing: 1.4px;
+        }
       `}
     >
       {title}
