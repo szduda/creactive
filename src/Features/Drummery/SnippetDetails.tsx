@@ -102,7 +102,7 @@ const Title = ({ title }) =>
         color: ${colors.white};
         text-transform: uppercase;
         letter-spacing: 0.8px;
-        
+
         @media (min-width: 768px) {
           font-size: 40px;
           letter-spacing: 1.4px;

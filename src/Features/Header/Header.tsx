@@ -128,7 +128,14 @@ const Search = () => (
 export const Header = () => {
   return (
     <Wrapper>
-      <div css={css`width: 133px;`} />
+      <div
+        css={css`
+          width: 133px;
+          @media (max-width: 767px) {
+            display: none;
+          }
+        `}
+      />
       <Search />
       <Nav />
     </Wrapper>
