@@ -15,10 +15,15 @@ export const DataService = {
     })
     return items
   },
-  fetchDrumSnippets: async () => {
+  fetchDrumSnippets: async (searchTerm: string = '') => {
     const items: TDrumSnippet[] = []
 
-    await dbDrums.get().then((snapshot) => {
+    const filters = searchTerm.split(' ').filter((f) => f)
+
+    const request = filters.length
+      ? dbDrums.where('tags', 'array-contains-any', filters)
+      : dbDrums
+    await request.get().then((snapshot) => {
       snapshot.forEach(async (doc) => {
         const { title, description, tags, patterns } = doc.data()
         items.push({
@@ -33,11 +38,13 @@ export const DataService = {
 
     return items
   },
-  fetchPatterns: async (patterns) => {
-    if (!patterns?.length) return []
+  fetchPatterns: async (patternsPromises) => {
+    if (!patternsPromises?.length) return []
 
-    const snapshots = await Promise.all(patterns.map((p) => p.get()))
-    return snapshots.map((snap) => (snap as any).data() as TPattern)
+    const snapshots = await Promise.all(patternsPromises.map((p) => p.get()))
+    const patterns = snapshots.map((snap) => (snap as any).data() as TPattern)
+
+    return patterns
   },
 }
 

@@ -81,12 +81,14 @@ const Nav = () => (
   </nav>
 )
 
-const Search = () => (
+const Search = ({ term, onChange, reset }) => (
   <Flex.Row valign="center">
     <input
       type="text"
       maxLength={20}
       placeholder="tag or rhythm..."
+      value={term}
+      onChange={(e) => onChange(e.target.value)}
       css={css`
         margin: 4px 0;
         border: none !important;
@@ -104,6 +106,7 @@ const Search = () => (
     />
     <Button
       ninja
+      onClick={term ? reset : null}
       css={css`
         text-decoratio: underline;
         margin: 4px;
@@ -119,13 +122,17 @@ const Search = () => (
         }
       `}
     >
-      <Icons.Search color={colors.grayLight} />
-      {/* <Icons.Close color={colors.grayLight} /> */}
+      {term ? (
+        <Icons.Close color={colors.grayLight} />
+      ) : (
+        <Icons.Search color={colors.grayLight} />
+      )}
     </Button>
   </Flex.Row>
 )
 
-export const Header = () => {
+export const Header = ({ useHeaderContext }) => {
+  const { searchTerm, search, reset } = useHeaderContext()
   return (
     <Wrapper>
       <div
@@ -136,7 +143,7 @@ export const Header = () => {
           }
         `}
       />
-      <Search />
+      <Search term={searchTerm} onChange={search} reset={reset} />
       <Nav />
     </Wrapper>
   )

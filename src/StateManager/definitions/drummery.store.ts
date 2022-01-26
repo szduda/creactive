@@ -3,17 +3,13 @@ import { TDrumSnippet } from './TDrumSnippet'
 export type DrummeryState = {
   items: TDrumSnippet[]
   previewId: string | null
-  filters: {
-    tag?: string | null
-  }
+  searchTerm: string
 }
 
 export const defaultState: DrummeryState = {
   items: [],
   previewId: null,
-  filters: {
-    tag: null
-  }
+  searchTerm: ''
 }
 
 export const drummeryReducer = (state: DrummeryState, action: DrummeryAction) => {
@@ -26,10 +22,10 @@ export const drummeryReducer = (state: DrummeryState, action: DrummeryAction) =>
         items: payload
       }
 
-    case 'setFilters':
+    case 'setSearchTerm':
       return {
         ...state,
-        filters: payload
+        searchTerm: payload
       }
 
     case 'setPreviewId':
@@ -50,8 +46,8 @@ export const drummeryActions = {
     type: 'setItems',
     payload,
   }),
-  setFilter: (payload: DrummeryState['filters']) => ({
-    type: 'setFilters',
+  setSearchTerm: (payload: DrummeryState['searchTerm']) => ({
+    type: 'setSearchTerm',
     payload,
   }),
   setPreviewId: (payload: DrummeryState['previewId']) => ({
