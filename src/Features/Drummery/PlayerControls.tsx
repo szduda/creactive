@@ -45,9 +45,11 @@ export const PlayerControls: FC = ({
     <Flex.Row>
       <input
         type="text"
-        size="2"
         maxLength={3}
-        value={tempo}
+          value={tempo}
+          css={css`
+          width: 44px;
+          `}
         onChange={(e) => {
           const value = Number(e.target.value)
           if (isNaN(value)) return
