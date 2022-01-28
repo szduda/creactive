@@ -27,6 +27,9 @@ const Wrapper = ({ onClick, selected, loading, ...rest }) => {
           : colors.gray + '44'};
         padding: 12px 8px;
         border: 2px solid ${loading ? colors.gray + '44' : colors.gray + '66'};
+        transition: transform 150ms ease-out;
+
+        ${selected && `transform: scale(1.03);`}
 
         :hover {
           background: ${colors.gray}cc;
@@ -47,6 +50,7 @@ const Title = props => (
       text-align: left;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      text-shadow: 0 0 4px ${colors.black}88;
     `}
     {...props}
   />

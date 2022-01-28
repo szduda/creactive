@@ -10,15 +10,17 @@ import { GroovyPlayer } from './GroovyPlayer'
 export type Props = {
   item: TDrumSnippet
   onClose(): void
+  onTagClick(tag: string): void
 }
 
 export const SnippetDetails: FC<Props> = ({
+  onTagClick,
   onClose,
   item: { title, description, tags, patterns, tempo },
 }) => (
   <Wrapper>
     <BackButton onClick={onClose} />
-    <Tags tags={tags} />
+    <Tags tags={tags} onClick={onTagClick} />
     <Title {...{ title }} />
     <Description {...{ description }} />
     <Patterns {...{ patterns, tempo }} />
@@ -102,6 +104,7 @@ const Title = ({ title }) =>
         color: ${colors.white};
         text-transform: uppercase;
         letter-spacing: 0.8px;
+        text-shadow: 0 0 4px ${colors.black}88;
 
         @media (min-width: 768px) {
           font-size: 40px;

@@ -46,11 +46,11 @@ export const Drummery: FC<TDrummery> = ({ useDrummeryContext }) => {
     items,
     previewId,
     setPreviewId,
+    setSearchTerm,
     meta: { loading },
   } = useDrummeryContext()
   const previewItem = items.find(({ id }) => id === previewId)
   const placeholders = [...Array(9)].map((_, index) => ({ id: `p-${index}` }))
-
   return (
     <Wrapper>
       <ListWrapper>
@@ -68,7 +68,11 @@ export const Drummery: FC<TDrummery> = ({ useDrummeryContext }) => {
         ))}
       </ListWrapper>
       {previewItem && (
-        <SnippetDetails onClose={() => setPreviewId(null)} item={previewItem} />
+        <SnippetDetails
+          onClose={() => setPreviewId(null)}
+          item={previewItem}
+          onTagClick={setSearchTerm}
+        />
       )}
     </Wrapper>
   )

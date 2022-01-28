@@ -11,7 +11,7 @@ const useDrummeryContext = DataService => {
       drummery: { items, previewId, searchTerm },
     },
     actions: {
-      drummery: { setItems, setPreviewId },
+      drummery: { setItems, setPreviewId, setSearchTerm },
     },
   } = useStore()
 
@@ -45,20 +45,25 @@ const useDrummeryContext = DataService => {
   }, [searchTerm])
 
   return {
-    items,
+    items: items.sort(byTitle),
     previewId,
     setPreviewId,
+    setSearchTerm,
     meta: { loading },
   }
 }
 
-export const connectDrummery: FC<TDrummery> =
-  ({ DataService }) =>
-  () =>
-    (
-      <MidiSoundsContextProvider>
-        <Drummery
-          {...{ useDrummeryContext: () => useDrummeryContext(DataService) }}
-        />
-      </MidiSoundsContextProvider>
-    )
+export const connectDrummery: FC<TDrummery> = ({ DataService }) => () => (
+  <MidiSoundsContextProvider>
+    <Drummery
+      {...{ useDrummeryContext: () => useDrummeryContext(DataService) }}
+    />
+  </MidiSoundsContextProvider>
+)
+
+const byTitle = (o1, o2) =>
+  o1.title.toLowerCase() === o2.title.toLowerCase()
+    ? 0
+    : o1.title.toLowerCase() < o2.title.toLowerCase()
+    ? -1
+    : 1
