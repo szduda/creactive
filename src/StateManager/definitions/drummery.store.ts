@@ -9,29 +9,32 @@ export type DrummeryState = {
 export const defaultState: DrummeryState = {
   items: [],
   previewId: null,
-  searchTerm: ''
+  searchTerm: '',
 }
 
-export const drummeryReducer = (state: DrummeryState, action: DrummeryAction) => {
+export const drummeryReducer = (
+  state: DrummeryState,
+  action: DrummeryAction
+) => {
   const { payload, type } = action
 
   switch (type) {
     case 'setItems':
       return {
         ...state,
-        items: payload
+        items: payload,
       }
 
     case 'setSearchTerm':
       return {
         ...state,
-        searchTerm: payload
+        searchTerm: payload,
       }
 
     case 'setPreviewId':
       return {
         ...state,
-        previewId: payload
+        previewId: payload,
       }
 
     default:
@@ -39,7 +42,9 @@ export const drummeryReducer = (state: DrummeryState, action: DrummeryAction) =>
   }
 }
 
-export type DrummeryAction = ReturnType<typeof drummeryActions[keyof typeof drummeryActions]>
+export type DrummeryAction = ReturnType<
+  typeof drummeryActions[keyof typeof drummeryActions]
+>
 
 export const drummeryActions = {
   setItems: (payload: DrummeryState['items']) => ({

@@ -3,7 +3,7 @@ import { FC } from 'react'
 import { jsx, css } from '@emotion/core'
 import { ListItem, SnippetDetails, TDrummery } from './'
 
-const Wrapper = (props) => (
+const Wrapper = props => (
   <div
     css={css`
       display: flex;
@@ -21,7 +21,7 @@ const Wrapper = (props) => (
   />
 )
 
-const ListWrapper = (props) => (
+const ListWrapper = props => (
   <div
     css={css`
       display: flex;
@@ -54,7 +54,7 @@ export const Drummery: FC<TDrummery> = ({ useDrummeryContext }) => {
   return (
     <Wrapper>
       <ListWrapper>
-        {(items || placeholders).map((snippet) => (
+        {(items || placeholders).map(snippet => (
           <ListItem
             {...{
               key: snippet.id,

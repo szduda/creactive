@@ -20,9 +20,13 @@ const Wrapper = ({ onClick, selected, loading, ...rest }) => {
         width: 100%;
         min-width: 240px;
         ${loading && 'pointer-events: none;'}
-        background: ${loading ? colors.gray+'22' : selected ? colors.gray : colors.gray+'44'};
+        background: ${loading
+          ? colors.gray + '22'
+          : selected
+          ? colors.gray
+          : colors.gray + '44'};
         padding: 12px 8px;
-        border: 2px solid ${loading ? colors.gray+'44' : colors.gray+'66'};
+        border: 2px solid ${loading ? colors.gray + '44' : colors.gray + '66'};
 
         :hover {
           background: ${colors.gray}cc;
@@ -33,7 +37,7 @@ const Wrapper = ({ onClick, selected, loading, ...rest }) => {
   )
 }
 
-const Title = (props) => (
+const Title = props => (
   // eslint-disable-next-line jsx-a11y/heading-has-content
   <h4
     css={css`

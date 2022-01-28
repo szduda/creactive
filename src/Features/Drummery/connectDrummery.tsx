@@ -5,7 +5,7 @@ import { MidiSoundsContextProvider } from '../MidiSounds/MidiSounds'
 import { useStore } from '../../StateManager/Store'
 import { Drummery, TDrummery } from '.'
 
-const useDrummeryContext = (DataService) => {
+const useDrummeryContext = DataService => {
   const {
     state: {
       drummery: { items, previewId, searchTerm },
@@ -22,7 +22,7 @@ const useDrummeryContext = (DataService) => {
     const asyncEffect = async () => {
       try {
         const fetched = await DataService.fetchDrumSnippets(searchTerm)
-        fetched.forEach(async (snippet) => {
+        fetched.forEach(async snippet => {
           snippet.patterns = await DataService.fetchPatterns(snippet.patterns)
         })
 
@@ -52,10 +52,13 @@ const useDrummeryContext = (DataService) => {
   }
 }
 
-export const connectDrummery: FC<TDrummery> = ({ DataService }) => () => (
-  <MidiSoundsContextProvider>
-    <Drummery
-      {...{ useDrummeryContext: () => useDrummeryContext(DataService) }}
-    />
-  </MidiSoundsContextProvider>
-)
+export const connectDrummery: FC<TDrummery> =
+  ({ DataService }) =>
+  () =>
+    (
+      <MidiSoundsContextProvider>
+        <Drummery
+          {...{ useDrummeryContext: () => useDrummeryContext(DataService) }}
+        />
+      </MidiSoundsContextProvider>
+    )

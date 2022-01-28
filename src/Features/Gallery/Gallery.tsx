@@ -5,7 +5,7 @@ import { Photo } from './Photo'
 import { TPhoto } from '../../StateManager'
 import { PreviewModal, TGallery } from '.'
 
-const Wrapper = (props) => (
+const Wrapper = props => (
   <div
     css={css`
       padding: 0;
@@ -47,11 +47,11 @@ export const Gallery: FC<TGallery> = ({ useGalleryContext }) => {
   while (i <= items.length) {
     if (shouldBreak) break
 
-    const rowOffset = lastRowVerticals.filter((v) => v).length
+    const rowOffset = lastRowVerticals.filter(v => v).length
     let indexOffset = 0
 
     // eslint-disable-next-line no-loop-func
-    lastRowVerticals = lastRowVerticals.map((lastVertical) => {
+    lastRowVerticals = lastRowVerticals.map(lastVertical => {
       if (lastVertical) {
         indexOffset += 1
         return false

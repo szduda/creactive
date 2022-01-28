@@ -32,13 +32,12 @@ export const colors = {
   grayLight: '#7DA19E',
   gray: '#455F5D',
   grayDark: '#2B3B3A',
-  darken: (color) =>
-    colors[`${Object.keys(colors).find((key) => colors[key] === color)}Dark`] ||
+  darken: color =>
+    colors[`${Object.keys(colors).find(key => colors[key] === color)}Dark`] ||
     color,
-  lighten: (color) =>
-    colors[
-      `${Object.keys(colors).find((key) => colors[key] === color)}Light`
-    ] || color,
+  lighten: color =>
+    colors[`${Object.keys(colors).find(key => colors[key] === color)}Light`] ||
+    color,
 }
 
 export const Icons = {
@@ -156,13 +155,13 @@ const Row = ({
 }) => (
   <div
     css={css`
-    display: flex;
-    justify-content: ${align || 'space-between'};
-    align-items: ${valign || 'flex-start'};
-    ${grow && `flex-grow: ${grow};`}
-    width: ${wide ? '100%' : 'auto'};
-    ${wrap && 'flex-wrap: wrap;'}
-  `}
+      display: flex;
+      justify-content: ${align || 'space-between'};
+      align-items: ${valign || 'flex-start'};
+      ${grow && `flex-grow: ${grow};`}
+      width: ${wide ? '100%' : 'auto'};
+      ${wrap && 'flex-wrap: wrap;'}
+    `}
     {...props}
   />
 )
@@ -189,7 +188,7 @@ export const Flex = {
   Col,
 }
 
-export const Theme = (props) => (
+export const Theme = props => (
   <div
     css={css`
       font-family: 'Consolas';
@@ -409,7 +408,7 @@ export const Button: FC<ButtonProps> = ({ filled, ninja, ...rest }) =>
     />
   )
 
-export const AnchorLink = (props) => (
+export const AnchorLink = props => (
   // eslint-disable-next-line
   <div
     css={css`

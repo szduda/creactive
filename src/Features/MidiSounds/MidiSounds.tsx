@@ -29,16 +29,16 @@ export const MidiSoundsContextProvider: FC = ({ children }) => {
       {children}
       <div
         css={css`
-        text-align: right;
-        margin: 32px 16px 0;
-        pointer-events: none;
+          text-align: right;
+          margin: 32px 16px 0;
+          pointer-events: none;
 
-        @media(min-width: 768px) {
-          position: fixed;
-          bottom: 0; 
-          right: 16px;
-          margin: 0;
-        }
+          @media (min-width: 768px) {
+            position: fixed;
+            bottom: 0;
+            right: 16px;
+            margin: 0;
+          }
         `}
       >
         <MIDISounds

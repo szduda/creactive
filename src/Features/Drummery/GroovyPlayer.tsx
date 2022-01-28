@@ -37,7 +37,7 @@ export const GroovyPlayer: FC<Props> = ({
             title,
             pattern: pattern?.repeat(loopLength / pattern.length),
             muted: muted[instrument],
-            setMuted: (value) => setMuted({ ...muted, [instrument]: value }),
+            setMuted: value => setMuted({ ...muted, [instrument]: value }),
           }}
         />
       ))}
@@ -56,7 +56,7 @@ export const GroovyPlayer: FC<Props> = ({
   )
 }
 
-const Wrapper = (props) => (
+const Wrapper = props => (
   <Flex.Col
     css={css`
       width: 100vw;

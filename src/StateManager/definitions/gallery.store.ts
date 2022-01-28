@@ -12,8 +12,8 @@ export const defaultState: GalleryState = {
   items: [],
   previewId: null,
   filters: {
-    tag: null
-  }
+    tag: null,
+  },
 }
 
 export const galleryReducer = (state: GalleryState, action: GalleryAction) => {
@@ -23,19 +23,19 @@ export const galleryReducer = (state: GalleryState, action: GalleryAction) => {
     case 'setItems':
       return {
         ...state,
-        items: payload
+        items: payload,
       }
 
     case 'setFilters':
       return {
         ...state,
-        filters: payload
+        filters: payload,
       }
 
     case 'setPreviewId':
       return {
         ...state,
-        previewId: payload
+        previewId: payload,
       }
 
     default:
@@ -43,7 +43,9 @@ export const galleryReducer = (state: GalleryState, action: GalleryAction) => {
   }
 }
 
-export type GalleryAction = ReturnType<typeof galleryActions[keyof typeof galleryActions]>
+export type GalleryAction = ReturnType<
+  typeof galleryActions[keyof typeof galleryActions]
+>
 
 export const galleryActions = {
   setItems: (payload: GalleryState['items']) => ({

@@ -7,8 +7,8 @@ const dbDrums = Firestore.collection('drums')
 export const DataService = {
   fetchPhotos: async () => {
     const items: TPhoto[] = []
-    await dbPhotos.get().then((snapshot) => {
-      snapshot.forEach((doc) => {
+    await dbPhotos.get().then(snapshot => {
+      snapshot.forEach(doc => {
         const { title, description, url, vertical } = doc.data()
         items.push({ id: doc.id, title, description, url, vertical })
       })
@@ -18,13 +18,16 @@ export const DataService = {
   fetchDrumSnippets: async (searchTerm: string = '') => {
     const items: TDrumSnippet[] = []
 
-    const filters = searchTerm.split(' ').filter((f) => f)
+    const filters = searchTerm
+      .toLowerCase()
+      .split(' ')
+      .filter(f => f)
 
     const request = filters.length
       ? dbDrums.where('tags', 'array-contains-any', filters)
       : dbDrums
-    await request.get().then((snapshot) => {
-      snapshot.forEach(async (doc) => {
+    await request.get().then(snapshot => {
+      snapshot.forEach(async doc => {
         const { title, description, tags, patterns } = doc.data()
         items.push({
           id: doc.id,
@@ -38,11 +41,11 @@ export const DataService = {
 
     return items
   },
-  fetchPatterns: async (patternsPromises) => {
+  fetchPatterns: async patternsPromises => {
     if (!patternsPromises?.length) return []
 
-    const snapshots = await Promise.all(patternsPromises.map((p) => p.get()))
-    const patterns = snapshots.map((snap) => (snap as any).data() as TPattern)
+    const snapshots = await Promise.all(patternsPromises.map(p => p.get()))
+    const patterns = snapshots.map(snap => (snap as any).data() as TPattern)
 
     return patterns
   },

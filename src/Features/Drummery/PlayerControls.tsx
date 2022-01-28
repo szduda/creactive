@@ -26,31 +26,31 @@ export const PlayerControls: FC = ({
         margin-bottom: 24px;
       }
     `}
-    >
-      <Flex.Row>
-    <Button filled onClick={playLoop}>
-      Play
-    </Button>
-    <Button
-      filled
-      onClick={stopLoop}
-      css={css`
-        margin: 0 64px 0 8px;
-      `}
-    >
-          Stop
-    </Button>
+  >
+    <Flex.Row>
+      <Button filled onClick={playLoop}>
+        Play
+      </Button>
+      <Button
+        filled
+        onClick={stopLoop}
+        css={css`
+          margin: 0 64px 0 8px;
+        `}
+      >
+        Stop
+      </Button>
     </Flex.Row>
 
     <Flex.Row>
       <input
         type="text"
         maxLength={3}
-          value={tempo}
-          css={css`
+        value={tempo}
+        css={css`
           width: 44px;
-          `}
-        onChange={(e) => {
+        `}
+        onChange={e => {
           const value = Number(e.target.value)
           if (isNaN(value)) return
 

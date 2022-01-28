@@ -38,7 +38,7 @@ export const useGroovyPlayer: TGroovyPlayerHook = ({
 
   const parse = (instrument: string, sound: string = 'x') => {
     const pattern =
-      tracks.find((t) => t.instrument === instrument)?.pattern ?? null
+      tracks.find(t => t.instrument === instrument)?.pattern ?? null
 
     if (!pattern) return []
 

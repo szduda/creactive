@@ -3,7 +3,7 @@ import { jsx, css } from '@emotion/core'
 import { colors, Button, Flex, Icons } from '../theme'
 import { Link } from 'react-router-dom'
 
-const Wrapper = (props) => (
+const Wrapper = props => (
   <Flex.Row
     valign="center"
     css={css`
@@ -88,7 +88,7 @@ const Search = ({ term, onChange, reset }) => (
       maxLength={20}
       placeholder="tag or rhythm..."
       value={term}
-      onChange={(e) => onChange(e.target.value)}
+      onChange={e => onChange(e.target.value)}
       css={css`
         margin: 4px 0;
         border: none !important;

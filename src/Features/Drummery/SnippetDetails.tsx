@@ -125,7 +125,7 @@ const Description = ({ description }) =>
     </p>
   ) : null
 
-const BackButton = (props) => (
+const BackButton = props => (
   <Button
     ninja
     css={css`
