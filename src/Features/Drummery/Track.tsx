@@ -39,7 +39,18 @@ export const Track: FC = ({ title, pattern, muted, setMuted }) => (
         {title}
       </div>
     </Flex.Row>
-    {pattern && <Pattern pattern={pattern} />}
+    {pattern ? (
+      <Pattern pattern={pattern} />
+    ) : (
+      <div
+        css={css`
+          height: 72px;
+          @media (min-width: 768px) {
+            height: 48px;
+          }
+        `}
+      />
+    )}
   </div>
 )
 
@@ -54,6 +65,7 @@ const Pattern = ({ pattern }) => {
   return (
     <div
       css={css`
+        height: 48px;
         font-size: 24px;
         line-height: 36px;
         max-width: 252px;

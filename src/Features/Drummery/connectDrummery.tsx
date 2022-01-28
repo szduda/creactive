@@ -22,9 +22,6 @@ const useDrummeryContext = DataService => {
     const asyncEffect = async () => {
       try {
         const fetched = await DataService.fetchDrumSnippets(searchTerm)
-        fetched.forEach(async snippet => {
-          snippet.patterns = await DataService.fetchPatterns(snippet.patterns)
-        })
 
         if (!cancelled) {
           setItems(fetched)
@@ -37,12 +34,37 @@ const useDrummeryContext = DataService => {
         }
       }
     }
+    setLoading(true)
+    setPreviewId(null)
     asyncEffect()
     return () => {
       cancelled = true
     }
     // eslint-disable-next-line
   }, [searchTerm])
+
+  useEffect(() => {
+    let cancelled = false
+    const asyncEffect = async () => {
+      if (previewId) {
+        const newItems = [...items]
+        const i = newItems.map(i => i.id).indexOf(previewId)
+
+        // already fetched
+        if (typeof newItems[i].patterns?.[0].get !== 'function') return
+
+        const patterns = await DataService.fetchPatterns(newItems[i].patterns)
+        if (cancelled) return
+
+        newItems[i].patterns = patterns
+        setItems(newItems)
+      }
+    }
+    asyncEffect()
+    return () => {
+      cancelled = true
+    }
+  }, [previewId])
 
   return {
     items: items.sort(byTitle),

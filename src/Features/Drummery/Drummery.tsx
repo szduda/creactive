@@ -54,7 +54,7 @@ export const Drummery: FC<TDrummery> = ({ useDrummeryContext }) => {
   return (
     <Wrapper>
       <ListWrapper>
-        {(items || placeholders).map(snippet => (
+        {(items.length ? items : placeholders).map(snippet => (
           <ListItem
             {...{
               key: snippet.id,
