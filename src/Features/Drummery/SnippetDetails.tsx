@@ -14,18 +14,18 @@ export type Props = {
 
 export const SnippetDetails: FC<Props> = ({
   onClose,
-  item: { title, description, tags, patterns },
+  item: { title, description, tags, patterns, tempo },
 }) => (
   <Wrapper>
     <BackButton onClick={onClose} />
     <Tags tags={tags} />
     <Title {...{ title }} />
     <Description {...{ description }} />
-    <Patterns {...{ patterns }} />
+    <Patterns {...{ patterns, tempo }} />
   </Wrapper>
 )
 
-const Patterns: FC = ({ patterns }) => (
+const Patterns: FC = ({ patterns, tempo }) => (
   <div>
     <h3
       css={css`
@@ -39,7 +39,7 @@ const Patterns: FC = ({ patterns }) => (
     >
       Patterns
     </h3>
-    <GroovyPlayer tracks={patterns} />
+    <GroovyPlayer tracks={patterns} tempo={tempo} />
   </div>
 )
 

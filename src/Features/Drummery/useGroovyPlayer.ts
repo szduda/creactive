@@ -26,6 +26,13 @@ export const useGroovyPlayer: TGroovyPlayerHook = ({
   const [playing, setPlaying] = useState(false)
 
   useEffect(() => {
+    if (tempo !== initialTempo) setTempo(initialTempo)
+    if (metronome !== initialMetronome) setMetronome(initialMetronome)
+    if (muted !== {}) setMuted({})
+    if (playing) playLoop()
+  }, [tracks])
+
+  useEffect(() => {
     if (playing && tempo >= 40 && tempo <= 200) {
       playLoop()
     }

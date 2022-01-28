@@ -28,13 +28,14 @@ export const DataService = {
       : dbDrums
     await request.get().then(snapshot => {
       snapshot.forEach(async doc => {
-        const { title, description, tags, patterns } = doc.data()
+        const { title, description, tags, patterns, tempo } = doc.data()
         items.push({
           id: doc.id,
           title,
           description,
           tags,
           patterns,
+          tempo,
         })
       })
     })
