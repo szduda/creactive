@@ -36,6 +36,7 @@ export const Tags: FC<Props> = ({ tags, dimmed, onClick }) =>
             border: 1px solid ${dimmed ? colors.grayDark : colors.yellowLight}66;
             ${!dimmed && 'font-weight: 700'};
             text-shadow: 0 0 4px ${colors.gray}44;
+            box-shadow: 0 0 4px 0 ${colors.gray}44;
             border-radius: 4px;
             font-size: 14px;
             line-height: 14px;

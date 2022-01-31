@@ -21,6 +21,13 @@ if (n === 3312) return {
   title: 'dundunba open'
 };
 
+if (n === 3313) return {
+  variable: '_drum_dundunba_closed',
+  url: 'https://firebasestorage.googleapis.com/v0/b/creactive-83d83.appspot.com/o/dundunbaClosed.js?alt=media',
+  pitch: 78,
+  title: 'dundunba closed'
+};
+
 if (n === 3314) return {
   variable: '_drum_kenkeni_open',
   url: 'https://firebasestorage.googleapis.com/v0/b/creactive-83d83.appspot.com/o/kenkeniOpen.js?alt=media',
