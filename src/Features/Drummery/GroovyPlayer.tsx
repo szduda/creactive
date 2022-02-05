@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { FC } from 'react'
-import { jsx, css } from '@emotion/core'
+import { jsx, css } from '@emotion/react'
 import { colors, Flex } from '../theme'
 
 import { PlayerControls } from './PlayerControls'
@@ -30,17 +30,21 @@ export const GroovyPlayer: FC<Props> = ({
   } = useGroovyPlayer({ tracks, initialMetronome, initialTempo })
   return (
     <Wrapper>
-      {tracks.map(({ title, instrument, pattern }, index) => (
-        <Track
-          {...{
-            key: `${title}${instrument}${index}`,
-            title,
-            pattern: pattern?.repeat(loopLength / pattern.length),
-            muted: muted[instrument],
-            setMuted: value => setMuted({ ...muted, [instrument]: value }),
-          }}
-        />
-      ))}
+      {tracks.length
+        ? tracks.map(({ title, instrument, pattern }, index) => (
+            <Track
+              {...{
+                key: `${title}${instrument}${index}`,
+                title,
+                pattern: pattern?.repeat(loopLength / pattern.length),
+                muted: muted[instrument],
+                setMuted: value => setMuted({ ...muted, [instrument]: value }),
+              }}
+            />
+          ))
+        : [...Array(3)].map((_, i) => (
+            <Track key={`track-${i}`} />
+          ))}
 
       <PlayerControls
         {...{
@@ -50,6 +54,7 @@ export const GroovyPlayer: FC<Props> = ({
           setMetronome,
           tempo,
           setTempo,
+          disabled: !tracks.length,
         }}
       />
     </Wrapper>

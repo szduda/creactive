@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { FC } from 'react'
-import { jsx, css } from '@emotion/core'
+import { jsx, css } from '@emotion/react'
 import { colors, Flex, Checkbox } from '../theme'
 
 export const Track: FC = ({ title, pattern, muted, setMuted }) => (
@@ -30,6 +30,7 @@ export const Track: FC = ({ title, pattern, muted, setMuted }) => (
         ariaLabel={`${title} track ${muted ? 'off' : 'on'}`}
         onClick={() => setMuted(!muted)}
         checked={!muted}
+        disabled={!pattern}
       />
       <div
         css={css`
@@ -45,11 +46,15 @@ export const Track: FC = ({ title, pattern, muted, setMuted }) => (
       <div
         css={css`
           height: 72px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: ${colors.gray};
           @media (min-width: 768px) {
             height: 48px;
           }
         `}
-      />
+      >...</div>
     )}
   </div>
 )

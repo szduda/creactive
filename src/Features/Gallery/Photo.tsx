@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { FC } from 'react'
-import { jsx, css } from '@emotion/core'
+import { jsx, css } from '@emotion/react'
 import { colors, Button } from '../theme'
 import type { TPhoto } from '../../StateManager'
 

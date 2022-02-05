@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { FC } from 'react'
-import { jsx, css } from '@emotion/core'
+import { jsx, css } from '@emotion/react'
 import { Flex, Button, Checkbox } from '../theme'
 
 export const PlayerControls: FC = ({
@@ -10,6 +10,7 @@ export const PlayerControls: FC = ({
   setMetronome,
   tempo,
   setTempo,
+  disabled,
 }) => (
   <Flex.Row
     align="flex-start"
@@ -28,7 +29,7 @@ export const PlayerControls: FC = ({
     `}
   >
     <Flex.Row>
-      <Button filled onClick={playLoop}>
+      <Button filled onClick={playLoop} disabled={disabled}>
         Play
       </Button>
       <Button
@@ -37,6 +38,7 @@ export const PlayerControls: FC = ({
         css={css`
           margin: 0 64px 0 8px;
         `}
+        disabled={disabled}
       >
         Stop
       </Button>
@@ -47,6 +49,7 @@ export const PlayerControls: FC = ({
         type="text"
         maxLength={3}
         value={tempo}
+        disabled={disabled}
         css={css`
           width: 44px;
         `}
@@ -71,6 +74,7 @@ export const PlayerControls: FC = ({
 
     <Checkbox
       checked={metronome}
+      disabled={disabled}
       onClick={() => setMetronome(!metronome)}
       css={css`
         margin: 0 8px 0 16px;

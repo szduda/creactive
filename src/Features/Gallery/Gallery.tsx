@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { FC, useState, useLayoutEffect } from 'react'
-import { jsx, css } from '@emotion/core'
+import { jsx, css } from '@emotion/react'
 import { Photo } from './Photo'
 import { TPhoto } from '../../StateManager'
 import { PreviewModal, TGallery } from '.'

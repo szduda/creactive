@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { ComponentPropsWithoutRef, FC } from 'react'
-import { jsx, css } from '@emotion/core'
+import { jsx, css } from '@emotion/react'
 import { ReactComponent as HamburgerIcon } from '../assets/icons/hamburger.svg'
 import { ReactComponent as SearchIcon } from '../assets/icons/search.svg'
 import { ReactComponent as AddIcon } from '../assets/icons/add.svg'
@@ -317,7 +317,8 @@ export const Checkbox: FC<{
   onClick(): void
   ariaLabel: string
   className?: string
-}> = ({ checked, onClick, children, ariaLabel, className }) => (
+  disabled: boolean
+}> = ({ checked, onClick, children, ariaLabel, className, disabled }) => (
   <Button
     ninja
     aria-label={ariaLabel}
@@ -326,6 +327,7 @@ export const Checkbox: FC<{
     css={css`
       align-items: center;
     `}
+    disabled={disabled}
   >
     <div
       css={css`
@@ -355,6 +357,15 @@ export const Checkbox: FC<{
             border-color: ${colors.grayLight};
           }
         }
+
+        ${disabled &&
+        `
+        cursor: arrow;
+        border-color: ${colors.grayLight} !important;
+        :after{
+           background: ${colors.grayLight} !important;
+        }
+        `}
       `}
       className={className}
     />
@@ -376,7 +387,7 @@ export const Button: FC<ButtonProps> = ({ filled, ninja, ...rest }) =>
         display: flex;
         margin: 0;
         padding: 0;
-        cursor: pointer;
+        ${!rest.disabled && 'cursor: pointer;'}
         color: ${colors.white};
       `}
       {...rest}
@@ -398,11 +409,16 @@ export const Button: FC<ButtonProps> = ({ filled, ninja, ...rest }) =>
     display: flex;
     justify-content: center;
     padding: 3px 16px;
-    cursor: pointer;
+    ${!rest.disabled && 'cursor: pointer;'}
 
     :hover {
       background ${filled ? colors.yellow : colors.black + '44'}
     }
+
+    ${rest.disabled && `
+      background: ${filled ? colors.gray : 'none'};
+      border-color: ${colors.gray};
+    `}
   `}
       {...rest}
     />

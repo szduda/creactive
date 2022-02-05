@@ -51,9 +51,9 @@ const useDrummeryContext = DataService => {
         const i = newItems.map(i => i.id).indexOf(previewId)
 
         // already fetched
-        if (typeof newItems[i].patterns?.[0].get !== 'function') return
+        if (newItems[i].patterns.length) return
 
-        const patterns = await DataService.fetchPatterns(newItems[i].patterns)
+        const patterns = await DataService.fetchPatterns(newItems[i])
         if (cancelled) return
 
         newItems[i].patterns = patterns
