@@ -16,15 +16,21 @@ const useDrummeryContext = DataService => {
   } = useStore()
 
   const [loading, setLoading] = useState(true)
+  const [filteredItems, setFilteredItems] = useState(items)
 
+  const featuredItem = items?.sort((a, b) => b.createdAt - a.createdAt)[0]
+  const previewItem = items.find(({ id }) => id === previewId)
+
+  // eslint-disable-next-line
   useEffect(() => {
     let cancelled = false
     const asyncEffect = async () => {
       try {
-        const fetched = await DataService.fetchDrumSnippets(searchTerm)
+        const fetched = await DataService.fetchDrumSnippets()
 
         if (!cancelled) {
           setItems(fetched)
+          setFilteredItems(fetched)
           setLoading(false)
         }
       } catch (err) {
@@ -40,8 +46,19 @@ const useDrummeryContext = DataService => {
     return () => {
       cancelled = true
     }
-    // eslint-disable-next-line
-  }, [searchTerm])
+  }, [])
+
+  useEffect(() => {
+    if (!searchTerm) setFilteredItems(items)
+
+    const term = searchTerm.toLowerCase()
+    setFilteredItems([
+      ...items.filter(
+        ({ tags, title }) =>
+          tags?.includes(term) || title?.toLowerCase().includes(term)
+      ),
+    ])
+  }, [searchTerm, items])
 
   useEffect(() => {
     let cancelled = false
@@ -64,11 +81,13 @@ const useDrummeryContext = DataService => {
     return () => {
       cancelled = true
     }
+    // eslint-disable-next-line
   }, [previewId])
 
   return {
-    items: items.sort(byTitle),
-    previewId,
+    items: filteredItems.sort(byTitle),
+    featuredItem,
+    previewItem,
     setPreviewId,
     setSearchTerm,
     meta: { loading },

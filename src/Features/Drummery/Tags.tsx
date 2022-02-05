@@ -19,13 +19,19 @@ export const Tags: FC<Props> = ({ tags, dimmed, onClick }) =>
         display: flex;
         align-items: center;
         flex-wrap: wrap;
+
+        ${dimmed &&
+        `
+        height: 30px;
+        overflow: hidden;
+      `}
       `}
     >
       {tags.map(tag => (
         <li
-          role="button"
+          role={dimmed ? 'list-item' : 'button'}
           aria-label={tag}
-          onClick={() => onClick(tag)}
+          onClick={() => (dimmed ? null : onClick(tag))}
           key={tag}
           css={css`
             ${!dimmed && 'cursor: pointer'};
@@ -43,8 +49,8 @@ export const Tags: FC<Props> = ({ tags, dimmed, onClick }) =>
 
             ${!dimmed &&
             `:hover {
-            background: ${colors.yellow};
-          }`}
+              background: ${colors.yellow};
+            }`}
           `}
         >
           {tag}

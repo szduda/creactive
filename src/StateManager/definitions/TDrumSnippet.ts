@@ -5,6 +5,7 @@ export type TDrumSnippet = {
   tags: string[]
   patterns?: TPattern[]
   tempo?: number
+  createdAt: number
 }
 
 export type TPattern = {

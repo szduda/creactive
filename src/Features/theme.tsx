@@ -415,14 +415,31 @@ export const Button: FC<ButtonProps> = ({ filled, ninja, ...rest }) =>
       background ${filled ? colors.yellow : colors.black + '44'}
     }
 
-    ${rest.disabled && `
+    ${
+      rest.disabled &&
+      `
       background: ${filled ? colors.gray : 'none'};
       border-color: ${colors.gray};
-    `}
+    `
+    }
   `}
       {...rest}
     />
   )
+
+export const H3 = props => (
+  <h3
+    css={css`
+      color: ${colors.gray};
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 18px;
+      line-height: 36px;
+      margin: 24px 0 6px;
+    `}
+    {...props}
+  />
+)
 
 export const AnchorLink = props => (
   // eslint-disable-next-line

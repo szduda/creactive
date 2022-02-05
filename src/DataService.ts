@@ -25,7 +25,7 @@ export const DataService = {
       try {
         await dbDrums.get().then(snapshot => {
           snapshot.forEach(async doc => {
-            const { title, description, tags, tempo } = doc.data()
+            const { title, description, tags, tempo, createdAt } = doc.data()
             items.push({
               id: doc.id,
               title,
@@ -33,6 +33,7 @@ export const DataService = {
               tags,
               patterns: [],
               tempo,
+              createdAt: createdAt?.seconds ?? 0,
             })
           })
         })

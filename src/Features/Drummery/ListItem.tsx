@@ -5,7 +5,7 @@ import { colors, Button, Flex } from '../theme'
 import type { TDrumSnippet } from '../../StateManager'
 import { Tags } from './Tags'
 
-const Wrapper = ({ onClick, selected, loading, ...rest }) => {
+const Wrapper = ({ onClick, selected, loading, featured, ...rest }) => {
   return (
     <Button
       ninja
@@ -20,11 +20,16 @@ const Wrapper = ({ onClick, selected, loading, ...rest }) => {
         width: 100%;
         min-width: 240px;
         ${loading && 'pointer-events: none;'}
-        background: ${loading
-          ? colors.gray + '22'
-          : selected
-          ? colors.gray
-          : colors.gray + '44'};
+        background: ${
+          featured
+            ? colors.yellow + '0B'
+            : loading
+            ? colors.gray + '22'
+            : selected
+            ? colors.gray
+            : colors.gray + '44'
+        };
+        ${featured && `box-shadow: 0 0 3px ${colors.yellow}BB;`}
         padding: 12px 8px;
         border: 2px solid ${loading ? colors.gray + '44' : colors.gray + '66'};
         transition: transform 150ms ease-out;
@@ -70,15 +75,17 @@ export type Props = {
   loading?: boolean
   onClick?(): void
   selected?: boolean
+  featured?: boolean
 }
 
 export const ListItem: FC<Props> = ({
+  featured = false,
   item: { title, tags },
   loading = false,
   onClick,
   selected = false,
 }) => (
-  <Wrapper {...{ onClick, loading, selected }}>
+  <Wrapper {...{ onClick, loading, selected, featured }}>
     {loading ? (
       <Placeholder />
     ) : (

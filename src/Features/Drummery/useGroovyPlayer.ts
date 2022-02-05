@@ -32,6 +32,7 @@ export const useGroovyPlayer: TGroovyPlayerHook = ({
     
     if (tracks.length === 0) stopLoop()
     else if (playing) playLoop()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tracks])
 
   useEffect(() => {
