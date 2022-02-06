@@ -1,11 +1,12 @@
 /** @jsx jsx */
 import { FC } from 'react'
 import { jsx, css } from '@emotion/react'
-import { Flex, Button, Checkbox } from '../theme'
+import { Flex, Button, Checkbox, Icons, colors } from '../theme'
 
 export const PlayerControls: FC = ({
   playLoop,
   stopLoop,
+  playing,
   metronome,
   setMetronome,
   tempo,
@@ -19,7 +20,7 @@ export const PlayerControls: FC = ({
       margin: 24px 16px 0;
 
       @media (min-width: 768px) {
-        margin: 24px 32px 0;
+        margin: 24px 24px 0;
         justify-content: space-between;
       }
 
@@ -29,18 +30,34 @@ export const PlayerControls: FC = ({
     `}
   >
     <Flex.Row>
-      <Button filled onClick={playLoop} disabled={disabled}>
-        Play
+      <Button
+        ninja
+        aria-label={playing ? 'Restart' : 'Play'}
+        onClick={playLoop}
+        disabled={disabled}
+        css={css`
+          padding: 4px;
+          :hover svg path {
+            fill: ${colors.grayLight};
+          }
+        `}
+      >
+        {playing ? <Icons.Restart /> : <Icons.Play />}
       </Button>
       <Button
-        filled
+        ninja
+        aria-label='Stop'
         onClick={stopLoop}
         css={css`
           margin: 0 64px 0 8px;
+          padding: 4px;
+          :hover svg rect {
+            fill: ${colors.grayLight};
+          }
         `}
         disabled={disabled}
       >
-        Stop
+        <Icons.Stop />
       </Button>
     </Flex.Row>
 

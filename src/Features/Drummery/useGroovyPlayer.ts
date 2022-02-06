@@ -92,6 +92,7 @@ export const useGroovyPlayer: TGroovyPlayerHook = ({
   return {
     playLoop,
     stopLoop,
+    playing,
     metronome,
     setMetronome,
     tempo,
@@ -141,6 +142,7 @@ export type TTrack = {
 export type TGroovyPlayerContext = {
   playLoop(): void
   stopLoop(): void
+  playing: boolean
   metronome: boolean
   setMetronome(arg: boolean): void
   tempo: number

@@ -20,6 +20,7 @@ export const GroovyPlayer: FC<Props> = ({
   const {
     playLoop,
     stopLoop,
+    playing,
     tempo,
     setTempo,
     muted,
@@ -50,6 +51,7 @@ export const GroovyPlayer: FC<Props> = ({
         {...{
           playLoop,
           stopLoop,
+          playing,
           metronome,
           setMetronome,
           tempo,

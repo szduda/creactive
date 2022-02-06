@@ -9,6 +9,9 @@ import { ReactComponent as ExclamationIcon } from '../assets/icons/exclamation.s
 import { ReactComponent as UnfoldIcon } from '../assets/icons/unfold.svg'
 import { ReactComponent as DrumIcon } from '../assets/icons/drum.svg'
 import { ReactComponent as ArrowIcon } from '../assets/icons/arrow.svg'
+import { ReactComponent as PlayIcon } from '../assets/icons/play.svg'
+import { ReactComponent as StopIcon } from '../assets/icons/stop.svg'
+import { ReactComponent as RestartIcon } from '../assets/icons/restart.svg'
 
 export const colors = {
   red: '#ED3C19',
@@ -89,6 +92,9 @@ export const Icons = {
     />
   ),
   Drum: () => <DrumIcon />,
+  Play: () => <PlayIcon />,
+  Stop: () => <StopIcon />,
+  Restart: () => <RestartIcon />,
   Arrow: ({
     color = colors.white,
     right = false,
