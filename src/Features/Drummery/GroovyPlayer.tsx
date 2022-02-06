@@ -78,6 +78,7 @@ const Wrapper = props => (
         border-radius: 4px;
         margin: 0 0 24px;
         width: 100%;
+        min-width: 424px;
       }
     `}
     {...props}

@@ -14,30 +14,26 @@ export const PlayerControls: FC = ({
   disabled,
 }) => (
   <Flex.Row
-    align="flex-start"
+    align="space-between"
     wrap
     css={css`
-      margin: 24px 16px 0;
+      width: 100%;
+      padding: 24px 16px 0;
 
       @media (min-width: 768px) {
-        margin: 24px 24px 0;
-        justify-content: space-between;
+        padding: 24px 24px 0;
       }
 
       > * {
-        margin-bottom: 24px;
+        padding-bottom: 24px;
       }
     `}
   >
     <Flex.Row
-      align='flex-start'
       css={css`
-        width: 100%;
-        @media (min-width: 768px) {
-          width: auto;
-          justify-content: space-between;
-        }
+        flex: 1;
       `}
+      align="flex-start"
     >
       <Button
         ninja
@@ -58,7 +54,7 @@ export const PlayerControls: FC = ({
         aria-label="Stop"
         onClick={stopLoop}
         css={css`
-          margin: 0 64px 0 8px;
+          margin: 0 24px 0 8px;
           padding: 4px;
           :hover svg rect {
             fill: ${colors.grayLight};
@@ -92,16 +88,43 @@ export const PlayerControls: FC = ({
           font-size: 24px;
           line-height: 44px;
           margin-left: 8px;
+          margin-right: 8px;
+          @media (min-width: 768px) {
+            margin-right: 24px;
+            }
         `}
       >
         BPM
       </span>
     </Flex.Row>
 
-    <Checkbox
+    <Button
+      ninja
+      disabled={disabled}
+      aria-label={`turn metronome ${metronome ? 'off' : 'on'}`}
+      onClick={() => setMetronome(!metronome)}
+      css={css`
+        padding: 4px;
+        border-radius: 50%;
+
+        :hover {
+          background: ${colors.grayLight}44;
+        }
+
+        ${(!metronome || disabled) &&
+        `
+        svg g {
+          path:first-of-type, 
+          path:nth-of-type(2) {
+            fill: ${colors.grayLight};
+        }`}
+      `}
+    >
+      <Icons.Shaker />
+    </Button>
+    {/* <Checkbox
       checked={metronome}
       disabled={disabled}
-      onClick={() => setMetronome(!metronome)}
       css={css`
         margin: 0 8px 0 16px;
       `}
@@ -116,6 +139,6 @@ export const PlayerControls: FC = ({
       >
         metronome
       </label>
-    </Checkbox>
+    </Checkbox> */}
   </Flex.Row>
 )
