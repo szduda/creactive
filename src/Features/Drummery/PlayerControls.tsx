@@ -29,7 +29,16 @@ export const PlayerControls: FC = ({
       }
     `}
   >
-    <Flex.Row>
+    <Flex.Row
+      align='flex-start'
+      css={css`
+        width: 100%;
+        @media (min-width: 768px) {
+          width: auto;
+          justify-content: space-between;
+        }
+      `}
+    >
       <Button
         ninja
         aria-label={playing ? 'Restart' : 'Play'}
@@ -46,7 +55,7 @@ export const PlayerControls: FC = ({
       </Button>
       <Button
         ninja
-        aria-label='Stop'
+        aria-label="Stop"
         onClick={stopLoop}
         css={css`
           margin: 0 64px 0 8px;
