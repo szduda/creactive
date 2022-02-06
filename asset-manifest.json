@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/creactive/static/js/main.fd714b06.chunk.js",
-    "main.js.map": "/creactive/static/js/main.fd714b06.chunk.js.map",
+    "main.js": "/creactive/static/js/main.15661792.chunk.js",
+    "main.js.map": "/creactive/static/js/main.15661792.chunk.js.map",
     "runtime-main.js": "/creactive/static/js/runtime-main.b28962e7.js",
     "runtime-main.js.map": "/creactive/static/js/runtime-main.b28962e7.js.map",
     "static/js/2.8a8a8113.chunk.js": "/creactive/static/js/2.8a8a8113.chunk.js",
     "static/js/2.8a8a8113.chunk.js.map": "/creactive/static/js/2.8a8a8113.chunk.js.map",
     "index.html": "/creactive/index.html",
-    "precache-manifest.5b2a873eb6fd4325cc8d7a0e7e040077.js": "/creactive/precache-manifest.5b2a873eb6fd4325cc8d7a0e7e040077.js",
+    "precache-manifest.f1fa524572a73acc81684433838ce814.js": "/creactive/precache-manifest.f1fa524572a73acc81684433838ce814.js",
     "service-worker.js": "/creactive/service-worker.js",
     "static/js/2.8a8a8113.chunk.js.LICENSE.txt": "/creactive/static/js/2.8a8a8113.chunk.js.LICENSE.txt",
     "static/media/add.0e3e08bc.svg": "/creactive/static/media/add.0e3e08bc.svg",
@@ -16,12 +16,15 @@
     "static/media/drum.118683c5.svg": "/creactive/static/media/drum.118683c5.svg",
     "static/media/exclamation.62d23dd4.svg": "/creactive/static/media/exclamation.62d23dd4.svg",
     "static/media/hamburger.55f68494.svg": "/creactive/static/media/hamburger.55f68494.svg",
+    "static/media/play.d0c7abfa.svg": "/creactive/static/media/play.d0c7abfa.svg",
+    "static/media/restart.0c7085ac.svg": "/creactive/static/media/restart.0c7085ac.svg",
     "static/media/search.db5d8122.svg": "/creactive/static/media/search.db5d8122.svg",
+    "static/media/stop.67ba0756.svg": "/creactive/static/media/stop.67ba0756.svg",
     "static/media/unfold.52bd8411.svg": "/creactive/static/media/unfold.52bd8411.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.b28962e7.js",
     "static/js/2.8a8a8113.chunk.js",
-    "static/js/main.fd714b06.chunk.js"
+    "static/js/main.15661792.chunk.js"
   ]
 }
