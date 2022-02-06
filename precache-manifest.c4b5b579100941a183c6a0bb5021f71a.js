@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3133af1c10bac88749a82dbc4f6a4cf2",
+    "revision": "1c5dee61f1b1e7e962137a4d804dbbe5",
     "url": "/creactive/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/creactive/static/js/2.8a8a8113.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "94aa337796dcbec68adf",
-    "url": "/creactive/static/js/main.15661792.chunk.js"
+    "revision": "7f1f0f76c1b7ff229d68",
+    "url": "/creactive/static/js/main.b075aab1.chunk.js"
   },
   {
     "revision": "26a17303316fcb47acf3",
@@ -26,6 +26,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "e0c801a29df25408fc38af5612de0a43",
     "url": "/creactive/static/media/arrow.e0c801a2.svg"
+  },
+  {
+    "revision": "eea3c2399ea8fa3d96a2fca626e78250",
+    "url": "/creactive/static/media/cabasa.eea3c239.svg"
   },
   {
     "revision": "b840e171a500c69863f00f6b4056b486",
