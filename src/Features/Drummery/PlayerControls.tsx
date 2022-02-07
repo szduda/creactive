@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { FC } from 'react'
 import { jsx, css } from '@emotion/react'
-import { Flex, Button, Checkbox, Icons, colors } from '../theme'
+import { Flex, Button, Icons, colors } from '../theme'
 
 export const PlayerControls: FC = ({
   playLoop,
@@ -13,22 +13,7 @@ export const PlayerControls: FC = ({
   setTempo,
   disabled,
 }) => (
-  <Flex.Row
-    align="space-between"
-    wrap
-    css={css`
-      width: 100%;
-      padding: 24px 16px 0;
-
-      @media (min-width: 768px) {
-        padding: 24px 24px 0;
-      }
-
-      > * {
-        padding-bottom: 24px;
-      }
-    `}
-  >
+  <Wrapper>
     <Flex.Row
       css={css`
         flex: 1;
@@ -91,7 +76,7 @@ export const PlayerControls: FC = ({
           margin-right: 8px;
           @media (min-width: 768px) {
             margin-right: 24px;
-            }
+          }
         `}
       >
         BPM
@@ -122,23 +107,25 @@ export const PlayerControls: FC = ({
     >
       <Icons.Shaker />
     </Button>
-    {/* <Checkbox
-      checked={metronome}
-      disabled={disabled}
-      css={css`
-        margin: 0 8px 0 16px;
-      `}
-    >
-      <label
-        css={css`
-          align-self: flex-end;
-          font-size: 24px;
-          line-height: 44px;
-          margin-right: 0 !important;
-        `}
-      >
-        metronome
-      </label>
-    </Checkbox> */}
-  </Flex.Row>
+  </Wrapper>
+)
+
+const Wrapper = props => (
+  <Flex.Row
+    align="space-between"
+    wrap
+    css={css`
+      width: 100%;
+      padding: 24px 16px 0;
+
+      @media (min-width: 768px) {
+        padding: 24px 24px 0;
+      }
+
+      > * {
+        padding-bottom: 24px;
+      }
+    `}
+    {...props}
+  />
 )

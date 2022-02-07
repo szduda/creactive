@@ -2,7 +2,7 @@
 /** @jsxFrag */
 import React, { FC } from 'react'
 import { jsx, css } from '@emotion/react'
-import { H3 } from '../theme'
+import { H3, Icons } from '../theme'
 import { ListItem, SnippetDetails, TDrummery } from './'
 
 const Wrapper = props => (
@@ -59,31 +59,34 @@ export const Drummery: FC<TDrummery> = ({ useDrummeryContext }) => {
         {featuredItem && (
           <>
             <H3>Recently added</H3>
-            <ListItem featured
+            <ListItem
+              featured
               {...{
                 key: featuredItem.id,
                 item: featuredItem,
                 onClick: () =>
-                  setPreviewId(featuredItem.id === previewItem?.id ? null : featuredItem.id),
+                  setPreviewId(
+                    featuredItem.id === previewItem?.id ? null : featuredItem.id
+                  ),
               }}
             />
           </>
         )}
         <H3>All rhythms</H3>
-        {(items.length ? items : placeholders).map(
-          snippet => (
-            <ListItem
-              {...{
-                key: snippet.id,
-                item: snippet,
-                loading,
-                onClick: () =>
-                  setPreviewId(snippet.id === previewItem?.id ? null : snippet.id),
-                selected: snippet.id === previewItem?.id,
-              }}
-            />
-          )
-        )}
+        {(items.length ? items : placeholders).map(snippet => (
+          <ListItem
+            {...{
+              key: snippet.id,
+              item: snippet,
+              loading,
+              onClick: () =>
+                setPreviewId(
+                  snippet.id === previewItem?.id ? null : snippet.id
+                ),
+              selected: snippet.id === previewItem?.id,
+            }}
+          />
+        ))}
       </ListWrapper>
       {previewItem && (
         <SnippetDetails
