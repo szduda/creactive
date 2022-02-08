@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/creactive/static/js/main.e54a228b.chunk.js",
-    "main.js.map": "/creactive/static/js/main.e54a228b.chunk.js.map",
+    "main.js": "/creactive/static/js/main.478f4ea5.chunk.js",
+    "main.js.map": "/creactive/static/js/main.478f4ea5.chunk.js.map",
     "runtime-main.js": "/creactive/static/js/runtime-main.b28962e7.js",
     "runtime-main.js.map": "/creactive/static/js/runtime-main.b28962e7.js.map",
     "static/js/2.0eec73f1.chunk.js": "/creactive/static/js/2.0eec73f1.chunk.js",
     "static/js/2.0eec73f1.chunk.js.map": "/creactive/static/js/2.0eec73f1.chunk.js.map",
     "index.html": "/creactive/index.html",
-    "precache-manifest.5d9895d6d6c36c176a00dd0bd283364f.js": "/creactive/precache-manifest.5d9895d6d6c36c176a00dd0bd283364f.js",
+    "precache-manifest.63b74b88cdfe260bc881ebbae64ded43.js": "/creactive/precache-manifest.63b74b88cdfe260bc881ebbae64ded43.js",
     "service-worker.js": "/creactive/service-worker.js",
     "static/js/2.0eec73f1.chunk.js.LICENSE.txt": "/creactive/static/js/2.0eec73f1.chunk.js.LICENSE.txt",
     "static/media/add.0e3e08bc.svg": "/creactive/static/media/add.0e3e08bc.svg",
@@ -27,6 +27,6 @@
   "entrypoints": [
     "static/js/runtime-main.b28962e7.js",
     "static/js/2.0eec73f1.chunk.js",
-    "static/js/main.e54a228b.chunk.js"
+    "static/js/main.478f4ea5.chunk.js"
   ]
 }
