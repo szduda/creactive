@@ -47,12 +47,13 @@ export const Drummery: FC<TDrummery> = ({ useDrummeryContext }) => {
   const {
     items,
     featuredItem,
-    previewItem,
-    setPreviewId,
+    slug,
+    navigateToSnippet,
     setSearchTerm,
     meta: { loading },
   } = useDrummeryContext()
   const placeholders = [...Array(9)].map((_, index) => ({ id: `p-${index}` }))
+  const previewItem = items.find(snippet => snippet.slug === slug)
   return (
     <Wrapper>
       <ListWrapper>
@@ -65,8 +66,8 @@ export const Drummery: FC<TDrummery> = ({ useDrummeryContext }) => {
                 key: featuredItem.id,
                 item: featuredItem,
                 onClick: () =>
-                  setPreviewId(
-                    featuredItem.id === previewItem?.id ? null : featuredItem.id
+                  navigateToSnippet(
+                    featuredItem.slug === slug ? null : featuredItem.slug
                   ),
               }}
             />
@@ -80,17 +81,15 @@ export const Drummery: FC<TDrummery> = ({ useDrummeryContext }) => {
               item: snippet,
               loading,
               onClick: () =>
-                setPreviewId(
-                  snippet.id === previewItem?.id ? null : snippet.id
-                ),
-              selected: snippet.id === previewItem?.id,
+                navigateToSnippet(snippet.slug === slug ? null : snippet.slug),
+              selected: snippet.slug === slug,
             }}
           />
         ))}
       </ListWrapper>
       {previewItem && (
         <SnippetDetails
-          onClose={() => setPreviewId(null)}
+          onClose={() => navigateToSnippet(null)}
           item={previewItem}
           onTagClick={setSearchTerm}
         />

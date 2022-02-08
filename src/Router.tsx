@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, HashRouter, Redirect } from 'react-router-dom'
+import { Route, HashRouter, Redirect, Switch } from 'react-router-dom'
 import { DataService } from './DataService'
 // import { connectGallery } from './Features/Gallery'
 import { connectDrummery } from './Features/Drummery'
@@ -17,10 +17,13 @@ export const Router = () => {
         <Header />
       </header>
       <main>
-        {/* <Route path='/photos' component={Gallery} /> */}
-        <Route path="/drums" component={Drummery} />
-        {/* <Route path='/dev' component={Dev} /> */}
-        <Redirect to="/drums" />
+        <Switch>
+          <Route path="/drums/:slug" component={Drummery} />
+          <Route path="/drums/" component={Drummery} />
+          {/* <Route path='/photos' component={Gallery} /> */}
+          {/* <Route path='/dev' component={Dev} /> */}
+          <Redirect to="/drums" />
+        </Switch>
       </main>
     </HashRouter>
   )

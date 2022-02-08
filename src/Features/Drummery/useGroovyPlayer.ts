@@ -25,16 +25,21 @@ export const useGroovyPlayer: TGroovyPlayerHook = ({
   const [metronome, setMetronome] = useState(initialMetronome)
   const [playing, setPlaying] = useState(false)
 
+  // stop playback if player is closed
+  useEffect(() => stopLoop, [])
+
+  // update player settings on tracks change
   useEffect(() => {
     if (tempo !== initialTempo) setTempo(initialTempo)
     if (metronome !== initialMetronome) setMetronome(initialMetronome)
     if (muted !== {}) setMuted({})
-    
+
     if (tracks.length === 0) stopLoop()
     else if (playing) playLoop()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tracks])
 
+  // restart playback on player settings change
   useEffect(() => {
     if (playing && tempo >= 40 && tempo <= 200) {
       playLoop()

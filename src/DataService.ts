@@ -34,6 +34,7 @@ export const DataService = {
               patterns: [],
               tempo,
               createdAt: createdAt?.seconds ?? 0,
+              slug: slugify(title),
             })
           })
         })
@@ -70,3 +71,10 @@ export const DataService = {
 }
 
 export default DataService
+
+const slugify = (text: string) =>
+  text
+    .toLowerCase()
+    .replaceAll(' ', '_')
+    .replace(/\W/g, '')
+    .replaceAll('_', '-')

@@ -1,6 +1,7 @@
 export type TDrumSnippet = {
   id: string
   title: string
+  slug: string
   description?: string
   tags: string[]
   patterns?: TPattern[]

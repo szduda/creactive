@@ -4,6 +4,7 @@ import { MidiSoundsContextProvider } from '../MidiSounds/MidiSounds'
 
 import { useStore } from '../../StateManager/Store'
 import { Drummery, TDrummery } from '.'
+import { useParams, useHistory } from 'react-router-dom'
 
 const useDrummeryContext = DataService => {
   const {
@@ -15,12 +16,18 @@ const useDrummeryContext = DataService => {
     },
   } = useStore()
 
+  const { slug } = useParams()
+
+  const history = useHistory()
+
   const [loading, setLoading] = useState(true)
   const [filteredItems, setFilteredItems] = useState(items)
 
-  const featuredItem = items?.sort((a, b) => b.createdAt - a.createdAt)[0]
-  const previewItem = items.find(({ id }) => id === previewId)
+  const featuredItem = items?.sort((a, b) => b.createdAt - a.createdAt)?.[0]
 
+  const navigateToSnippet = slug => history.push(`/drums/${slug ?? ''}`)
+
+  // initial data load
   // eslint-disable-next-line
   useEffect(() => {
     let cancelled = false
@@ -41,25 +48,59 @@ const useDrummeryContext = DataService => {
       }
     }
     setLoading(true)
-    setPreviewId(null)
     asyncEffect()
     return () => {
       cancelled = true
     }
   }, [])
 
+  // update previewId on route param (slug) change
+  useEffect(() => {
+    if (loading) return
+
+    if (!slug) {
+      setPreviewId(null)
+      return
+    }
+
+    const newPreview = items.find(item => item.slug === slug)
+
+    if (!newPreview) {
+      setPreviewId(null)
+    } else if (newPreview.id !== previewId) {
+      if (
+        searchTerm &&
+        !filteredItems.find(item => item.id === newPreview.id)
+      ) {
+        setSearchTerm('')
+        setFilteredItems(items)
+      }
+
+
+      setPreviewId(newPreview.id)
+    }
+  }, [slug, loading])
+
+  // handle search
   useEffect(() => {
     if (!searchTerm) setFilteredItems(items)
 
-    const term = searchTerm.toLowerCase()
-    setFilteredItems([
-      ...items.filter(
-        ({ tags, title }) =>
-          tags?.includes(term) || title?.toLowerCase().includes(term)
-      ),
-    ])
-  }, [searchTerm, items])
+    const termParts = searchTerm
+      .toLowerCase()
+      .split(' ')
+      .filter(term => term !== ' ')
 
+    setFilteredItems([
+      ...items.filter(({ tags, slug }) => {
+        for (let term of termParts) {
+          if (tags?.includes(term) || slug.includes(term)) return true
+        }
+        return false
+      }),
+    ])
+  }, [searchTerm])
+
+  // update patterns on preview change
   useEffect(() => {
     let cancelled = false
     const asyncEffect = async () => {
@@ -85,10 +126,10 @@ const useDrummeryContext = DataService => {
   }, [previewId])
 
   return {
-    items: filteredItems.sort(byTitle),
+    items: filteredItems.sort(bySlug),
     featuredItem,
-    previewItem,
-    setPreviewId,
+    slug,
+    navigateToSnippet,
     setSearchTerm,
     meta: { loading },
   }
@@ -102,9 +143,9 @@ export const connectDrummery: FC<TDrummery> = ({ DataService }) => () => (
   </MidiSoundsContextProvider>
 )
 
-const byTitle = (o1, o2) =>
-  o1.title.toLowerCase() === o2.title.toLowerCase()
+const bySlug = (o1, o2) =>
+  o1.slug.toLowerCase() === o2.slug.toLowerCase()
     ? 0
-    : o1.title.toLowerCase() < o2.title.toLowerCase()
+    : o1.slug.toLowerCase() < o2.slug.toLowerCase()
     ? -1
     : 1
