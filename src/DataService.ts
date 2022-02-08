@@ -21,7 +21,11 @@ export const DataService = {
     const [snippets, setSnippets] = storageScope<TDrumSnippet[]>('drums', [])
     const [fetchedAt, setFetchedAt] = storageScope<number>('drumsFetchedAt', 0)
 
-    if (fetchedAt < Date.now() - 24 * 360 * 1000) {
+    const forceRefetchAfter = 1644283649996
+    const shouldRefetch =
+      fetchedAt < Math.max(Date.now() - 24 * 360 * 1000, forceRefetchAfter)
+
+    if (shouldRefetch) {
       try {
         await dbDrums.get().then(snapshot => {
           snapshot.forEach(async doc => {
