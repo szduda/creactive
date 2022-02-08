@@ -66,6 +66,7 @@ const useDrummeryContext = DataService => {
     const newPreview = items.find(item => item.slug === slug)
 
     if (!newPreview) {
+      setSearchTerm(slug.replace('-', ' '))
       setPreviewId(null)
     } else if (newPreview.id !== previewId) {
       if (
@@ -76,13 +77,14 @@ const useDrummeryContext = DataService => {
         setFilteredItems(items)
       }
 
-
       setPreviewId(newPreview.id)
     }
   }, [slug, loading])
 
   // handle search
   useEffect(() => {
+    if (loading) return
+
     if (!searchTerm) setFilteredItems(items)
 
     const termParts = searchTerm
@@ -90,15 +92,15 @@ const useDrummeryContext = DataService => {
       .split(' ')
       .filter(term => term !== ' ')
 
-    setFilteredItems([
-      ...items.filter(({ tags, slug }) => {
-        for (let term of termParts) {
-          if (tags?.includes(term) || slug.includes(term)) return true
-        }
-        return false
-      }),
-    ])
-  }, [searchTerm])
+    const filteredItems = items.filter(({ tags, slug }) => {
+      for (let term of termParts) {
+        if (tags?.includes(term) || slug.includes(term)) return true
+      }
+      return false
+    })
+    setFilteredItems([...filteredItems])
+    if (filteredItems.length === 1) navigateToSnippet(filteredItems[0].slug)
+  }, [searchTerm, loading])
 
   // update patterns on preview change
   useEffect(() => {
