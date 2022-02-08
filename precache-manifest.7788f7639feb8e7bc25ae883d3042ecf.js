@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e4cb60b14193c4118f4e53f6c0a1ab46",
+    "revision": "72d7235df39fe15e4e949ce93bbc9fff",
     "url": "/creactive/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/creactive/static/js/2.0eec73f1.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c0de0142608e2717328a",
-    "url": "/creactive/static/js/main.478f4ea5.chunk.js"
+    "revision": "47eeca26aa44d2524e97",
+    "url": "/creactive/static/js/main.15a8a383.chunk.js"
   },
   {
     "revision": "26a17303316fcb47acf3",
@@ -36,8 +36,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/creactive/static/media/close.b840e171.svg"
   },
   {
-    "revision": "ee23e41250b6f5f42561f10b371e1e4a",
-    "url": "/creactive/static/media/djembe.ee23e412.svg"
+    "revision": "f082a99b25bbd486b1a04434f6fe0679",
+    "url": "/creactive/static/media/djembe.f082a99b.svg"
   },
   {
     "revision": "118683c59512a77204433a382f289a63",
