@@ -1,19 +1,20 @@
 {
   "files": {
-    "main.js": "/creactive/static/js/main.b075aab1.chunk.js",
-    "main.js.map": "/creactive/static/js/main.b075aab1.chunk.js.map",
+    "main.js": "/creactive/static/js/main.e54a228b.chunk.js",
+    "main.js.map": "/creactive/static/js/main.e54a228b.chunk.js.map",
     "runtime-main.js": "/creactive/static/js/runtime-main.b28962e7.js",
     "runtime-main.js.map": "/creactive/static/js/runtime-main.b28962e7.js.map",
-    "static/js/2.8a8a8113.chunk.js": "/creactive/static/js/2.8a8a8113.chunk.js",
-    "static/js/2.8a8a8113.chunk.js.map": "/creactive/static/js/2.8a8a8113.chunk.js.map",
+    "static/js/2.0eec73f1.chunk.js": "/creactive/static/js/2.0eec73f1.chunk.js",
+    "static/js/2.0eec73f1.chunk.js.map": "/creactive/static/js/2.0eec73f1.chunk.js.map",
     "index.html": "/creactive/index.html",
-    "precache-manifest.c4b5b579100941a183c6a0bb5021f71a.js": "/creactive/precache-manifest.c4b5b579100941a183c6a0bb5021f71a.js",
+    "precache-manifest.5d9895d6d6c36c176a00dd0bd283364f.js": "/creactive/precache-manifest.5d9895d6d6c36c176a00dd0bd283364f.js",
     "service-worker.js": "/creactive/service-worker.js",
-    "static/js/2.8a8a8113.chunk.js.LICENSE.txt": "/creactive/static/js/2.8a8a8113.chunk.js.LICENSE.txt",
+    "static/js/2.0eec73f1.chunk.js.LICENSE.txt": "/creactive/static/js/2.0eec73f1.chunk.js.LICENSE.txt",
     "static/media/add.0e3e08bc.svg": "/creactive/static/media/add.0e3e08bc.svg",
     "static/media/arrow.e0c801a2.svg": "/creactive/static/media/arrow.e0c801a2.svg",
     "static/media/cabasa.eea3c239.svg": "/creactive/static/media/cabasa.eea3c239.svg",
     "static/media/close.b840e171.svg": "/creactive/static/media/close.b840e171.svg",
+    "static/media/djembe.ee23e412.svg": "/creactive/static/media/djembe.ee23e412.svg",
     "static/media/drum.118683c5.svg": "/creactive/static/media/drum.118683c5.svg",
     "static/media/exclamation.62d23dd4.svg": "/creactive/static/media/exclamation.62d23dd4.svg",
     "static/media/hamburger.55f68494.svg": "/creactive/static/media/hamburger.55f68494.svg",
@@ -25,7 +26,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.b28962e7.js",
-    "static/js/2.8a8a8113.chunk.js",
-    "static/js/main.b075aab1.chunk.js"
+    "static/js/2.0eec73f1.chunk.js",
+    "static/js/main.e54a228b.chunk.js"
   ]
 }
