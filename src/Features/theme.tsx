@@ -14,6 +14,7 @@ import { ReactComponent as StopIcon } from '../assets/icons/stop.svg'
 import { ReactComponent as RestartIcon } from '../assets/icons/restart.svg'
 import { ReactComponent as ShakerIcon } from '../assets/icons/cabasa.svg'
 import { ReactComponent as DjembeIcon } from '../assets/icons/djembe.svg'
+import { ReactComponent as LogoIcon } from '../assets/icons/logo.svg'
 
 export const colors = {
   red: '#ED3C19',
@@ -99,6 +100,13 @@ export const Icons = {
   Restart: () => <RestartIcon />,
   Shaker: () => <ShakerIcon />,
   Djembe: () => <DjembeIcon />,
+  Logo: () => (
+    <LogoIcon
+      css={css`
+        transform: translateY(-1px);
+      `}
+    />
+  ),
   Arrow: ({
     color = colors.white,
     right = false,
@@ -277,8 +285,13 @@ export const Theme = props => (
           font-weight: 400;
         }
 
+        &:hover {
+          background: ${colors.gray}88;
+        }
+
         &:focus {
-          outline: ${colors.yellowDark} auto 1px;
+          border-color: ${colors.yellowDark};
+          outline: none;
         }
       }
 
@@ -347,6 +360,11 @@ export const Checkbox: FC<{
         height: 24px;
         margin-right: 16px;
         position: relative;
+
+        transition: transform 100ms ease-out;
+        :active {
+          transform: scale(0.95);
+        }
 
         ${checked &&
         `
@@ -444,8 +462,8 @@ export const H3 = props => (
       text-transform: uppercase;
       letter-spacing: 1.5px;
       font-size: 18px;
-      line-height: 36px;
-      margin: 24px 0 6px;
+      line-height: 24px;
+      margin: 24px 0 8px;
     `}
     {...props}
   />

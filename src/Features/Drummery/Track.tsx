@@ -54,7 +54,9 @@ export const Track: FC = ({ title, pattern, muted, setMuted }) => (
             height: 48px;
           }
         `}
-      >...</div>
+      >
+        ...
+      </div>
     )}
   </div>
 )

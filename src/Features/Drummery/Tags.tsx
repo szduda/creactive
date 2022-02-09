@@ -27,11 +27,13 @@ export const Tags: FC<Props> = ({ tags, dimmed, onClick }) =>
       `}
       `}
     >
-      {tags.map(tag => (
+      {tags.map((tag, index) => (
         <li
           role={dimmed ? 'list-item' : 'button'}
+          tabIndex={dimmed ? -1 : 0}
           aria-label={tag}
           onClick={() => (dimmed ? null : onClick(tag))}
+          onKeyUp={e => (e.key === 'Enter' && !dimmed ? onClick(tag) : null)}
           key={tag}
           css={css`
             ${!dimmed && 'cursor: pointer'};
@@ -41,7 +43,7 @@ export const Tags: FC<Props> = ({ tags, dimmed, onClick }) =>
             background: ${dimmed ? 'transparent' : colors.yellowLight};
             border: 1px solid ${dimmed ? colors.grayDark : colors.yellowLight}66;
             ${!dimmed && 'font-weight: 700'};
-            text-shadow: 0 0 4px ${colors.gray}44;
+            text-shadow: 0 0 4px ${colors.gray}22;
             box-shadow: 0 0 4px 0 ${colors.gray}44;
             border-radius: 4px;
             font-size: 14px;
@@ -49,8 +51,15 @@ export const Tags: FC<Props> = ({ tags, dimmed, onClick }) =>
 
             ${!dimmed &&
             `:hover {
-              background: ${colors.yellow};
-            }`}
+              background: ${colors.yellow}dd;
+              border-color: ${colors.white}66;
+            }
+            
+            :active {
+              background: ${colors.yellow}cc;
+              border-color: ${colors.white}66;
+            }
+            `}
           `}
         >
           {tag}

@@ -37,7 +37,11 @@ const Wrapper = ({ onClick, selected, loading, featured, ...rest }) => {
         ${selected && `transform: scale(1.03);`}
 
         :hover {
-          background: ${colors.gray}cc;
+          background: ${featured ? colors.yellow + '14' : colors.gray + 'cc'};
+        }
+
+        :active {
+          background: ${featured ? colors.yellow + '19' : colors.gray + 'df'};
         }
       `}
       {...rest}

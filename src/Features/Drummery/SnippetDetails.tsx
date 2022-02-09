@@ -83,7 +83,7 @@ const Wrapper: FC = ({ children, ...props }) => (
           left: 0;
           width: 100vw;
           height: 100vh;
-          padding: 24px 12px;
+          padding: 24px 12px 72px;
           overflow-y: auto;
         }
       `}

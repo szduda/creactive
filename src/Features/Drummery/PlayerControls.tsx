@@ -30,6 +30,10 @@ export const PlayerControls: FC = ({
           :hover svg path {
             fill: ${colors.grayLight};
           }
+          transition: transform 100ms ease-out;
+          :active {
+            transform: scale(0.95);
+          }
         `}
       >
         {playing ? <Icons.Restart /> : <Icons.Play />}
@@ -43,6 +47,10 @@ export const PlayerControls: FC = ({
           padding: 4px;
           :hover svg rect {
             fill: ${colors.grayLight};
+          }
+          transition: transform 100ms ease-out;
+          :active {
+            transform: scale(0.95);
           }
         `}
         disabled={disabled}
@@ -94,6 +102,11 @@ export const PlayerControls: FC = ({
 
         :hover {
           background: ${colors.grayLight}44;
+        }
+
+        transition: transform 100ms ease-out;
+        :active {
+          transform: scale(0.95);
         }
 
         ${(!metronome || disabled) &&

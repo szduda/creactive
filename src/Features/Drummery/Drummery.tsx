@@ -2,7 +2,7 @@
 /** @jsxFrag */
 import React, { FC } from 'react'
 import { jsx, css } from '@emotion/react'
-import { H3, Icons } from '../theme'
+import { H3 } from '../theme'
 import { ListItem, SnippetDetails, TDrummery } from './'
 
 const Wrapper = props => (
@@ -59,7 +59,13 @@ export const Drummery: FC<TDrummery> = ({ useDrummeryContext }) => {
       <ListWrapper>
         {featuredItem && (
           <>
-            <H3>Recently added</H3>
+            <H3
+              css={css`
+                margin-top: 0;
+              `}
+            >
+              Recently added
+            </H3>
             <ListItem
               featured
               {...{

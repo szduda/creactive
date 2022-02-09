@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/react'
 import { colors, Button, Flex, Icons } from '../theme'
-import { Link } from 'react-router-dom'
 
 const Wrapper = props => (
   <Flex.Row
@@ -27,60 +26,6 @@ const Wrapper = props => (
   </Flex.Row>
 )
 
-const Separator = () => (
-  <div
-    css={css`
-      content: '|';
-      color: ${colors.grayLight};
-      padding: 0 4px;
-      pointer-events: none;
-      cursor: normal;
-    `}
-  >
-    |
-  </div>
-)
-
-const Nav = () => (
-  <nav
-    css={css`
-      display: inline-flex;
-      margin: 0;
-      font-size: 24px;
-      line-height: 1.5;
-      font-variant: all-small-caps;
-      letter-spacing: 2px;
-
-      a {
-        padding: 0 6px;
-        text-decoration: none !important;
-        color: ${colors.grayLight};
-      }
-
-      a:hover {
-        color: ${colors.grayLighter};
-      }
-    `}
-  >
-    <h1
-      css={css`
-        color: ${colors.orangeDark};
-        margin: 0;
-        font-size: inherit;
-        padding: 0 6px;
-      `}
-    >
-      szd
-    </h1>
-    {/* <Separator />
-    <Link to='/photos'>photos</Link> */}
-    <Separator />
-    <Link to="/drums">drums</Link>
-    {/* <Separator />
-    <Link to='/dev'>dev</Link> */}
-  </nav>
-)
-
 const Search = ({ term, onChange, reset }) => (
   <Flex.Row valign="center">
     <input
@@ -88,6 +33,7 @@ const Search = ({ term, onChange, reset }) => (
       maxLength={20}
       placeholder="tag or rhythm..."
       value={term}
+      onClick={e => e.preventDefault()}
       onChange={e => onChange(e.target.value)}
       css={css`
         margin: 4px 0;
@@ -98,6 +44,10 @@ const Search = ({ term, onChange, reset }) => (
         line-height: 24px !important;
         padding: 4px 8px;
         width: 116px;
+
+        &:hover {
+          background: ${colors.grayDark}cc !important;
+        }
 
         @media (min-width: 768px) {
           width: 184px;
@@ -135,16 +85,16 @@ export const Header = ({ useHeaderContext }) => {
   const { searchTerm, search, reset } = useHeaderContext()
   return (
     <Wrapper>
+      <Search term={searchTerm} onChange={search} reset={reset} />
+      <Icons.Logo />
       <div
         css={css`
-          width: 133px;
+          width: 198px;
           @media (max-width: 767px) {
             display: none;
           }
         `}
       />
-      <Search term={searchTerm} onChange={search} reset={reset} />
-      <Nav />
     </Wrapper>
   )
 }
