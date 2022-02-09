@@ -86,15 +86,60 @@ export const Header = ({ useHeaderContext }) => {
   return (
     <Wrapper>
       <Search term={searchTerm} onChange={search} reset={reset} />
-      <Icons.Logo />
+      <a
+        href="/about"
+        css={css`
+          display: flex;
+          :hover svg {
+            path {
+              fill: ${colors.yellow}aa;
+            }
+            rect {
+              stroke: ${colors.black}99;
+              fill: ${colors.yellow}aa;
+            }
+            circle {
+              stroke: ${colors.yellow}aa;
+              fill: ${colors.yellow}44;
+            }
+          }
+
+          transition: transform 100ms ease-out;
+          :active {
+            transform: scale(1.02);
+          }
+        `}
+      >
+        <Icons.Logo />
+      </a>
       <div
         css={css`
-          width: 198px;
+          width: 240px;
+          display: flex;
+          justify-content: flex-end;
           @media (max-width: 767px) {
             display: none;
           }
         `}
-      />
+      >
+        <a
+          href="/about"
+          css={css`
+            padding: 6px;
+            transform: translateX(6px);
+            display: flex;
+            :hover svg circle {
+              fill: ${colors.yellow};
+            }
+
+            :active svg circle {
+              fill: ${colors.yellow}dd;
+            }
+          `}
+        >
+          <Icons.Info />
+        </a>
+      </div>
     </Wrapper>
   )
 }

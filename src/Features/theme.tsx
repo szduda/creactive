@@ -15,6 +15,7 @@ import { ReactComponent as RestartIcon } from '../assets/icons/restart.svg'
 import { ReactComponent as ShakerIcon } from '../assets/icons/cabasa.svg'
 import { ReactComponent as DjembeIcon } from '../assets/icons/djembe.svg'
 import { ReactComponent as LogoIcon } from '../assets/icons/logo.svg'
+import { ReactComponent as InfoIcon } from '../assets/icons/info.svg'
 
 export const colors = {
   red: '#ED3C19',
@@ -100,6 +101,7 @@ export const Icons = {
   Restart: () => <RestartIcon />,
   Shaker: () => <ShakerIcon />,
   Djembe: () => <DjembeIcon />,
+  Info: () => <InfoIcon />,
   Logo: () => (
     <LogoIcon
       css={css`
