@@ -6,14 +6,18 @@ import { colors, Flex } from '../theme'
 import { PlayerControls } from './PlayerControls'
 import { Track } from './Track'
 import { useGroovyPlayer, TTrack } from './useGroovyPlayer'
+import { SwingStyle } from '../../StateManager'
 
 export type Props = {
   metronome: boolean
+  swing: SwingStyle
+  tempo: number
   tracks: TTrack[]
 }
 
 export const GroovyPlayer: FC<Props> = ({
   tracks,
+  swingStyle,
   metronome: initialMetronome = true,
   tempo: initialTempo = 110,
 }) => {
@@ -28,24 +32,32 @@ export const GroovyPlayer: FC<Props> = ({
     metronome,
     setMetronome,
     loopLength,
-  } = useGroovyPlayer({ tracks, initialMetronome, initialTempo })
+    swing,
+    setSwing,
+  } = useGroovyPlayer({
+    tracks,
+    initialMetronome,
+    initialTempo,
+    swingStyle,
+  })
+
   return (
     <Wrapper>
       {tracks.length
         ? tracks.map(({ title, instrument, pattern }, index) => (
-            <Track
-              {...{
-                key: `${title}${instrument}${index}`,
-                title,
-                pattern: pattern?.repeat(loopLength / pattern.length),
-                muted: muted[instrument],
-                setMuted: value => setMuted({ ...muted, [instrument]: value }),
-              }}
-            />
-          ))
+          <Track
+            {...{
+              key: `${title}${instrument}${index}`,
+              title,
+              pattern: pattern?.repeat(loopLength / pattern.length),
+              muted: muted[instrument],
+              setMuted: value => setMuted({ ...muted, [instrument]: value }),
+            }}
+          />
+        ))
         : [...Array(3)].map((_, i) => (
-            <Track key={`track-${i}`} />
-          ))}
+          <Track key={`track-${i}`} />
+        ))}
 
       <PlayerControls
         {...{
@@ -57,6 +69,8 @@ export const GroovyPlayer: FC<Props> = ({
           tempo,
           setTempo,
           disabled: !tracks.length,
+          swing,
+          setSwing,
         }}
       />
     </Wrapper>

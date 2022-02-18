@@ -29,7 +29,7 @@ export const DataService = {
       try {
         await dbDrums.get().then(snapshot => {
           snapshot.forEach(async doc => {
-            const { title, description, tags, tempo, createdAt } = doc.data()
+            const { title, description, tags, tempo, createdAt, swing } = doc.data()
             items.push({
               id: doc.id,
               title,
@@ -39,11 +39,12 @@ export const DataService = {
               tempo,
               createdAt: createdAt?.seconds ?? 0,
               slug: slugify(title),
+              swingStyle: swing,
             })
           })
         })
         setSnippets(items)
-        setFetchedAt(Date.now())
+        if (items?.length) setFetchedAt(Date.now())
       } catch (error) {
         console.error('Fetch items error: ', error)
       }

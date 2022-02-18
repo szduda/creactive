@@ -7,6 +7,7 @@ export type TDrumSnippet = {
   patterns?: TPattern[]
   tempo?: number
   createdAt: number
+  swingStyle?: SwingStyle
 }
 
 export type TPattern = {
@@ -14,3 +15,5 @@ export type TPattern = {
   instrument: 'dundunba' | 'sangban' | 'kenkeni' | 'kenkeni2' | 'bell'
   pattern: string
 }
+
+export type SwingStyle = '>>' | '<<' | null

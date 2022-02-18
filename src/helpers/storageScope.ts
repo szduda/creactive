@@ -15,5 +15,5 @@ export const storageScope = <T>(key: string, defaultValue: T) => {
     }
   }
 
-  return [_value, setValue] as [T, (arg: T) => void]
+  return [_value, setValue] as //[T, (arg: T) => void]
 }

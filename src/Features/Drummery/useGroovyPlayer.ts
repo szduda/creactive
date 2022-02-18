@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import { SwingStyle } from '../../StateManager'
+import { applySwing } from '../../helpers/swing'
 
 import {
   useMidiSounds,
@@ -17,13 +19,15 @@ import {
 export const useGroovyPlayer: TGroovyPlayerHook = ({
   tracks = [],
   initialMetronome = true,
+  swingStyle = null,
   initialTempo = 110,
 }) => {
   const midiSounds = useMidiSounds()
   const [tempo, setTempo] = useState(initialTempo)
-  const [muted, setMuted] = useState({})
+  const [muted, setMuted] = useState<TGroovyPlayerContext['muted']>({})
   const [metronome, setMetronome] = useState(initialMetronome)
   const [playing, setPlaying] = useState(false)
+  const [swing, setSwing] = useState(Boolean(swingStyle))
 
   // stop playback if player is closed
   useEffect(() => stopLoop, [])
@@ -36,16 +40,20 @@ export const useGroovyPlayer: TGroovyPlayerHook = ({
 
     if (tracks.length === 0) stopLoop()
     else if (playing) playLoop()
+
+    const hasSwing = Boolean(swingStyle)
+    if (swing !== hasSwing) setSwing(hasSwing)
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tracks])
 
   // restart playback on player settings change
   useEffect(() => {
-    if (playing && tempo >= 40 && tempo <= 200) {
+    if (playing && tempo >= 40 && tempo <= 240) {
       playLoop()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tempo, muted, metronome])
+  }, [tempo, muted, metronome, swing])
 
   const loopLength = tracks.sort(byPatternLength)[0]?.pattern?.length ?? 0
 
@@ -84,8 +92,10 @@ export const useGroovyPlayer: TGroovyPlayerHook = ({
 
   const playLoop = () => {
     const beats = fillBeat(loops, loopLength)
+    const swingedBeats = (swing && swingStyle) ? applySwing(beats, beatSize, swingStyle) : beats
     midiSounds.current?.setEchoLevel(0.05)
-    midiSounds.current?.startPlayLoop(beats, (beatSize / 4) * tempo, 1 / 16)
+    const trueTempo = (swing && swingStyle) ? 6 * tempo : tempo
+    midiSounds.current?.startPlayLoop(swingedBeats, (beatSize / 4) * trueTempo, 1 / 16)
     setPlaying(true)
   }
 
@@ -105,6 +115,8 @@ export const useGroovyPlayer: TGroovyPlayerHook = ({
     muted,
     setMuted,
     loopLength,
+    swing,
+    setSwing,
   }
 }
 
@@ -153,12 +165,15 @@ export type TGroovyPlayerContext = {
   tempo: number
   setTempo(arg: number): void
   muted: Record<string, boolean>[]
-  setMuted(arg: Record<string, boolean>[]): void
+  setMuted(arg: TGroovyPlayerContext['muted']): void
   loopLength: number
+  swing: boolean
+  setSwing(arg: boolean): void
 }
 
 export type TGroovyPlayerHook = (props: {
   tracks: TTrack[]
   initialMetronome: boolean
+  swingStyle: SwingStyle
   initialTempo: number
 }) => TGroovyPlayerContext

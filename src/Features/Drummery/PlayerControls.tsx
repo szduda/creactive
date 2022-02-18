@@ -12,6 +12,8 @@ export const PlayerControls: FC = ({
   tempo,
   setTempo,
   disabled,
+  swing,
+  setSwing,
 }) => (
   <Wrapper>
     <Flex.Row
@@ -119,6 +121,34 @@ export const PlayerControls: FC = ({
       `}
     >
       <Icons.Shaker />
+    </Button>
+
+    <Button
+      ninja
+      disabled={disabled}
+      aria-label={`turn swing ${swing ? 'off' : 'on'}`}
+      onClick={() => setSwing(!swing)}
+      css={css`
+        padding: 4px;
+        border-radius: 50%;
+
+        :hover {
+          background: ${colors.grayLight}44;
+        }
+
+        transition: transform 100ms ease-out;
+        :active {
+          transform: scale(0.95);
+        }
+
+        ${(!swing || disabled) &&
+        `
+        svg path {
+            fill: ${colors.grayLight};
+        }`}
+      `}
+    >
+      <Icons.Djembe />
     </Button>
   </Wrapper>
 )

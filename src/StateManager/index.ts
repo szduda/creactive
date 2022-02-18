@@ -1,2 +1,2 @@
 export type { TPhoto } from './definitions/TPhoto'
-export type { TDrumSnippet, TPattern } from './definitions/TDrumSnippet'
+export type { TDrumSnippet, TPattern, SwingStyle } from './definitions/TDrumSnippet'
