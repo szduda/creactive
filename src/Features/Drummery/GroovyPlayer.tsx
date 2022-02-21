@@ -21,20 +21,7 @@ export const GroovyPlayer: FC<Props> = ({
   metronome: initialMetronome = true,
   tempo: initialTempo = 110,
 }) => {
-  const {
-    playLoop,
-    stopLoop,
-    playing,
-    tempo,
-    setTempo,
-    muted,
-    setMuted,
-    metronome,
-    setMetronome,
-    loopLength,
-    swing,
-    setSwing,
-  } = useGroovyPlayer({
+  const { muted, setMuted, loopLength, ...rest } = useGroovyPlayer({
     tracks,
     initialMetronome,
     initialTempo,
@@ -57,21 +44,7 @@ export const GroovyPlayer: FC<Props> = ({
           ))
         : [...Array(3)].map((_, i) => <Track key={`track-${i}`} />)}
 
-      <PlayerControls
-        {...{
-          playLoop,
-          stopLoop,
-          playing,
-          metronome,
-          setMetronome,
-          tempo,
-          setTempo,
-          disabled: !tracks.length,
-          swing,
-          setSwing,
-          swingStyle,
-        }}
-      />
+      <PlayerControls {...{ disabled: !tracks.length, swingStyle, ...rest }} />
     </Wrapper>
   )
 }

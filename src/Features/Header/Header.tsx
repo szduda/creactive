@@ -95,8 +95,8 @@ export const Header = ({ useHeaderContext }) => {
   return (
     <Wrapper>
       <Search term={searchTerm} onChange={search} reset={reset} />
-      <a
-        href="/"
+      <Link
+        to="/"
         css={css`
           display: flex;
           flex: 0 0 auto;
@@ -126,7 +126,7 @@ export const Header = ({ useHeaderContext }) => {
         `}
       >
         <Icons.Logo />
-      </a>
+      </Link>
       <div
         css={css`
           width: 240px;

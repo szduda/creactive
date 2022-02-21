@@ -2,8 +2,23 @@
 import { FC } from 'react'
 import { jsx, css } from '@emotion/react'
 import { Flex, Button, Icons, colors } from '../theme'
+import { SwingStyle } from '../../StateManager'
 
-export const PlayerControls: FC = ({
+export type Props = {
+  playLoop(): void
+  stopLoop(): void
+  playing: boolean
+  metronome: boolean
+  setMetronome(arg: boolean): void
+  tempo: number,
+  setTempo(arg: number): void,
+  disabled: boolean,
+  swing: boolean,
+  setSwing(arg: boolean): void,
+  swingStyle: SwingStyle,
+}
+
+export const PlayerControls: FC<Props> = ({
   playLoop,
   stopLoop,
   playing,
