@@ -45,19 +45,17 @@ export const GroovyPlayer: FC<Props> = ({
     <Wrapper>
       {tracks.length
         ? tracks.map(({ title, instrument, pattern }, index) => (
-          <Track
-            {...{
-              key: `${title}${instrument}${index}`,
-              title,
-              pattern: pattern?.repeat(loopLength / pattern.length),
-              muted: muted[instrument],
-              setMuted: value => setMuted({ ...muted, [instrument]: value }),
-            }}
-          />
-        ))
-        : [...Array(3)].map((_, i) => (
-          <Track key={`track-${i}`} />
-        ))}
+            <Track
+              {...{
+                key: `${title}${instrument}${index}`,
+                title,
+                pattern: pattern?.repeat(loopLength / pattern.length),
+                muted: muted[instrument],
+                setMuted: value => setMuted({ ...muted, [instrument]: value }),
+              }}
+            />
+          ))
+        : [...Array(3)].map((_, i) => <Track key={`track-${i}`} />)}
 
       <PlayerControls
         {...{
@@ -71,6 +69,7 @@ export const GroovyPlayer: FC<Props> = ({
           disabled: !tracks.length,
           swing,
           setSwing,
+          swingStyle,
         }}
       />
     </Wrapper>
@@ -81,7 +80,8 @@ const Wrapper = props => (
   <Flex.Col
     css={css`
       width: 100vw;
-      background: ${colors.black};
+      background: ${colors.black}da;
+      box-shadow: 0 0 4px #00000044;
       color: ${colors.grayLight};
       font-weight: 700;
       font-size: 18px;
@@ -92,7 +92,11 @@ const Wrapper = props => (
         border-radius: 4px;
         margin: 0 0 24px;
         width: 100%;
-        min-width: 424px;
+        min-width: 386px;
+      }
+
+      @media (min-width: 1024px) {
+        min-width: 480px;
       }
     `}
     {...props}

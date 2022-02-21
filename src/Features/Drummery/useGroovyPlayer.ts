@@ -32,6 +32,18 @@ export const useGroovyPlayer: TGroovyPlayerHook = ({
   // stop playback if player is closed
   useEffect(() => stopLoop, [])
 
+  // preload samples
+  useEffect(() => {
+    midiSounds.current.cacheDrum(3310)
+    midiSounds.current.cacheDrum(3311)
+    midiSounds.current.cacheDrum(3312)
+    midiSounds.current.cacheDrum(3313)
+    midiSounds.current.cacheDrum(3314)
+    midiSounds.current.cacheDrum(3315)
+    midiSounds.current.cacheDrum(3316)
+    midiSounds.current.cacheDrum(3317)
+  }, [])
+
   // update player settings on tracks change
   useEffect(() => {
     if (tempo !== initialTempo) setTempo(initialTempo)

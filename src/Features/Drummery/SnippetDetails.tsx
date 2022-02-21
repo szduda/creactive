@@ -36,7 +36,7 @@ const Patterns: FC = ({ patterns, tempo, swingStyle }) => (
         letter-spacing: 1.5px;
         font-size: 24px;
         line-height: 48px;
-        margin: 24px 0 6px;
+        margin: 12px 0 0;
       `}
     >
       Patterns
@@ -47,49 +47,33 @@ const Patterns: FC = ({ patterns, tempo, swingStyle }) => (
 
 const Wrapper: FC = ({ children, ...props }) => (
   <Flex.Col
-    valign="center"
     css={css`
-      color: ${colors.black};
-      padding: 0;
-      font-size: 12px;
-      line-height: 14px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
       width: 100%;
 
+      @media (max-width: 767px) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        padding: 88px 12px 92px;
+        overflow-y: auto;
+      }
+
       @media (min-width: 768px) {
-        margin: 0 0 0 8px;
+        padding: 0 16px;
       }
 
       @media (min-width: 1024px) {
-        margin: 0 16px 0 24px;
+        padding: 0 16px 0 24px;
       }
 
       @media (min-width: 1440px) {
-        margin: 0 16px 0 40px;
+        padding: 0 16px 0 64px;
       }
     `}
-    {...props}
   >
-    <Flex.Col
-      css={css`
-        background: ${colors.grayDark};
-        width: 100%;
-
-        @media (max-width: 767px) {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100vw;
-          height: 100vh;
-          padding: 24px 12px 72px;
-          overflow-y: auto;
-        }
-      `}
-    >
-      {children}
-    </Flex.Col>
+    {children}
   </Flex.Col>
 )
 

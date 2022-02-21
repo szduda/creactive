@@ -25,7 +25,7 @@ const useDrummeryContext = DataService => {
 
   const featuredItem = items?.sort((a, b) => b.createdAt - a.createdAt)?.[0]
 
-  const navigateToSnippet = slug => history.push(`/drums/${slug ?? ''}`)
+  const navigateToSnippet = slug => history.push(`/${slug ?? ''}`)
 
   // initial data load
   // eslint-disable-next-line
@@ -137,13 +137,16 @@ const useDrummeryContext = DataService => {
   }
 }
 
-export const connectDrummery: FC<TDrummery> = ({ DataService }) => () => (
-  <MidiSoundsContextProvider>
-    <Drummery
-      {...{ useDrummeryContext: () => useDrummeryContext(DataService) }}
-    />
-  </MidiSoundsContextProvider>
-)
+export const connectDrummery: FC<TDrummery> =
+  ({ DataService }) =>
+  () =>
+    (
+      <MidiSoundsContextProvider>
+        <Drummery
+          {...{ useDrummeryContext: () => useDrummeryContext(DataService) }}
+        />
+      </MidiSoundsContextProvider>
+    )
 
 const bySlug = (o1, o2) =>
   o1.slug.toLowerCase() === o2.slug.toLowerCase()

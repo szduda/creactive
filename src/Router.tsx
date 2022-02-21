@@ -12,17 +12,17 @@ export const Router = () => {
   // const Dev = () => <p style={{ color: 'white' }}>Dev...</p>
 
   return (
-    <HashRouter basename="/">
+    <HashRouter>
       <header>
         <Header />
       </header>
       <main>
         <Switch>
-          <Route path="/drums/:slug" component={Drummery} />
-          <Route path="/drums/" component={Drummery} />
+          <Route path="/:slug" component={Drummery} />
+          <Route exact path="/" component={Drummery} />
           {/* <Route path='/photos' component={Gallery} /> */}
           {/* <Route path='/dev' component={Dev} /> */}
-          <Redirect to="/drums" />
+          <Redirect to="/" />
         </Switch>
       </main>
     </HashRouter>

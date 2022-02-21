@@ -16,6 +16,8 @@ import { ReactComponent as ShakerIcon } from '../assets/icons/cabasa.svg'
 import { ReactComponent as DjembeIcon } from '../assets/icons/djembe.svg'
 import { ReactComponent as LogoIcon } from '../assets/icons/logo.svg'
 import { ReactComponent as InfoIcon } from '../assets/icons/info.svg'
+import { ReactComponent as SwingIcon } from '../assets/icons/swing.svg'
+import { ReactComponent as PepperIcon } from '../assets/icons/pepper.svg'
 
 export const colors = {
   red: '#ED3C19',
@@ -29,16 +31,19 @@ export const colors = {
   yellowLight: '#FBD760',
 
   green: '#2E8269',
+  greenDarker: '#0F2723',
   greenDark: '#205A4A',
   greenLight: '#35977A',
   greenLighter: '#69A197',
 
-  white: '#F1FAEA',
-  black: '#1B1B1A',
+  white: '#D0DCDB',
+  black: '#121211',
   grayLighter: '#D0DCDB',
   grayLight: '#7DA19E',
   gray: '#455F5D',
   grayDark: '#2B3B3A',
+  grayDarker: '#242A2A',
+  grayDarkest: '#20221F',
   darken: color =>
     colors[`${Object.keys(colors).find(key => colors[key] === color)}Dark`] ||
     color,
@@ -102,10 +107,16 @@ export const Icons = {
   Shaker: () => <ShakerIcon />,
   Djembe: () => <DjembeIcon />,
   Info: () => <InfoIcon />,
+  Swing: () => <SwingIcon />,
+  Pepper: () => <PepperIcon />,
   Logo: () => (
     <LogoIcon
       css={css`
-        transform: translateY(-1px);
+        @media (max-width: 767px) {
+          > g > g {
+            display: none;
+          }
+        }
       `}
     />
   ),
@@ -235,25 +246,28 @@ export const Theme = props => (
       }
 
       main {
-        padding: 24px 0 48px;
+        padding: 36px 0 48px;
 
         @media (min-width: 768px) {
-          padding: 64px 0 48px;
+          padding: 36px 0 0;
         }
       }
 
       header {
         position: fixed;
-        bottom: 0;
+        position: sticky;
+        top: 0;
         left: 0;
         right: 0;
         display: flex;
         justify-content: center;
         z-index: 999;
+        background: ${colors.greenDarker};
+        box-shadow: 0 0 4px ${colors.gray}44;
 
         @media (min-width: 768px) {
-          top: 0;
-          bottom: unset;
+          background: none;
+          box-shadow: none;
         }
       }
 
@@ -276,8 +290,8 @@ export const Theme = props => (
         background: ${colors.grayDark};
         color: ${colors.grayLighter};
         border-radius: 4px;
-        border: 2px solid ${colors.grayLight};
-        padding: 8px;
+        border: 2px solid ${colors.grayLight}22;
+        padding: 7px 8px 5px;
         min-width: 24px;
         font: 700 24px Consolas;
         line-height: 36px;

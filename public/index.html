@@ -24,17 +24,29 @@
         background: #2b3b3a;
         min-height: 100vh;
         min-height: -webkit-fill-available;
+        background: 
+          linear-gradient(0deg, #2B3B38ec, #2B3B38 100%), 
+          url('%PUBLIC_URL%/bg.jpg') 
+          no-repeat;
+        background-size: cover;
+        background-position: center top;
+        background-attachment: fixed;
+        backdrop-filter: brightness(1.1) contrast(1.4) blur(7px);
       }
 
       @media (min-width: 768px) {
         ::-webkit-scrollbar-thumb {
-          background-color: #1b1b1a88;
-          border-radius: 4px;
-          border: 1px solid #455f5d55;
+          background-color: #455f5d11;
+          border-radius: 6px;
+          border: 2px solid #455f5d22;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+          background-color: #455f5d33;
         }
 
         ::-webkit-scrollbar-track {
-          background: #455f5d44;
+          background: none;
         }
 
         ::-webkit-scrollbar {

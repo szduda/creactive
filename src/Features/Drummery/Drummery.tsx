@@ -16,27 +16,48 @@ const Wrapper = props => (
       margin: 0 auto;
 
       @media (min-width: 768px) {
-        padding: 12px 8px 0;
+        padding: 0 8px;
       }
     `}
     {...props}
   />
 )
 
-const ListWrapper = props => (
+const ListWrapper = ({ mobileHidden = false, ...props }) => (
   <div
     css={css`
       display: flex;
       flex-direction: column;
-      padding: 0 8px;
-      width: 100%;
+      padding: 0 8px 48px;
+      flex: 0 0 100%;
+
+      @media (max-width: 767px) {
+        ${
+          mobileHidden
+            ? `
+        visibility: hidden;
+        height: calc(100vh - 160px);
+        overflow: hidden;
+        `
+            : ''
+        }
+      }
 
       @media (min-width: 768px) {
-        width: 40%;
+        height: calc(100vh - 100px);
+        overflow-y: auto;
+        padding-right: 16px;
+        flex: 0 0 40%;
       }
 
       @media (min-width: 1024px) {
-        width: 50%;
+        padding-right: 24px;
+      }
+
+      
+      @media (min-width: 1440px) {
+        padding-right 64px;
+        flex: 0 0 30%;
       }
     `}
     {...props}
@@ -56,7 +77,7 @@ export const Drummery: FC<TDrummery> = ({ useDrummeryContext }) => {
   const previewItem = items.find(snippet => snippet.slug === slug)
   return (
     <Wrapper>
-      <ListWrapper>
+      <ListWrapper mobileHidden={Boolean(slug)}>
         {featuredItem && (
           <>
             <H3
@@ -71,6 +92,7 @@ export const Drummery: FC<TDrummery> = ({ useDrummeryContext }) => {
               {...{
                 key: featuredItem.id,
                 item: featuredItem,
+                dimmed: Boolean(slug),
                 onClick: () =>
                   navigateToSnippet(
                     featuredItem.slug === slug ? null : featuredItem.slug
@@ -89,16 +111,25 @@ export const Drummery: FC<TDrummery> = ({ useDrummeryContext }) => {
               onClick: () =>
                 navigateToSnippet(snippet.slug === slug ? null : snippet.slug),
               selected: snippet.slug === slug,
+              dimmed: slug && slug !== snippet.slug,
             }}
           />
         ))}
       </ListWrapper>
       {previewItem && (
-        <SnippetDetails
-          onClose={() => navigateToSnippet(null)}
-          item={previewItem}
-          onTagClick={setSearchTerm}
-        />
+        <div
+          css={css`
+            @media (max-width: 767px) {
+              padding: 64px 0 0;
+            }
+          `}
+        >
+          <SnippetDetails
+            onClose={() => navigateToSnippet(null)}
+            item={previewItem}
+            onTagClick={setSearchTerm}
+          />
+        </div>
       )}
     </Wrapper>
   )

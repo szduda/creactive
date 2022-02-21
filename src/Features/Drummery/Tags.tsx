@@ -39,7 +39,7 @@ export const Tags: FC<Props> = ({ tags, dimmed, onClick }) =>
             ${!dimmed && 'cursor: pointer'};
             margin: 0 4px 8px;
             color: ${dimmed ? colors.grayLight : colors.black};
-            padding: 3px 6px;
+            padding: 4px 6px 2px;
             background: ${dimmed ? 'transparent' : colors.yellowLight};
             border: 1px solid ${dimmed ? colors.grayDark : colors.yellowLight}66;
             ${!dimmed && 'font-weight: 700'};
@@ -48,6 +48,7 @@ export const Tags: FC<Props> = ({ tags, dimmed, onClick }) =>
             border-radius: 4px;
             font-size: 14px;
             line-height: 14px;
+            transform: translateY(2px);
 
             ${!dimmed &&
             `:hover {

@@ -14,6 +14,7 @@ export const PlayerControls: FC = ({
   disabled,
   swing,
   setSwing,
+  swingStyle,
 }) => (
   <Wrapper>
     <Flex.Row
@@ -125,7 +126,7 @@ export const PlayerControls: FC = ({
 
     <Button
       ninja
-      disabled={disabled}
+      disabled={disabled || !swingStyle}
       aria-label={`turn swing ${swing ? 'off' : 'on'}`}
       onClick={() => setSwing(!swing)}
       css={css`
@@ -144,11 +145,14 @@ export const PlayerControls: FC = ({
         ${(!swing || disabled) &&
         `
         svg path {
-            fill: ${colors.grayLight};
+          fill: ${colors.grayLight};
+          &:first-of-type {
+            stroke: ${colors.grayLight};
+          }
         }`}
       `}
     >
-      <Icons.Djembe />
+      <Icons.Pepper />
     </Button>
   </Wrapper>
 )

@@ -5,30 +5,27 @@ import { colors, Button, Flex } from '../theme'
 import type { TDrumSnippet } from '../../StateManager'
 import { Tags } from './Tags'
 
-const Wrapper = ({ onClick, selected, loading, featured, ...rest }) => {
+const Wrapper = ({ onClick, selected, loading, featured, dimmed, ...rest }) => {
   return (
     <Button
       ninja
       onClick={onClick}
       css={css`
-        color: ${colors.grayLighter};
+        color: ${dimmed ? colors.grayLight : colors.grayLighter}ee;
         margin: 0 0 12px;
         border-radius: 4px;
-        line-height: 14px;
         position: relative;
         height: min-content;
         width: 100%;
-        min-width: 240px;
+        min-width: 200px;
         ${loading && 'pointer-events: none;'}
-        background: ${
-          featured
-            ? colors.yellow + '0B'
-            : loading
-            ? colors.gray + '22'
-            : selected
-            ? colors.gray
-            : colors.gray + '44'
-        };
+        background: ${featured
+          ? colors.yellow + '0B'
+          : loading
+          ? colors.gray + '22'
+          : selected
+          ? colors.gray
+          : colors.gray + '44'};
         ${featured && `box-shadow: 0 0 3px ${colors.yellow}BB;`}
         padding: 12px 8px;
         border: 2px solid ${loading ? colors.gray + '44' : colors.gray + '66'};
@@ -38,6 +35,7 @@ const Wrapper = ({ onClick, selected, loading, featured, ...rest }) => {
 
         :hover {
           background: ${featured ? colors.yellow + '14' : colors.gray + 'cc'};
+          color: ${colors.grayLighter};
         }
 
         :active {
@@ -54,7 +52,7 @@ const Title = props => (
   <h4
     css={css`
       margin: 8px 8px 0;
-      font-size: 18px;
+      font-size: 22px;
       line-height: 24px;
       text-align: left;
       text-transform: uppercase;
@@ -88,8 +86,9 @@ export const ListItem: FC<Props> = ({
   loading = false,
   onClick,
   selected = false,
+  dimmed = false,
 }) => (
-  <Wrapper {...{ onClick, loading, selected, featured }}>
+  <Wrapper {...{ onClick, loading, selected, dimmed, featured }}>
     {loading ? (
       <Placeholder />
     ) : (

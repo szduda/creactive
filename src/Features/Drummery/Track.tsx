@@ -7,7 +7,7 @@ export const Track: FC = ({ title, pattern, muted, setMuted }) => (
   <div
     css={css`
       padding: 18px 16px 24px;
-      border-bottom: 2px solid ${colors.grayLight}44;
+      border-bottom: 2px solid ${colors.grayLight}1a;
       width: 100%;
 
       @media (min-width: 1024px) {
@@ -35,6 +35,7 @@ export const Track: FC = ({ title, pattern, muted, setMuted }) => (
       <div
         css={css`
           color: ${colors.gray};
+          transform: translateY(1px);
         `}
       >
         {title}
