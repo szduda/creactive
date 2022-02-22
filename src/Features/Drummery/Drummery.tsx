@@ -119,6 +119,9 @@ export const Drummery: FC<TDrummery> = ({ useDrummeryContext }) => {
       {previewItem && (
         <div
           css={css`
+          overflow-y: auto;
+    height: calc(100vh - 100px);
+    width: 100%;
             @media (max-width: 767px) {
               padding: 64px 0 0;
             }
