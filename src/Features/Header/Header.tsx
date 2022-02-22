@@ -122,7 +122,7 @@ export const Header = ({ useHeaderContext }) => {
 
           transition: transform 100ms ease-out;
           :active {
-            transform: scale(0.97);
+            transform: scale(0.98);
           }
         `}
       >
