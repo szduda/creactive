@@ -116,6 +116,7 @@ export const PlayerControls: FC<Props> = ({
       onClick={() => setMetronome(!metronome)}
       css={css`
         padding: 4px;
+        margin-bottom: 24px;
         border-radius: 50%;
 
         :hover {
@@ -147,6 +148,7 @@ export const PlayerControls: FC<Props> = ({
       css={css`
         padding: 4px;
         border-radius: 50%;
+        margin-bottom: 24px;
 
         :hover {
           background: ${colors.grayLight}44;

@@ -85,7 +85,10 @@ const useDrummeryContext = DataService => {
   useEffect(() => {
     if (loading) return
 
-    if (!searchTerm) setFilteredItems(items)
+    if (!searchTerm) {
+      setFilteredItems(items)
+      navigateToSnippet('')
+    }
 
     const termParts = searchTerm
       .toLowerCase()
@@ -132,6 +135,7 @@ const useDrummeryContext = DataService => {
     featuredItem,
     slug,
     navigateToSnippet,
+    searchTerm,
     setSearchTerm,
     meta: { loading },
   }

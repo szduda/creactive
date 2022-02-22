@@ -99,6 +99,7 @@ export const Header = ({ useHeaderContext }) => {
         to="/"
         css={css`
           display: flex;
+          transform: translateY(-3px);
           flex: 0 0 auto;
 
           @media (min-width: 768px) {
@@ -144,7 +145,7 @@ export const Header = ({ useHeaderContext }) => {
           disabled
           css={css`
             padding: 4px;
-            transform: translateX(6px);
+            transform: translateX(4px);
             // :hover svg circle {
             //   fill: ${colors.yellow};
             // }

@@ -59,18 +59,6 @@ const Wrapper: FC = ({ children, ...props }) => (
         padding: 88px 12px 92px;
         overflow-y: auto;
       }
-
-      @media (min-width: 768px) {
-        padding: 0 16px;
-      }
-
-      @media (min-width: 1024px) {
-        padding: 0 16px 0 24px;
-      }
-
-      @media (min-width: 1440px) {
-        padding: 0 16px 0 64px;
-      }
     `}
   >
     {children}
@@ -81,10 +69,10 @@ const Title = ({ title }) =>
   title ? (
     <h2
       css={css`
-        margin: 0;
+        margin: 6px 0 24px;
         padding: 0;
         font-size: 32px;
-        line-height: 1.5;
+        line-height: 1.15;
         color: ${colors.white};
         text-transform: uppercase;
         letter-spacing: 0.8px;

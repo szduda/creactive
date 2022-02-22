@@ -438,38 +438,63 @@ export const Button: FC<ButtonProps> = ({ filled, ninja, ...rest }) =>
     />
   ) : (
     <button
-      css={css`      
-    border-radius: 4px;
-    border: ${
-      filled
-        ? `1px solid ${colors.yellowLight}`
-        : `1px solid ${colors.grayLight}`
-    };
-    font: 500 24px Consolas;
-    line-height: 36px;
-    background: ${filled ? colors.yellowLight : 'none'};
-    font-weight: 700;
-    outline: none;
-    display: flex;
-    justify-content: center;
-    padding: 3px 16px;
-    ${!rest.disabled && 'cursor: pointer;'}
+      onMouseUp={e => e.preventDefault()}
+      css={css`
+        border-radius: 4px;
+        border: ${filled
+          ? `2px solid ${colors.yellowLight}`
+          : `2px solid ${colors.grayLight}`};
+        font: 500 22px Consolas;
+        line-height: 24px;
+        background: ${filled ? colors.yellowLight : 'none'};
+        font-weight: 700;
+        outline: none;
+        display: flex;
+        justify-content: center;
+        padding: 11px 16px 7px;
+        ${!rest.disabled && 'cursor: pointer;'}
+        transition: transform 150ms ease-out;
 
-    :hover {
-      background ${filled ? colors.yellow : colors.black + '44'}
-    }
+        :hover {
+          background: ${filled ? colors.gray + '88' : colors.black + '44'};
+          color: ${colors.white};
+          border-color: ${colors.grayLight}44;
+        }
 
-    ${
-      rest.disabled &&
-      `
-      background: ${filled ? colors.gray : 'none'};
-      border-color: ${colors.gray};
-    `
-    }
-  `}
+        :active {
+          color: ${colors.white};
+          background: ${filled ? colors.gray + '66' : colors.black + '5A'};
+          transform: scale(0.97);
+        }
+
+        :focus:not(:hover):not(:active) {
+          outline: none;
+          color: ${colors.white};
+          background: ${colors.greenDarker + '88'};
+        }
+
+        ${rest.disabled &&
+        `
+          background: ${filled ? colors.gray : 'none'};
+          border-color: ${colors.gray};
+        `}
+      `}
       {...rest}
     />
   )
+
+export const H2 = props => (
+  <h2
+    css={css`
+      color: ${colors.grayLight};
+      letter-spacing: 1px;
+      font-size: 28px;
+      line-height: 36px;
+      margin: 0;
+    `}
+    {...props}
+  />
+)
 
 export const H3 = props => (
   <h3
@@ -479,7 +504,7 @@ export const H3 = props => (
       letter-spacing: 1.5px;
       font-size: 18px;
       line-height: 24px;
-      margin: 24px 0 8px;
+      margin: 0 0 8px;
     `}
     {...props}
   />
