@@ -169,6 +169,7 @@ const NoResults = ({ searchTerm, setSearchTerm }) => (
   <div
     css={css`
       margin-bottom: 36px;
+      margin-top: 36px;
 
       @media (min-width: 768px) {
         order: 3;

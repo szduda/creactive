@@ -56,7 +56,7 @@ const Title = props => (
       line-height: 24px;
       text-align: left;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.6px;
       text-shadow: 0 0 4px ${colors.black}88;
     `}
     {...props}
