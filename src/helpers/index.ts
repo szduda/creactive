@@ -1,2 +1,5 @@
 export { useTimeout } from './useTimeout'
 export { storageScope } from './storageScope'
+export { fillBeat } from './notation'
+export { matchSignal } from './notation'
+export { applySwing } from './swing'

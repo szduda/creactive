@@ -1,21 +1,10 @@
 import { Firestore } from './firebase'
-import { TPhoto, TDrumSnippet, TPattern } from './StateManager'
+import { TDrumSnippet, TPattern } from './StateManager'
 import { storageScope } from './helpers'
 
-const dbPhotos = Firestore.collection('photos')
 const dbDrums = Firestore.collection('drums')
 
 export const DataService = {
-  fetchPhotos: async () => {
-    const items: TPhoto[] = []
-    await dbPhotos.get().then(snapshot => {
-      snapshot.forEach(doc => {
-        const { title, description, url, vertical } = doc.data()
-        items.push({ id: doc.id, title, description, url, vertical })
-      })
-    })
-    return items
-  },
   fetchDrumSnippets: async (force: boolean = false) => {
     const items: TDrumSnippet[] = []
     const [snippets, setSnippets] = storageScope<TDrumSnippet[]>('drums', [])
@@ -29,7 +18,15 @@ export const DataService = {
       try {
         await dbDrums.get().then(snapshot => {
           snapshot.forEach(async doc => {
-            const { title, description, tags, tempo, createdAt, swing } = doc.data()
+            const {
+              title,
+              description,
+              tags,
+              tempo,
+              createdAt,
+              swing,
+              signal,
+            } = doc.data()
             items.push({
               id: doc.id,
               title,
@@ -40,6 +37,7 @@ export const DataService = {
               createdAt: createdAt?.seconds ?? 0,
               slug: slugify(title),
               swingStyle: swing,
+              signal,
             })
           })
         })

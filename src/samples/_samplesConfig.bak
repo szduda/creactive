@@ -55,3 +55,38 @@ if (n === 3317) return {
   pitch: 78,
   title: 'kenkeni closed 2'
 };
+
+if (n === 3318) return {
+  variable: '_drum_djembe_open_tone',
+  url: 'https://firebasestorage.googleapis.com/v0/b/creactive-83d83.appspot.com/o/djembeOpenTone.js?alt=media',
+  pitch: 78,
+  title: 'djembe open tone'
+};
+
+if (n === 3319) return {
+  variable: '_drum_djembe_flam_slap',
+  url: 'https://firebasestorage.googleapis.com/v0/b/creactive-83d83.appspot.com/o/djembeFlamSlap.js?alt=media',
+  pitch: 78,
+  title: 'djembe flam slap'
+};
+
+if (n === 3320) return {
+  variable: '_drum_djembe_open_slap',
+  url: 'https://firebasestorage.googleapis.com/v0/b/creactive-83d83.appspot.com/o/djembeOpenSlap.js?alt=media',
+  pitch: 78,
+  title: 'djembe open slap'
+};
+
+if (n === 3321) return {
+  variable: '_drum_djembe_open_bass',
+  url: 'https://firebasestorage.googleapis.com/v0/b/creactive-83d83.appspot.com/o/djembeOpenBass.js?alt=media',
+  pitch: 78,
+  title: 'djembe open slap'
+};
+
+if (n === 3322) return {
+  variable: '_drum_djembe_mute_tone',
+  url: 'https://firebasestorage.googleapis.com/v0/b/creactive-83d83.appspot.com/o/djembeMuteTone.js?alt=media',
+  pitch: 78,
+  title: 'djembe open slap'
+};

@@ -1,5 +1,5 @@
 export { connectDrummery } from './connectDrummery'
-export { Drummery } from './Drummery'
-export { ListItem } from './ListItem'
-export { SnippetDetails } from './SnippetDetails'
+export { Drummery } from './components/Drummery'
+export { ListItem } from './components/ListItem'
+export { SnippetDetails } from './components/SnippetDetails'
 export type { TDrummery } from './types'

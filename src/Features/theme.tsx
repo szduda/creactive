@@ -18,6 +18,7 @@ import { ReactComponent as LogoIcon } from '../assets/icons/logo.svg'
 import { ReactComponent as InfoIcon } from '../assets/icons/info.svg'
 import { ReactComponent as SwingIcon } from '../assets/icons/swing.svg'
 import { ReactComponent as PepperIcon } from '../assets/icons/pepper.svg'
+import { ReactComponent as SignalIcon } from '../assets/icons/signal.svg'
 
 export const colors = {
   red: '#ED3C19',
@@ -109,6 +110,7 @@ export const Icons = {
   Info: () => <InfoIcon />,
   Swing: () => <SwingIcon />,
   Pepper: () => <PepperIcon />,
+  Signal: () => <SignalIcon/>,
   Logo: () => (
     <LogoIcon
       css={css`

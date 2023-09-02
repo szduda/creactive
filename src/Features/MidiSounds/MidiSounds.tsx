@@ -4,16 +4,43 @@ import { jsx, css } from '@emotion/react'
 
 import MIDISounds from 'midi-sounds-react'
 
-export const bell = 227
-export const sangbanClosed = 3311
-export const sangban = 3310
-export const shaker = 173
-export const dundunbaOpen = 3312
-export const dundunbaClosed = 3313
-export const kenkeniOpen = 3314
-export const kenkeniClosed = 3315
-export const kenkeniOpen2 = 3316
-export const kenkeniClosed2 = 3317
+const bell = 227
+const sangbanClosed = 3311
+const sangban = 3310
+const shaker = 173
+const dundunbaOpen = 3312
+const dundunbaClosed = 3313
+const kenkeniOpen = 3314
+const kenkeniClosed = 3315
+const kenkeniOpen2 = 3316
+const kenkeniClosed2 = 3317
+const djembeOpenBass = 3321
+const djembeOpenTone = 3318
+const djembeOpenSlap = 3320
+const djembeMuteTone = 3322
+const djembeMuteSlap = 3322
+const djembeFlamTone = 3319
+const djembeFlamSlap = 3319
+
+export const drums = [
+  bell,
+  sangban,
+  sangbanClosed,
+  shaker,
+  dundunbaOpen,
+  dundunbaClosed,
+  kenkeniOpen,
+  kenkeniClosed,
+  kenkeniOpen2,
+  kenkeniClosed2,
+  djembeOpenBass,
+  djembeOpenTone,
+  djembeOpenSlap,
+  djembeMuteTone,
+  djembeMuteSlap,
+  djembeFlamTone,
+  djembeFlamSlap,
+]
 
 const MidiSoundsContext = createContext(null)
 
@@ -39,11 +66,7 @@ export const MidiSoundsContextProvider: FC = ({ children }) => {
           opacity: 0.4;
         `}
       >
-        <MIDISounds
-          ref={midiSounds}
-          appElementName="root"
-          drums={[bell, sangbanClosed, sangban, shaker]}
-        />
+        <MIDISounds ref={midiSounds} appElementName="root" drums={drums} />
       </div>
     </MidiSoundsContext.Provider>
   )

@@ -8,6 +8,7 @@ export type TDrumSnippet = {
   tempo?: number
   createdAt: number
   swingStyle?: SwingStyle
+  signal: string
 }
 
 export type TPattern = {
