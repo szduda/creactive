@@ -79,7 +79,7 @@ export const fillBeat = (
 export const matchSignal = (
   beatSize: number,
   signal?: string,
-  swingStyle?: SwingStyle
+  swingStyle: SwingStyle = ""
 ) => {
   if (signal) {
     return signal

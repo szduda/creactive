@@ -17,4 +17,5 @@ export type TPattern = {
   pattern: string
 }
 
-export type SwingStyle = '>>' | '<<' | null
+export type SwingStyle = '' | '>' | '>>' | '<<' | '-->' | '--<'
+

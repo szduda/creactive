@@ -3,23 +3,23 @@ import { applySwing, fillBeat, matchSignal } from '../../helpers'
 
 import { useMidiSounds } from '../MidiSounds/MidiSounds'
 import { TGroovyPlayerContext, TGroovyPlayerHook, TTrack } from './types'
-
 export const useGroovyPlayer: TGroovyPlayerHook = ({
   tracks = [],
   initialMetronome = true,
-  swingStyle = null,
+  swingStyle = '',
   initialTempo = 110,
-  signal,
+  signal = '',
 }) => {
   const midiSounds = useMidiSounds()
-  const [tempo, setTempo] = useState<number>(initialTempo)
+  const [tempo, setTempo] = useState(initialTempo)
   const [muted, setMuted] = useState<TGroovyPlayerContext['muted']>({})
-  const [metronome, setMetronome] = useState<Boolean>(initialMetronome)
-  const [playing, setPlaying] = useState<Boolean>(false)
-  const [swing, setSwing] = useState<Boolean>(swingStyle)
-  const [noteIndex, setNoteIndex] = useState<number>(0)
-  const [signalRequested, setSignalRequested] = useState<Boolean>(false)
-  const [signalActive, setSignalActive] = useState<Boolean>(false)
+  const [metronome, setMetronome] = useState(initialMetronome)
+  const [playing, setPlaying] = useState(false)
+  const [swing, setSwing] = useState(Boolean(swingStyle))
+  const [noteIndex, setNoteIndex] = useState(0)
+  const [beat, setBeat] = useState(0)
+  const [signalRequested, setSignalRequested] = useState(false)
+  const [signalActive, setSignalActive] = useState(false)
   const currentBeats = useRef(Array<number[][]>())
 
   const loopLength = tracks.sort(byPatternLength)[0]?.pattern?.length ?? 0
@@ -45,6 +45,7 @@ export const useGroovyPlayer: TGroovyPlayerHook = ({
 
   const stopLoop = () => {
     midiSounds.current?.stopPlayLoop()
+    setBeat(0)
     setPlaying(false)
   }
 
@@ -72,7 +73,7 @@ export const useGroovyPlayer: TGroovyPlayerHook = ({
       muted,
       metronome,
       signalActive,
-      matchSignal(beatSize, signal, swing ? swingStyle : undefined)
+      matchSignal(beatSize, signal, swing ? swingStyle : '')
     )
 
     if (swing && swingStyle) beats = applySwing(beats, beatSize, swingStyle)
@@ -99,32 +100,39 @@ export const useGroovyPlayer: TGroovyPlayerHook = ({
 
   // reset player settings on tracks change
   useEffect(() => {
-    setTempo(initialTempo)
-    setMetronome(initialMetronome)
+    if (tempo !== initialTempo) setTempo(initialTempo)
+    if (metronome !== initialMetronome) setMetronome(initialMetronome)
     setMuted({})
-    setSwing(Boolean(swingStyle))
-    setSignalActive(false)
+    const hasSwing = Boolean(swingStyle)
+    if (swing !== hasSwing) setSwing(hasSwing)
+    if (signalActive) setSignalActive(false)
+
     if (tracks.length === 0) stopLoop()
     else if (playing) playLoop()
   }, [tracks])
 
   // counting 1,2,3,4
   useEffect(() => {
-    // let beatIndex
     const isLastNote = noteIndex === loopLength * (swing ? 6 : 1) - 1
     const signalLength =
       signal?.length ?? beatSize % 3 ? 12 : 16 * (swing ? 6 : 1)
     const beforeSignal = !signalActive && noteIndex < loopLength - signalLength
     if (isLastNote || beforeSignal) {
       toggleSignal()
-    } else {
-      // if (!playing) return
-      // if (swing && noteIndex % 6 > 0) return
-      // beatIndex = 1 + noteIndex / (swing ? beatSize * 6 : beatSize)
-      // if (beatIndex - Math.floor(beatIndex) !== 0) return
     }
 
     // onBeat ...
+    if (noteIndex % beatSize === beatSize - 1) {
+      const lastBeat = loopLength / beatSize
+      const beatDelta =
+        typeof beat === 'number'
+          ? Math.round(noteIndex / beatSize / (swing ? 6 : 1))
+          : -1
+      const beatGamma = 1 + beatDelta > 0 ? beatDelta : 0
+      const beatIndex = beatGamma === lastBeat ? 1 : beatGamma + 1
+
+      setBeat(beatIndex)
+    }
   }, [noteIndex])
 
   // adjust volumes on mount
@@ -162,12 +170,15 @@ export const useGroovyPlayer: TGroovyPlayerHook = ({
     muted,
     setMuted,
     loopLength,
+    beat,
     swing,
     setSwing,
-    signalActive: signalActive || signalRequested,
+    signalActive,
+    signalRequested,
     playSignal,
   }
 }
 
 const byPatternLength = (t1: TTrack, t2: TTrack) =>
   (t2.pattern?.length ?? 0) - (t1.pattern?.length ?? 0)
+

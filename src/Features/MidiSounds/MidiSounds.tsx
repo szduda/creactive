@@ -2,7 +2,7 @@
 import { createContext, useContext, useRef, useEffect, FC } from 'react'
 import { jsx, css } from '@emotion/react'
 
-import MIDISounds from 'midi-sounds-react'
+import MIDISounds from './midi-sounds-react'
 
 const bell = 227
 const sangbanClosed = 3311

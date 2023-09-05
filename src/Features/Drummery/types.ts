@@ -20,21 +20,23 @@ export type TTrack = {
 }
 
 export type TGroovyPlayerContext = {
-  playLoop(): void
-  stopLoop(): void
-  playing: boolean
-  metronome: boolean
-  setMetronome(arg: boolean): void
-  tempo: number
-  setTempo(arg: number): void
-  muted: Record<string, boolean>[]
-  setMuted(arg: TGroovyPlayerContext['muted']): void
-  loopLength: number
-  swing: boolean
-  setSwing(arg: boolean): void
-  signalActive: boolean
-  playSignal(): void
-}
+  playLoop(): void;
+  stopLoop(): void;
+  playing: boolean;
+  metronome: boolean;
+  setMetronome(arg: boolean): void;
+  tempo: number;
+  setTempo(arg: number): void;
+  muted: Record<string, boolean>;
+  setMuted(arg: TGroovyPlayerContext["muted"]): void;
+  loopLength: number;
+  beat: number;
+  swing: boolean;
+  setSwing(arg: boolean): void;
+  playSignal(): void;
+  signalActive: boolean;
+  signalRequested: boolean;
+};
 
 export type TGroovyPlayerHook = (props: {
   tracks: TTrack[]
